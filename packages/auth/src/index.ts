@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { db } from "@tanisya/db";
 import * as schema from "@tanisya/db/schema/auth";
 import { env } from "@tanisya/env/server";
