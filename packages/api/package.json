@@ -11,13 +11,13 @@
   },
   "scripts": {},
   "dependencies": {
+    "@tanisya/auth": "workspace:*",
+    "@tanisya/db": "workspace:*",
+    "@tanisya/env": "workspace:*",
     "@orpc/client": "catalog:",
     "@orpc/openapi": "catalog:",
     "@orpc/server": "catalog:",
     "@orpc/zod": "catalog:",
-    "@tanisya/auth": "workspace:*",
-    "@tanisya/db": "workspace:*",
-    "@tanisya/env": "workspace:*",
     "dotenv": "catalog:",
     "next": "catalog:",
     "zod": "catalog:"

@@ -15,7 +15,6 @@
   },
   "devDependencies": {
     "@tanisya/config": "workspace:*",
-    "@tanisya/infra": "workspace:*",
     "@types/node": "^22.13.14",
     "typescript": "catalog:"
   }

@@ -1,10 +1,10 @@
+import { createContext } from "@tanisya/api/context";
+import { appRouter } from "@tanisya/api/routers/index";
 import { OpenAPIHandler } from "@orpc/openapi/fetch";
 import { OpenAPIReferencePlugin } from "@orpc/openapi/plugins";
 import { onError } from "@orpc/server";
 import { RPCHandler } from "@orpc/server/fetch";
 import { ZodToJsonSchemaConverter } from "@orpc/zod/zod4";
-import { createContext } from "@tanisya/api/context";
-import { appRouter } from "@tanisya/api/routers/index";
 import { NextRequest } from "next/server";
 
 const rpcHandler = new RPCHandler(appRouter, {

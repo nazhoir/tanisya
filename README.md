@@ -46,14 +46,6 @@ pnpm run dev
 
 Open [http://localhost:3001](http://localhost:3001) in your browser to see the fullstack application.
 
-## Deployment (Cloudflare via Alchemy)
-
-- Dev: cd apps/web && pnpm run alchemy dev
-- Deploy: cd apps/web && pnpm run deploy
-- Destroy: cd apps/web && pnpm run destroy
-
-For more details, see the guide on [Deploying to Cloudflare with Alchemy](https://www.better-t-stack.dev/docs/guides/cloudflare-alchemy).
-
 ## Git Hooks and Formatting
 
 - Format and lint fix: `pnpm run check`
