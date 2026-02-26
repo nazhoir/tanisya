@@ -1,0 +1,29 @@
+{
+  "name": "@tanisya/api",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@orpc/client": "catalog:",
+    "@orpc/openapi": "catalog:",
+    "@orpc/server": "catalog:",
+    "@orpc/zod": "catalog:",
+    "@tanisya/auth": "workspace:*",
+    "@tanisya/db": "workspace:*",
+    "@tanisya/env": "workspace:*",
+    "dotenv": "catalog:",
+    "next": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@tanisya/config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

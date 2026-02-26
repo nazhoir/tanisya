@@ -1,0 +1,3 @@
+{
+  "extends": "@tanisya/config/tsconfig.base.json"
+}
