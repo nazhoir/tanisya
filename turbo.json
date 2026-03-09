@@ -5,7 +5,17 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": ["dist/**", ".next/**"],
+      "env": [
+				"DATABASE_URL",
+				"BETTER_AUTH_SECRET",
+				"BETTER_AUTH_URL",
+				"CORS_ORIGIN",
+				"NODE_ENV",
+        "RDASH_API_URL",
+        "RDASH_RESELLER_ID",
+        "RDASH_API_KEY"
+			]
     },
     "lint": {
       "dependsOn": ["^lint"]
