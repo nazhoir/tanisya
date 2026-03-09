@@ -48,8 +48,18 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Create open-next.config.ts if missing
+        working-directory: apps/web
+        run: |
+          if [ ! -f open-next.config.ts ]; then
+            echo 'import { defineCloudflareConfig } from "@opennextjs/cloudflare";
+          export default defineCloudflareConfig({});' > open-next.config.ts
+          fi
+
       - name: Build Next.js app for Cloudflare Workers
-        run: yes Y | pnpm -C apps/web dlx @opennextjs/cloudflare@latest build
+        working-directory: apps/web
+        run: pnpm exec opennextjs-cloudflare build
 
       - name: Deploy to Cloudflare Workers
-        run: pnpm -C apps/web dlx wrangler@latest deploy
+        working-directory: apps/web
+        run: pnpm exec wrangler deploy
