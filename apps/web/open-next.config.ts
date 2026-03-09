@@ -1,7 +1,12 @@
 let config: any = {};
 
 try {
-  const { defineCloudflareConfig } = require("@opennextjs/cloudflare");
+  const moduleName = "@opennextjs/cloudflare";
+  const runtimeRequire = new Function("name", "return require(name)") as (
+    name: string,
+  ) => { defineCloudflareConfig: (config: Record<string, unknown>) => unknown };
+
+  const { defineCloudflareConfig } = runtimeRequire(moduleName);
   config = defineCloudflareConfig({
     // optional custom config
   });
