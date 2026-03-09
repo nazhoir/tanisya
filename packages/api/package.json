@@ -1,29 +1,30 @@
 {
-  "name": "@tanisya/api",
-  "type": "module",
-  "exports": {
-    ".": {
-      "default": "./src/index.ts"
-    },
-    "./*": {
-      "default": "./src/*.ts"
-    }
-  },
-  "scripts": {},
-  "dependencies": {
-    "@tanisya/auth": "workspace:*",
-    "@tanisya/db": "workspace:*",
-    "@tanisya/env": "workspace:*",
-    "@orpc/client": "catalog:",
-    "@orpc/openapi": "catalog:",
-    "@orpc/server": "catalog:",
-    "@orpc/zod": "catalog:",
-    "dotenv": "catalog:",
-    "next": "catalog:",
-    "zod": "catalog:"
-  },
-  "devDependencies": {
-    "@tanisya/config": "workspace:*",
-    "typescript": "catalog:"
-  }
+	"name": "@tanisya/api",
+	"type": "module",
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		},
+		"./*": {
+			"default": "./src/*.ts"
+		}
+	},
+	"scripts": {},
+	"dependencies": {
+		"@tanisya/auth": "workspace:*",
+		"@tanisya/db": "workspace:*",
+		"@tanisya/env": "workspace:*",
+		"@orpc/client": "catalog:",
+		"@orpc/openapi": "catalog:",
+		"@orpc/server": "catalog:",
+		"@orpc/zod": "catalog:",
+		"dotenv": "catalog:",
+		"drizzle-orm": "catalog:",
+		"next": "catalog:",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@tanisya/config": "workspace:*",
+		"typescript": "catalog:"
+	}
 }

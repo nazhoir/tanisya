@@ -1,6 +1,15 @@
-import { env } from "@tanisya/env/server";
 import { drizzle } from "drizzle-orm/node-postgres";
+import * as authSchema from "./schema/auth";
+import * as appSchema from "./schema/index";
 
-import * as schema from "./schema";
+export const schema = { ...authSchema, ...appSchema };
 
-export const db = drizzle(env.DATABASE_URL, { schema });
+export const db = drizzle(process.env.DATABASE_URL!, { schema });
+
+export type DB = typeof db;
+
+export * from "./schema/auth";
+export * from "./schema/index";
+export * from "./queries/orders";
+export * from "./queries/products";
+export * from "./queries/organizations";

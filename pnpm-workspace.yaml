@@ -1,13 +1,15 @@
 packages:
   - apps/*
   - packages/*
+
 catalog:
-  dotenv: ^17.2.2
-  zod: ^4.1.13
-  typescript: ^5
-  next: ^16.1.1
-  "@orpc/server": ^1.12.2
-  "@orpc/client": ^1.12.2
-  "@orpc/openapi": ^1.12.2
-  "@orpc/zod": ^1.12.2
-  better-auth: ^1.4.18
+  '@orpc/client': ^1.13.6
+  '@orpc/openapi': ^1.13.6
+  '@orpc/server': ^1.13.6
+  '@orpc/zod': ^1.13.6
+  better-auth: ^1.5.1
+  dotenv: ^17.3.1
+  drizzle-orm: ^0.45.1
+  next: ^16.1.6
+  typescript: 5.9.3
+  zod: ^4.3.6
