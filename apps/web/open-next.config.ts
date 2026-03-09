@@ -1,5 +1,12 @@
-import { defineCloudflareConfig } from "@opennextjs/cloudflare";
+let config: any = {};
 
-export default defineCloudflareConfig({
-  // optional custom config
-});
+try {
+  const { defineCloudflareConfig } = require("@opennextjs/cloudflare");
+  config = defineCloudflareConfig({
+    // optional custom config
+  });
+} catch {
+  // @opennextjs/cloudflare is optional and may not be available during build
+}
+
+export default config;
