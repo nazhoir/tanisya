@@ -25,14 +25,19 @@ jobs:
     env:
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+      BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
+      CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      RDASH_API_URL: ${{ secrets.RDASH_API_URL }}
+      RDASH_RESELLER_ID: ${{ secrets.RDASH_RESELLER_ID }}
+      RDASH_API_KEY: ${{ secrets.RDASH_API_KEY }}
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
