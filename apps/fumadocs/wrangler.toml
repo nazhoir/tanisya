@@ -1,4 +1,4 @@
-name = "tanisya-web"
+name = "tanisya-docs"
 main = ".open-next/worker.js"
 compatibility_date = "2026-03-09"
 compatibility_flags = ["nodejs_compat"]
