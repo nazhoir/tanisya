@@ -114,10 +114,17 @@ Workflow ini akan jalan saat:
 
 ### Secrets yang wajib diset di GitHub
 
-Tambahkan dua repository secrets berikut:
+Tambahkan repository secrets berikut:
 
 - `CLOUDFLARE_API_TOKEN` (minimal permission: Workers Scripts Edit)
 - `CLOUDFLARE_ACCOUNT_ID`
+- `BETTER_AUTH_SECRET`
+- `BETTER_AUTH_URL`
+- `CORS_ORIGIN`
+- `DATABASE_URL`
+- `RDASH_API_URL`
+- `RDASH_RESELLER_ID`
+- `RDASH_API_KEY`
 
 ### Konfigurasi Worker
 
