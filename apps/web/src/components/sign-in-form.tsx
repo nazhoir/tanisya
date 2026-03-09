@@ -16,7 +16,7 @@ import {
 } from "@tanisya/ui/components/field";
 import { Input } from "@tanisya/ui/components/input";
 import { authClient } from "@/lib/auth-client";
-import { cn } from "@/lib/utils";
+import { cn } from "@tanisya/ui/lib/utils";
 import Loader from "./loader";
 
 const formSchema = z.object({
@@ -102,7 +102,6 @@ export default function SignInForm({
 									<Field>
 										<div className="flex items-center">
 											<FieldLabel htmlFor={field.name}>Password</FieldLabel>
-
 											<a
 												href="#"
 												className="ml-auto text-sm underline-offset-2 hover:underline"
@@ -130,14 +129,16 @@ export default function SignInForm({
 
 							{/* Submit */}
 							<Field>
-								<form.Subscribe>
-									{(state) => (
+								<form.Subscribe
+									selector={(state) => [state.canSubmit, state.isSubmitting]}
+								>
+									{([canSubmit, isSubmitting]) => (
 										<Button
 											type="submit"
 											className="w-full"
-											disabled={!state.canSubmit || state.isSubmitting}
+											disabled={!canSubmit || isSubmitting}
 										>
-											{state.isSubmitting ? "Memproses..." : "Masuk"}
+											{isSubmitting ? "Memproses..." : "Masuk"}
 										</Button>
 									)}
 								</form.Subscribe>

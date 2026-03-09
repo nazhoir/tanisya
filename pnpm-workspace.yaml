@@ -3,13 +3,21 @@ packages:
   - packages/*
 
 catalog:
-  '@orpc/client': ^1.13.6
-  '@orpc/openapi': ^1.13.6
-  '@orpc/server': ^1.13.6
-  '@orpc/zod': ^1.13.6
-  better-auth: ^1.5.1
-  dotenv: ^17.3.1
+  '@orpc/client': ^1.12.2
+  '@orpc/openapi': ^1.12.2
+  '@orpc/server': ^1.12.2
+  '@orpc/zod': ^1.12.2
+  '@types/pg': ^8.16.0
+  '@types/react': ^19.2.10
+  '@types/react-dom': ^19.2.3
+  better-auth: 1.5.2
+  dotenv: ^17.2.2
   drizzle-orm: ^0.45.1
-  next: ^16.1.6
-  typescript: 5.9.3
-  zod: ^4.3.6
+  lucide-react: 0.546.0
+  next: ^16.1.1
+  next-themes: 0.4.6
+  react: ^19.2.3
+  react-dom: ^19.2.3
+  sonner: 2.0.7
+  tailwindcss: ^4.1.18
+  zod: ^4.1.13

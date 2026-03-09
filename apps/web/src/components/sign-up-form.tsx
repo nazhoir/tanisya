@@ -16,7 +16,7 @@ import {
 } from "@tanisya/ui/components/field";
 import { Input } from "@tanisya/ui/components/input";
 import { authClient } from "@/lib/auth-client";
-import { cn } from "@/lib/utils";
+import { cn } from "@tanisya/ui/lib/utils";
 import Loader from "./loader";
 
 const formSchema = z.object({
@@ -145,14 +145,16 @@ export default function SignUpForm({
 
 							{/* Submit */}
 							<Field>
-								<form.Subscribe>
-									{(state) => (
+								<form.Subscribe
+									selector={(state) => [state.canSubmit, state.isSubmitting]}
+								>
+									{([canSubmit, isSubmitting]) => (
 										<Button
 											type="submit"
 											className="w-full"
-											disabled={!state.canSubmit || state.isSubmitting}
+											disabled={!canSubmit || isSubmitting}
 										>
-											{state.isSubmitting ? "Memproses..." : "Daftar"}
+											{isSubmitting ? "Memproses..." : "Daftar"}
 										</Button>
 									)}
 								</form.Subscribe>
