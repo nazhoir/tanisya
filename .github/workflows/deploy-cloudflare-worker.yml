@@ -49,7 +49,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build Next.js app for Cloudflare Workers
-        run: pnpm -C apps/web dlx @opennextjs/cloudflare@latest build
+        run: yes Y | pnpm -C apps/web dlx @opennextjs/cloudflare@latest build
 
       - name: Deploy to Cloudflare Workers
         run: pnpm -C apps/web dlx wrangler@latest deploy
