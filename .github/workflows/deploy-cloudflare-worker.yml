@@ -26,8 +26,8 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
-      BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
-      CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
+      BETTER_AUTH_URL: ${{ vars.BETTER_AUTH_URL }}
+      CORS_ORIGIN: ${{ vars.CORS_ORIGIN }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       RDASH_API_URL: ${{ secrets.RDASH_API_URL }}
       RDASH_RESELLER_ID: ${{ secrets.RDASH_RESELLER_ID }}
