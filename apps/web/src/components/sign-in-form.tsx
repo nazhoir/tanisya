@@ -16,7 +16,7 @@ import {
 } from "@tanisya/ui/components/field";
 import { Input } from "@tanisya/ui/components/input";
 import { authClient } from "@/lib/auth-client";
-import { cn } from "@/lib/utils";
+import { cn } from "@tanisya/ui/lib/utils";
 import Loader from "./loader";
 
 const formSchema = z.object({

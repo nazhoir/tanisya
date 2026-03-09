@@ -9,11 +9,9 @@ export default function Dashboard({
 }: {
 	session: typeof authClient.$Infer.Session;
 }) {
-	const privateData = useQuery(orpc.privateData.queryOptions());
 
 	return (
 		<>
-			<p>API: {privateData.data?.message}</p>
 		</>
 	);
 }

@@ -15,7 +15,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@tanisya/ui/components/sidebar";
-import { OrdersClient } from "@/features/orders/components/orders-client";
 
 // Pure server component — no business logic, no DB, no ORPC calls here.
 // All data fetching is delegated to client feature components via TanStack Query.
@@ -47,7 +46,7 @@ export default function OrdersPage() {
         </header>
 
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <OrdersClient />
+          {/* <OrdersClient /> */}
         </div>
       </SidebarInset>
     </SidebarProvider>
