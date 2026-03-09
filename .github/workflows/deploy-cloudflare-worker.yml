@@ -1,0 +1,55 @@
+name: Deploy Web to Cloudflare Workers
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/web/**"
+      - "packages/**"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "turbo.json"
+      - ".github/workflows/deploy-cloudflare-worker.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-cloudflare-worker
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+      BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
+      CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      RDASH_API_URL: ${{ secrets.RDASH_API_URL }}
+      RDASH_RESELLER_ID: ${{ secrets.RDASH_RESELLER_ID }}
+      RDASH_API_KEY: ${{ secrets.RDASH_API_KEY }}
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Next.js app for Cloudflare Workers
+        run: pnpm -C apps/web dlx @opennextjs/cloudflare@latest build
+
+      - name: Deploy to Cloudflare Workers
+        run: pnpm -C apps/web dlx wrangler@latest deploy

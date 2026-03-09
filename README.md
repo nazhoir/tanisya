@@ -100,3 +100,36 @@ tanisya/
 - `pnpm run db:studio`: Open database studio UI
 - `pnpm run check`: Run Biome formatting and linting
 - `cd apps/web && pnpm run generate-pwa-assets`: Generate PWA assets
+
+## Automatic deploy ke Cloudflare Workers (GitHub Actions)
+
+Workflow CI untuk deploy otomatis sudah ditambahkan di:
+
+- `.github/workflows/deploy-cloudflare-worker.yml`
+
+Workflow ini akan jalan saat:
+
+- ada `push` ke branch `main` (khusus perubahan terkait `apps/web`, `packages`, dan file konfigurasi workspace), atau
+- dijalankan manual lewat `workflow_dispatch`.
+
+### Secrets yang wajib diset di GitHub
+
+Tambahkan repository secrets berikut:
+
+- `CLOUDFLARE_API_TOKEN` (minimal permission: Workers Scripts Edit)
+- `CLOUDFLARE_ACCOUNT_ID`
+- `BETTER_AUTH_SECRET`
+- `BETTER_AUTH_URL`
+- `CORS_ORIGIN`
+- `DATABASE_URL`
+- `RDASH_API_URL`
+- `RDASH_RESELLER_ID`
+- `RDASH_API_KEY`
+
+### Konfigurasi Worker
+
+Konfigurasi deploy Worker ada di:
+
+- `apps/web/wrangler.toml`
+
+Jika ingin ganti nama Worker, ubah nilai `name` pada file tersebut.
