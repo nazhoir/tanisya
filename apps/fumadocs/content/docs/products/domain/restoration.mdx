@@ -1,0 +1,62 @@
+---
+title: Restorasi Domain
+description: Panduan mengaktifkan kembali nama domain yang telah masuk masa redemption period di Tanisya.
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+Restorasi domain adalah proses mengaktifkan kembali nama domain yang sudah masuk masa **Redemption Period** — yaitu ketika domain tidak diperpanjang lebih dari 30 hari, atau tidak melengkapi dokumen persyaratan lebih dari 30 hari.
+
+<Callout type="warn">
+  Biaya restorasi domain **lebih tinggi** dari biaya perpanjangan normal. Segera lakukan restorasi sebelum masa redemption berakhir karena setelah masuk tahap **Pending Delete**, domain tidak dapat dipulihkan dengan cara apapun.
+
+  Pelajari lebih lanjut di halaman [Siklus Domain](/docs/products/domain/life-cycle).
+</Callout>
+
+---
+
+## Mengecek Status Domain
+
+Domain yang masuk masa redemption dapat diketahui melalui hasil pencarian WHOIS. Status yang ditampilkan pada WHOIS akan berupa `pendingDelete` atau `redemptionPeriod`.
+
+Kamu bisa mengecek status domain melalui layanan WHOIS publik seperti [who.is](https://who.is) atau [lookup.icann.org](https://lookup.icann.org).
+
+---
+
+## Langkah Restorasi Domain
+
+<Steps>
+  <Step>
+    ### Login ke Dashboard
+
+    Masuk ke akun Tanisya kamu di [dashboard.tanisya.id](https://dashboard.tanisya.id).
+  </Step>
+
+  <Step>
+    ### Buka Daftar Domain
+
+    Navigasi ke **Domains** → **All Domains**.
+  </Step>
+
+  <Step>
+    ### Cari Domain
+
+    Gunakan kolom pencarian untuk menemukan nama domain yang akan direstorasi.
+  </Step>
+
+  <Step>
+    ### Klik Restore
+
+    Klik tombol **Restore** pada domain yang bersangkutan.
+  </Step>
+
+  <Step>
+    ### Konfirmasi Restorasi
+
+    Klik **Confirm** untuk mengonfirmasi proses restorasi. Pastikan kamu sudah memahami biaya restorasi yang berlaku sebelum mengonfirmasi.
+  </Step>
+</Steps>
+
+<Callout type="error">
+  Restorasi **tidak dapat dilakukan** jika domain sudah memasuki tahap **Pending Delete**. Pada tahap tersebut domain akan segera dihapus permanen dan tersedia kembali untuk umum.
+</Callout>

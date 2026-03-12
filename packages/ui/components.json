@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "radix-nova",
+  "style": "radix-vega",
   "rsc": true,
   "tsx": true,
   "tailwind": {
@@ -19,7 +19,7 @@
     "ui": "@tanisya/ui/components"
   },
   "menuColor": "default",
-  "menuAccent": "subtle",
+  "menuAccent": "bold",
   "registries": {},
   "rtl": true
 }

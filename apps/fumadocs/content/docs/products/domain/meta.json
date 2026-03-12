@@ -1,0 +1,22 @@
+{
+  "title": "Domain",
+  "pages": [
+    "---Ketentuan---",
+    "domain-gtld",
+    "domain-indonesia",
+
+    "---Manajemen Domain---",
+    "registrasi",
+    "transfer",
+    "renew",
+    "restoration",
+    "life-cycle",
+    "auto-activation",
+
+    "---Pengaturan---",
+    "nameserver",
+    "registrant-contact",
+    "epp",
+    "theft-protection"
+  ]
+}

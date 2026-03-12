@@ -1,0 +1,92 @@
+---
+title: Theft Protection
+description: Panduan mengaktifkan dan menonaktifkan fitur lock domain (Theft Protection) untuk mencegah transfer domain ilegal di Tanisya.
+---
+
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+Theft Protection — juga dikenal sebagai fitur **lock/unlock domain** — adalah lapisan keamanan yang mencegah domain ditransfer tanpa sepengetahuan pemiliknya.
+
+| Status | Arti |
+| --- | --- |
+| 🔒 **Locked** | Domain tidak dapat diinisiasi untuk transfer. Direkomendasikan saat tidak ada rencana transfer. |
+| 🔓 **Unlocked** | Domain dapat diinisiasi untuk transfer ke registrar lain. |
+
+<Callout type="warn">
+  Aktifkan kembali Theft Protection segera setelah proses transfer selesai atau dibatalkan. Domain yang dibiarkan dalam status **Unlocked** berisiko ditransfer secara ilegal.
+</Callout>
+
+---
+
+## Mengubah Status Theft Protection
+
+<Tabs items={["Lock Domain", "Unlock Domain"]}>
+  <Tab value="Lock Domain">
+    Lakukan langkah ini untuk **mengamankan** domain dari inisiasi transfer.
+
+    <Steps>
+      <Step>
+        ### Login ke Dashboard
+
+        Masuk ke akun Tanisya kamu di [dashboard.tanisya.id](https://dashboard.tanisya.id).
+      </Step>
+
+      <Step>
+        ### Buka Daftar Domain
+
+        Navigasi ke **Domains** → **All Domains**.
+      </Step>
+
+      <Step>
+        ### Cari Domain
+
+        Gunakan kolom pencarian untuk menemukan nama domain yang ingin dikunci.
+      </Step>
+
+      <Step>
+        ### Aktifkan Lock
+
+        Klik **Toggle** pada baris domain tersebut.
+
+        Jika status berubah menjadi **LOCKED**, domain sudah terkunci dan tidak dapat diinisiasi untuk transfer.
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab value="Unlock Domain">
+    Lakukan langkah ini untuk **membuka kunci** domain sebelum memulai proses transfer.
+
+    <Steps>
+      <Step>
+        ### Login ke Dashboard
+
+        Masuk ke akun Tanisya kamu di [dashboard.tanisya.id](https://dashboard.tanisya.id).
+      </Step>
+
+      <Step>
+        ### Buka Daftar Domain
+
+        Navigasi ke **Domains** → **All Domains**.
+      </Step>
+
+      <Step>
+        ### Cari Domain
+
+        Gunakan kolom pencarian untuk menemukan nama domain yang ingin dibuka kuncinya.
+      </Step>
+
+      <Step>
+        ### Nonaktifkan Lock
+
+        Klik **Toggle** pada baris domain tersebut.
+
+        Jika status berubah menjadi **UNLOCKED**, domain sudah siap untuk diinisiasi transfer.
+      </Step>
+    </Steps>
+
+    <Callout type="warn">
+      Setelah proses transfer selesai atau dibatalkan, segera kunci kembali domain dengan mengikuti langkah **Lock Domain** di atas.
+    </Callout>
+  </Tab>
+</Tabs>

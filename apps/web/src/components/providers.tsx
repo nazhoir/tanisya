@@ -7,12 +7,13 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { queryClient } from "@/utils/orpc";
 
 import { ThemeProvider } from "./theme-provider";
+import { TooltipProvider } from "@tanisya/ui/components/tooltip";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
       <QueryClientProvider client={queryClient}>
-        {children}
+         <TooltipProvider>{children}</TooltipProvider>
         <ReactQueryDevtools />
       </QueryClientProvider>
       <Toaster richColors />

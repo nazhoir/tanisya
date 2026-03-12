@@ -5,14 +5,18 @@ import {
   LayoutDashboard,
   LogOut,
   Settings,
-  User,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { authClient } from "@/lib/auth-client";
-import { cn } from "@tanisya/ui/lib/utils";
 
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@tanisya/ui/components/avatar";
+import { Button } from "@tanisya/ui/components/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,10 +26,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@tanisya/ui/components/dropdown-menu";
-import { Button } from "@tanisya/ui/components/button";
 import { Skeleton } from "@tanisya/ui/components/skeleton";
 
-// ─── Avatar initials helper ───────────────────────────────────────────────────
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function getInitials(name: string) {
   return name
@@ -36,133 +39,118 @@ function getInitials(name: string) {
     .toUpperCase();
 }
 
-// ─── Avatar ───────────────────────────────────────────────────────────────────
-
-function Avatar({
-  name,
-  image,
-  size = "sm",
-}: {
-  name: string;
-  image?: string | null;
-  size?: "sm" | "md";
-}) {
-  const dim = size === "md" ? "h-10 w-10 text-sm" : "h-7 w-7 text-xs";
-  if (image) {
-    return (
-      <img
-        src={image}
-        alt={name}
-        className={cn("rounded-full object-cover ring-2 ring-border", dim)}
-      />
-    );
-  }
-  return (
-    <div
-      className={cn(
-        "flex shrink-0 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground ring-2 ring-border",
-        dim
-      )}
-    >
-      {getInitials(name)}
-    </div>
-  );
-}
-
-// ─── UserMenu ─────────────────────────────────────────────────────────────────
+// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function UserMenu() {
   const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
 
+  // ── Loading state ─────────────────────────────────────────────────────────
   if (isPending) {
     return (
       <div className="flex items-center gap-2">
         <Skeleton className="h-7 w-7 rounded-full" />
-        <Skeleton className="hidden h-4 w-20 sm:block" />
+        <Skeleton className="hidden h-3.5 w-20 sm:block" />
       </div>
     );
   }
 
+  // ── Guest state ───────────────────────────────────────────────────────────
   if (!session) {
     return (
       <div className="flex items-center gap-2">
         <Link href="/auth/login">
-          <Button variant="outline"  className="hidden sm:flex">
+          <Button variant="outline" size="sm" className="hidden h-9 sm:flex">
             Masuk
           </Button>
         </Link>
         <Link href="/auth/register">
-          <Button >Daftar</Button>
+          <Button size="sm" className="h-9">
+            Daftar
+          </Button>
         </Link>
       </div>
     );
   }
 
+  // ── Sign out ──────────────────────────────────────────────────────────────
   const handleSignOut = () => {
     authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => router.push("/"),
-      },
+      fetchOptions: { onSuccess: () => router.push("/") },
     });
   };
 
+  const { name, email, image } = session.user;
+
+  // ── Authenticated state ───────────────────────────────────────────────────
   return (
     <DropdownMenu>
+      {/* Trigger — avatar + name */}
       <DropdownMenuTrigger asChild>
-        <button
-          className="flex items-center gap-2 rounded-xl border border-border bg-background px-2 py-1.5 text-sm font-medium transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          aria-label="User menu"
+        <Button
+          variant="outline"
+          size="sm"
+          className="h-9 gap-2 pr-3"
+          aria-label="Menu pengguna"
         >
-          <Avatar name={session.user.name} image={session.user.image} />
-          <span className="hidden max-w-28 truncate sm:block text-sm">
-            {session.user.name}
+          <Avatar className="h-6 w-6">
+            <AvatarImage src={image ?? undefined} alt={name} />
+            <AvatarFallback className="bg-primary text-primary-foreground text-[10px] font-bold">
+              {getInitials(name)}
+            </AvatarFallback>
+          </Avatar>
+          <span className="hidden max-w-28 truncate text-sm sm:block">
+            {name}
           </span>
-        </button>
+        </Button>
       </DropdownMenuTrigger>
 
+      {/* Dropdown panel */}
       <DropdownMenuContent
         align="end"
         sideOffset={8}
-        className="z-50 w-60 rounded-xl border border-border bg-card p-1.5 shadow-lg"
+        className="w-60 rounded-xl p-1.5"
       >
         {/* User info header */}
-        <div className="flex items-center gap-3 rounded-lg bg-muted/50 px-3 py-2.5 mb-1">
-          <Avatar name={session.user.name} image={session.user.image} size="md" />
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-semibold leading-tight">
-              {session.user.name}
-            </p>
-            <p className="truncate text-[11px] text-muted-foreground leading-tight mt-0.5">
-              {session.user.email}
-            </p>
+        <DropdownMenuLabel className="p-0">
+          <div className="flex items-center gap-3 rounded-lg bg-muted/50 px-3 py-2.5">
+            <Avatar className="h-9 w-9 shrink-0">
+              <AvatarImage src={image ?? undefined} alt={name} />
+              <AvatarFallback className="bg-primary text-primary-foreground text-xs font-bold">
+                {getInitials(name)}
+              </AvatarFallback>
+            </Avatar>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-semibold leading-tight">
+                {name}
+              </p>
+              <p className="truncate text-[11px] leading-tight text-muted-foreground mt-0.5">
+                {email}
+              </p>
+            </div>
           </div>
-        </div>
+        </DropdownMenuLabel>
 
+        <DropdownMenuSeparator className="my-1.5" />
+
+        {/* Navigation items */}
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
-            <Link
-              href="/dashboard"
-              className="flex cursor-pointer items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm"
-            >
+            <Link href="/dashboard" className="cursor-pointer gap-2.5">
               <LayoutDashboard className="h-4 w-4 text-muted-foreground" />
               Dashboard
             </Link>
           </DropdownMenuItem>
+
           <DropdownMenuItem asChild>
-            <Link
-              href="/billing"
-              className="flex cursor-pointer items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm"
-            >
+            <Link href="/billing" className="cursor-pointer gap-2.5">
               <CreditCard className="h-4 w-4 text-muted-foreground" />
               Tagihan &amp; Langganan
             </Link>
           </DropdownMenuItem>
+
           <DropdownMenuItem asChild>
-            <Link
-              href="/settings"
-              className="flex cursor-pointer items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm"
-            >
+            <Link href="/account" className="cursor-pointer gap-2.5">
               <Settings className="h-4 w-4 text-muted-foreground" />
               Pengaturan Akun
             </Link>
@@ -171,9 +159,10 @@ export default function UserMenu() {
 
         <DropdownMenuSeparator className="my-1.5" />
 
+        {/* Sign out */}
         <DropdownMenuItem
           onClick={handleSignOut}
-          className="flex cursor-pointer items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm text-destructive focus:bg-destructive/10 focus:text-destructive"
+          className="cursor-pointer gap-2.5 text-destructive focus:bg-destructive/50"
         >
           <LogOut className="h-4 w-4" />
           Keluar

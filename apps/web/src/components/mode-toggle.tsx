@@ -1,29 +1,35 @@
 "use client";
 
-import { Monitor, Moon, Sun } from "lucide-react";
+import { Moon, Sun, Monitor } from "lucide-react";
 import { useTheme } from "next-themes";
-import * as React from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@tanisya/ui/components/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@tanisya/ui/components/dropdown-menu";
-
-const themes = [
-  { value: "light", label: "Light", icon: Sun },
-  { value: "dark", label: "Dark", icon: Moon },
-  { value: "system", label: "System", icon: Monitor },
-];
 
 export function ModeToggle() {
   const { theme, setTheme } = useTheme();
 
-  const ActiveIcon = themes.find((t) => t.value === theme)?.icon ?? Monitor;
+  // ── Hydration guard ───────────────────────────────────────────────────────
+  // next-themes reads localStorage/system preference on the client only.
+  // Rendering the icon before mount causes SSR ↔ client mismatch.
+  // Solution: render a neutral placeholder until after first mount.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  // Icon to show in the trigger button
+  const Icon = !mounted
+    ? Monitor // neutral placeholder — matches server render
+    : theme === "dark"
+      ? Moon
+      : theme === "light"
+        ? Sun
+        : Monitor;
 
   return (
     <DropdownMenu>
@@ -31,49 +37,26 @@ export function ModeToggle() {
         <Button
           variant="outline"
           size="icon"
-          className="relative border-border/60 bg-background transition-all duration-200 hover:border-border hover:bg-accent hover:shadow-md focus-visible:ring-2 focus-visible:ring-ring/40"
+          className="relative h-9 w-9"
+          aria-label="Ganti tema"
         >
-          <span className="animate-in zoom-in-75 duration-200">
-            <ActiveIcon className="h-[1.1rem] w-[1.1rem] text-foreground/80" />
-          </span>
-          <span className="sr-only">Toggle theme</span>
+          <Icon className="h-[1.1rem] w-[1.1rem] text-foreground/80" aria-hidden />
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent
-        align="end"
-        sideOffset={6}
-        className="z-999 w-36  border-border/60 bg-popover/95 p-1.5 shadow-lg backdrop-blur-sm"
-      >
-        <DropdownMenuLabel className="px-2 py-1 text-[0.68rem] font-semibold uppercase tracking-widest text-muted-foreground/60">
-          Appearance
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator className="my-1 bg-border/50" />
-
-        {themes.map(({ value, label, icon: Icon }) => {
-          const isActive = theme === value;
-          return (
-            <DropdownMenuItem
-              key={value}
-              onClick={() => setTheme(value)}
-              className={`flex cursor-pointer items-center gap-2.5  px-2.5 py-1.5 my-1 text-sm font-medium transition-colors duration-150 focus:bg-accent ${
-                isActive
-                  ? "bg-accent text-accent-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              <Icon
-                className={`h-3.5 w-3.5 transition-colors ${
-                  isActive ? "text-foreground" : "text-muted-foreground"
-                }`}
-              />
-              {label}
-              {isActive && (
-                <span className="ml-auto h-1.5 w-1.5 rounded-full bg-foreground/70" />
-              )}
-            </DropdownMenuItem>
-          );
-        })}
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setTheme("light")} className="gap-2">
+          <Sun className="h-4 w-4" />
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("dark")} className="gap-2">
+          <Moon className="h-4 w-4" />
+          Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("system")} className="gap-2">
+          <Monitor className="h-4 w-4" />
+          System
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

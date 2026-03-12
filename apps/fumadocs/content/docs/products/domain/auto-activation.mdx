@@ -1,0 +1,91 @@
+---
+title: Auto Activation
+description: Penjelasan fitur Domain Auto Activation untuk domain Indonesia yang memerlukan dokumen persyaratan.
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+Domain Auto Activation memungkinkan nama domain yang memerlukan dokumen persyaratan — seperti `.co.id`, `.sch.id`, `.ac.id`, `.or.id`, dan `.ponpes.id` — untuk **langsung aktif** segera setelah pembayaran dilunasi, tanpa perlu menunggu verifikasi dokumen selesai.
+
+<Callout type="warn">
+  Meskipun domain langsung aktif, dokumen persyaratan **tetap wajib diunggah** dalam batas waktu yang ditentukan. Kegagalan mengunggah dokumen akan mengakibatkan domain di-suspend dan dihapus tanpa pengembalian dana.
+</Callout>
+
+---
+
+## Alur Auto Activation
+
+<Steps>
+  <Step>
+    ### Hari ke-1 — Domain Aktif Sementara
+
+    Domain langsung aktif setelah pembayaran berhasil. Kamu akan menerima email berisi instruksi dan tautan untuk mengunggah dokumen persyaratan.
+  </Step>
+
+  <Step>
+    ### Hari ke-1 hingga ke-3 — Periode Unggah Dokumen
+
+    Kamu memiliki waktu **3 hari** untuk mengunggah dokumen persyaratan yang sesuai dengan ekstensi domain yang didaftarkan.
+
+    Lihat dokumen yang dibutuhkan di halaman [Syarat Domain Indonesia](/docs/products/domain/domain-indonesia/persyaratan).
+  </Step>
+
+  <Step>
+    ### Hari ke-4 — Peringatan Suspend
+
+    Jika dokumen belum diunggah atau dokumen yang diunggah **ditolak**, kamu akan menerima email peringatan bahwa domain akan segera di-suspend.
+
+    <Callout type="warn">
+      Segera unggah ulang dokumen yang benar sebelum hari ke-5 untuk menghindari penonaktifan domain.
+    </Callout>
+  </Step>
+
+  <Step>
+    ### Hari ke-5 — Domain Di-suspend
+
+    Domain **dinonaktifkan (suspend)**. Website dan layanan yang menggunakan domain ini tidak dapat diakses.
+
+    Domain masih bisa dipulihkan dengan mengunggah dokumen persyaratan yang valid.
+  </Step>
+
+  <Step>
+    ### Hari ke-14 & ke-21 — Pengingat Dokumen
+
+    Sistem mengirimkan email pengingat kembali pada hari ke-14 dan ke-21 untuk meminta pengunggahan dokumen persyaratan.
+  </Step>
+
+  <Step>
+    ### Hari ke-30 — Domain Dihapus
+
+    Jika dokumen persyaratan tidak diunggah atau terus ditolak hingga hari ke-30, domain akan **dihapus permanen**.
+
+    <Callout type="error">
+      Penghapusan pada hari ke-30 **tidak disertai pengembalian dana** dalam bentuk apapun. Pastikan dokumen diunggah sebelum batas waktu ini.
+    </Callout>
+  </Step>
+</Steps>
+
+---
+
+## Ringkasan Jadwal
+
+| Hari | Status | Keterangan |
+| --- | --- | --- |
+| 1 | ✅ Aktif sementara | Email permintaan dokumen dikirim |
+| 1 – 3 | 📄 Periode unggah | Unggah dokumen persyaratan |
+| 4 | ⚠️ Peringatan | Email peringatan suspend dikirim |
+| 5 | 🔴 Suspend | Domain dinonaktifkan |
+| 14 & 21 | 📧 Pengingat | Email pengingat dokumen dikirim |
+| 30 | ❌ Dihapus | Domain dihapus, tidak ada refund |
+
+---
+
+## Domain yang Menggunakan Auto Activation
+
+| Ekstensi | Dokumen yang Dibutuhkan |
+| --- | --- |
+| `.co.id` | KTP + NIB / NPWP / SK Kemenkumham |
+| `.or.id` | KTP + Akta Notaris / Surat Permohonan Ketua Organisasi |
+| `.ac.id` | KTP + SK Pendirian PT + Surat Permohonan Rektor |
+| `.sch.id` | KTP + SK Izin Operasional + Surat Permohonan Kepala Sekolah |
+| `.ponpes.id` | KTP + Surat Permohonan Pimpinan Ponpes |

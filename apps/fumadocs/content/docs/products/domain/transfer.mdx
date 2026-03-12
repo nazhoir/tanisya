@@ -1,0 +1,98 @@
+---
+title: Transfer Domain
+description: Panduan lengkap memindahkan domain dari registrar atau reseller lain ke Tanisya (Transfer IN).
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+Transfer domain adalah proses memindahkan kepemilikan nama domain dari registrar atau reseller lain ke Tanisya. Proses ini diinisiasi dari sisi registrar baru (Tanisya), sementara penyedia domain lama cukup menyiapkan domain agar siap untuk ditransfer.
+
+<Callout type="info">
+  Sebelum memulai transfer, pastikan domain memenuhi syarat berikut:
+  - Domain **tidak sedang dalam masa transfer lock** (60 hari sejak registrasi atau perpanjangan terakhir)
+  - Domain **tidak dalam status expired, suspend, atau pending delete**
+  - Kamu sudah memiliki **kode EPP (Auth Code)** dari penyedia domain saat ini
+  - Transfer dilakukan **maksimal 14 hari** sebelum tanggal kedaluwarsa domain
+</Callout>
+
+---
+
+## Langkah Transfer Domain Masuk
+
+<Steps>
+  <Step>
+    ### Login ke Dashboard
+
+    Masuk ke akun Tanisya kamu di [dashboard.tanisya.id](https://dashboard.tanisya.id).
+  </Step>
+
+  <Step>
+    ### Buka Menu Transfer
+
+    Navigasi ke **Domains** → **All Domains** → klik tab **Transfer**.
+  </Step>
+
+  <Step>
+    ### Isi Detail Transfer
+
+    Lengkapi formulir berikut:
+    - **Nama domain** yang akan ditransfer
+    - **Kode EPP** (Auth Code) yang didapat dari penyedia domain saat ini
+    - **Customer** pemilik domain
+  </Step>
+
+  <Step>
+    ### Pilih atau Buat Akun Customer
+
+    Pilih akun customer yang akan menjadi pemilik domain setelah transfer selesai.
+
+    Jika belum ada, klik **Add New** → isi profil customer → klik **Save**, lalu pilih akun yang baru dibuat.
+  </Step>
+
+  <Step>
+    ### Mulai Proses Transfer
+
+    Setelah semua isian lengkap, klik **Transfer** untuk memulai inisiasi.
+
+    Jika berhasil, akan muncul pesan konfirmasi: **"Transfer domain successfully"**.
+  </Step>
+
+  <Step>
+    ### Tunggu Proses Transfer Selesai
+
+    Proses transfer membutuhkan waktu **5–10 hari kerja**.
+
+    Selama proses berlangsung, konfirmasikan kepada penyedia domain lama untuk melakukan **approval transfer**.
+
+    <Callout type="info">
+      Metode approval dari penyedia domain lama bisa berbeda-beda — bisa melalui klik tautan di email, konfirmasi ulang via email, atau melalui panel mereka. Hubungi penyedia domain lama untuk informasi lebih lanjut.
+    </Callout>
+  </Step>
+</Steps>
+
+---
+
+## Memantau Status Transfer
+
+Progres transfer domain dapat dipantau langsung dari dashboard:
+
+1. Buka **Domains** → **All Domains**
+2. Temukan domain yang sedang dalam proses transfer
+3. Klik ikon **`!`** (tanda seru) pada baris domain tersebut untuk melihat detail status transfer
+
+---
+
+## Informasi Tambahan
+
+### Domain Indonesia dengan Dokumen Persyaratan
+
+Untuk ekstensi `.co.id`, `.or.id`, `.ac.id`, `.sch.id`, dan `.ponpes.id`, proses transfer baru akan berjalan setelah dokumen persyaratan **diunggah dan lolos verifikasi**.
+
+Lihat dokumen yang dibutuhkan di halaman [Syarat Domain Indonesia](/docs/products/domain/domain-indonesia/persyaratan).
+
+### Transfer Gagal
+
+Jika proses inisiasi transfer mengalami kegagalan, hubungi tim support kami:
+
+- 📧 Email: **support@tanisya.id**
+- 💬 WhatsApp: tersedia di halaman [Hubungi Kami](/contact)

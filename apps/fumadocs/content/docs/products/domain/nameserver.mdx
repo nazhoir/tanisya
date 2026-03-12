@@ -1,0 +1,56 @@
+---
+title: Nameserver Domain
+description: Panduan memahami dan mengubah nameserver (NS) domain di Tanisya.
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+Nameserver (NS) adalah alamat server yang bertugas mengarahkan domain ke IP address tertentu. Nameserver biasanya ditulis dalam format seperti `ns1.tanisya.id`, `ns2.tanisya.id`, dan seterusnya.
+
+Penggunaan lebih dari satu nameserver berfungsi sebagai **load balancing DNS** — jika `ns1` mengalami gangguan atau overload, browser akan otomatis diarahkan ke `ns2` atau nameserver berikutnya sehingga domain tetap dapat diakses.
+
+<Callout type="info">
+  Perubahan nameserver memerlukan waktu **12–48 jam** untuk berlaku sepenuhnya di seluruh jaringan internet. Proses ini disebut **propagasi DNS**.
+
+  Selama masa propagasi, sebagian pengguna mungkin masih diarahkan ke nameserver lama. Ini adalah hal normal dan akan selesai dengan sendirinya.
+</Callout>
+
+---
+
+## Langkah Ubah Nameserver
+
+<Steps>
+  <Step>
+    ### Login ke Dashboard
+
+    Masuk ke akun Tanisya kamu di [dashboard.tanisya.id](https://dashboard.tanisya.id).
+  </Step>
+
+  <Step>
+    ### Buka Daftar Domain
+
+    Navigasi ke **Domains** → **All Domains**.
+  </Step>
+
+  <Step>
+    ### Pilih Domain
+
+    Klik nama domain yang ingin diubah nameserver-nya.
+  </Step>
+
+  <Step>
+    ### Buka Tab Nameserver
+
+    Klik tab **Nameserver** pada halaman detail domain.
+  </Step>
+
+  <Step>
+    ### Isi dan Simpan Nameserver
+
+    Masukkan nameserver yang diinginkan, kemudian klik **Save**.
+
+    <Callout type="warn">
+      Pastikan nameserver yang dimasukkan sudah benar dan aktif. Nameserver yang salah akan menyebabkan domain tidak dapat diakses setelah propagasi selesai.
+    </Callout>
+  </Step>
+</Steps>

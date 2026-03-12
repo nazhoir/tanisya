@@ -1,3 +1,15 @@
-@import "tailwindcss";
-@import "fumadocs-ui/css/neutral.css";
-@import "fumadocs-ui/css/preset.css";
+@import "@tanisya/ui/globals.css";
+@import 'fumadocs-ui/css/shadcn.css';
+@import 'fumadocs-ui/css/preset.css';
+
+/* ─── Sidebar separator label ─────────────────────────────────────────────────
+   Fumadocs merender separator "---Label---" dari meta.json sebagai <p>
+   dengan class text-fd-muted-foreground di dalam #nd-sidebar.
+   shadcn.css memetakan --fd-muted-foreground ke warna muted yang redup,
+   sehingga teks separator terlihat tipis dan tidak bold.
+   Fix: override font-weight dan warna langsung via selector spesifik.
+   ───────────────────────────────────────────────────────────────────────────── */
+#nd-sidebar p.text-fd-muted-foreground {
+  font-weight: 600;
+  color: var(--foreground);
+}

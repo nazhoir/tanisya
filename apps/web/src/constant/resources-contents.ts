@@ -52,14 +52,14 @@ export const RESOURCES_CONTENTS = [
     description: "Visi, misi, dan perjalanan Tanisya.",
   },
   {
-    to: "/karir",
+    to: "/life-at-tanisya",
     label: "Karir",
     icon: Rocket,
     description: "Bergabung dengan tim kami.",
   },
   {
-    to: "/partner",
-    label: "Program Partner",
+    to: "/affiliate",
+    label: "Program Partner & Organisasi non-profit",
     icon: Users,
     description: "Dapatkan komisi dari setiap referral.",
   },

@@ -11,6 +11,7 @@
     "build": "turbo build",
     "check-types": "turbo check-types",
     "dev:web": "turbo -F web dev",
+    "dev:docs": "turbo -F fumadocs dev",
     "db:push": "turbo -F @tanisya/db db:push",
     "db:studio": "turbo -F @tanisya/db db:studio",
     "db:generate": "turbo -F @tanisya/db db:generate",

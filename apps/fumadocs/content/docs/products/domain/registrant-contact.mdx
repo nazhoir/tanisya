@@ -1,0 +1,66 @@
+---
+title: Registrant Contact (Whois)
+description: Panduan memahami dan mengubah data registrant contact domain di Tanisya.
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+Registrant contact adalah data identitas pemilik domain yang tersimpan di registry. Data ini terbagi menjadi 4 kategori:
+
+| Kategori | Keterangan |
+| --- | --- |
+| **Registrant** | Pemilik sah nama domain |
+| **Admin** | Kontak yang bertanggung jawab atas pengelolaan domain |
+| **Technical** | Kontak teknis yang mengelola konfigurasi DNS dan server |
+| **Billing** | Kontak yang bertanggung jawab atas pembayaran dan tagihan domain |
+
+---
+
+## Visibilitas Data di WHOIS
+
+<Callout type="info">
+  Data registrant contact diperlakukan berbeda tergantung ekstensi domain:
+
+  - **Domain gTLD** (`.com` `.net` `.org` `.xyz` `.click` `.co` `.biz` `.asia`) — data registrant **terlihat** di WHOIS publik, kecuali jika [Whois Protection](/docs/products/domain/registrasi-domain) diaktifkan
+  - **Domain Indonesia** (`.id` dan turunannya) — data registrant **tidak ditampilkan** di WHOIS publik
+</Callout>
+
+---
+
+## Langkah Ubah Registrant Contact
+
+<Steps>
+  <Step>
+    ### Login ke Dashboard
+
+    Masuk ke akun Tanisya kamu di [dashboard.tanisya.id](https://dashboard.tanisya.id).
+  </Step>
+
+  <Step>
+    ### Buka Daftar Domain
+
+    Navigasi ke **Domains** → **All Domains**.
+  </Step>
+
+  <Step>
+    ### Cari Domain
+
+    Gunakan kolom pencarian untuk menemukan nama domain yang ingin diubah data registrant contact-nya.
+  </Step>
+
+  <Step>
+    ### Buka Form Edit
+
+    Klik **Edit** pada baris domain tersebut.
+  </Step>
+
+  <Step>
+    ### Ubah Data dan Simpan
+
+    Perbarui data registrant contact sesuai kebutuhan, kemudian klik **Save**.
+
+    <Callout type="warn">
+      Pastikan data yang dimasukkan akurat dan valid. Untuk domain Indonesia yang memerlukan dokumen persyaratan, data registrant harus sesuai dengan dokumen yang diunggah.
+    </Callout>
+  </Step>
+</Steps>

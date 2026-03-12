@@ -10,8 +10,8 @@ export const gitConfig = {
 export function baseOptions(): BaseLayoutProps {
   return {
     nav: {
-      title: "My App",
+      title: "Tanisya",
     },
-    githubUrl: `https://github.com/${gitConfig.user}/${gitConfig.repo}`,
+    // githubUrl: `https://github.com/${gitConfig.user}/${gitConfig.repo}`,
   };
 }

@@ -1,0 +1,85 @@
+---
+title: Siklus Domain
+description: Penjelasan lengkap siklus hidup domain (domain lifecycle) mulai dari aktif hingga deleted, khususnya untuk domain Indonesia.
+---
+
+Setiap nama domain yang aktif memiliki siklus hidup yang perlu dipahami agar domain tidak kedaluwarsa tanpa disengaja. Siklus ini memberikan informasi mengenai status domain yang kamu miliki pada setiap tahapannya.
+
+## Diagram Siklus Domain
+
+![Diagram siklus hidup domain Indonesia](/domain-life-cycle.png)
+
+---
+
+## Tahapan Siklus
+
+### 1. Active
+
+Domain aktif dan dapat digunakan sepenuhnya. Kamu bisa mengatur DNS, melakukan transfer, dan menggunakan domain seperti biasa.
+
+---
+
+### 2. Auto Renewal Period
+
+Masa tenggang pertama setelah domain kedaluwarsa.
+
+- Berlaku **1–40 hari** setelah tanggal domain expired
+- Status domain pada WHOIS: `renewPeriod`
+- Domain **masih dapat diperpanjang** dengan harga normal yang berlaku
+- Jika auto renewal diaktifkan, domain akan diperpanjang otomatis pada masa ini
+
+<Callout type="info">
+  Aktifkan fitur **Auto Renewal** di dashboard Tanisya untuk menghindari domain masuk ke tahap berikutnya secara tidak disengaja.
+</Callout>
+
+---
+
+### 3. Redemption Period
+
+Masa pemulihan setelah auto renewal period berakhir tanpa perpanjangan.
+
+- Berlaku **1–30 hari** setelah auto renewal period habis
+- Status domain pada WHOIS: `pendingDelete`
+- Domain **masih bisa dipulihkan** melalui proses **restorasi (restore)**
+- Biaya restorasi berbeda dari biaya perpanjangan normal
+
+<Callout type="warn">
+  Biaya restorasi domain pada masa redemption period jauh lebih tinggi dari harga perpanjangan biasa. Segera lakukan restorasi sebelum masa ini berakhir.
+</Callout>
+
+---
+
+### 4. Pending Delete
+
+Tahap akhir sebelum domain dihapus permanen dari sistem registry.
+
+- Berlaku **1–7 hari** setelah redemption period berakhir
+- Domain **tidak dapat** diperpanjang maupun direstorasi
+- Setelah masa ini berakhir, domain kembali tersedia untuk umum (`available`)
+
+<Callout type="error">
+  Pada tahap pending delete, tidak ada tindakan yang dapat dilakukan. Domain akan segera dihapus dan bisa didaftarkan oleh siapapun setelahnya.
+</Callout>
+
+---
+
+### 5. Available
+
+Domain telah dihapus dari registry dan tersedia kembali untuk didaftarkan oleh siapapun.
+
+---
+
+## Perhitungan Total Waktu
+
+Jika domain expired dan tidak diperpanjang sama sekali, berikut total waktu sebelum domain benar-benar tersedia kembali:
+
+| Tahap | Durasi |
+| --- | --- |
+| Auto Renewal Period | +40 hari |
+| Redemption Period | +30 hari |
+| Pending Delete | +7 hari |
+| **Total sejak expired** | **77 hari** |
+
+<Callout type="info">
+  Contoh: domain expired **1 Januari** → tersedia kembali untuk umum sekitar **19 Maret** (77 hari kemudian).
+</Callout>

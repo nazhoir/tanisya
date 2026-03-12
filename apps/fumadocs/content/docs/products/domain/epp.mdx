@@ -1,0 +1,104 @@
+---
+title: EPP Code / Auth Code
+description: Panduan melihat dan mengubah kode EPP (Auth Code) untuk keperluan transfer domain di Tanisya.
+---
+
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+EPP (Extensible Provisioning Protocol) adalah kode keamanan unik yang dibutuhkan saat melakukan transfer domain ke registrar lain. Kode ini terdiri dari kombinasi huruf dan angka, bersifat **rahasia**, dan hanya diketahui oleh pemilik domain.
+
+<Callout type="warn">
+  Jangan bagikan kode EPP kepada siapapun kecuali saat proses transfer domain yang kamu inisiasi sendiri. Kode EPP yang bocor dapat digunakan pihak lain untuk mengambil alih domain kamu.
+</Callout>
+
+---
+
+## Kelola Kode EPP
+
+<Tabs items={["Lihat Kode EPP", "Ubah Kode EPP"]}>
+  <Tab value="Lihat Kode EPP">
+    <Steps>
+      <Step>
+        ### Login ke Dashboard
+
+        Masuk ke akun Tanisya kamu di [dashboard.tanisya.id](https://dashboard.tanisya.id).
+      </Step>
+
+      <Step>
+        ### Buka Daftar Domain
+
+        Navigasi ke **Domains** → **All Domains**.
+      </Step>
+
+      <Step>
+        ### Cari Domain
+
+        Gunakan kolom pencarian untuk menemukan nama domain yang ingin dilihat kode EPP-nya.
+      </Step>
+
+      <Step>
+        ### Tampilkan Kode EPP
+
+        Klik **View** — kode EPP akan ditampilkan.
+
+        <Callout type="info">
+          Salin kode EPP dan simpan di tempat yang aman. Kode ini dibutuhkan saat memulai proses transfer domain di registrar tujuan.
+        </Callout>
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab value="Ubah Kode EPP">
+    Kode EPP dapat diubah secara **manual** (kamu tentukan sendiri) atau **otomatis** (sistem generate secara acak).
+
+    <Steps>
+      <Step>
+        ### Login ke Dashboard
+
+        Masuk ke akun Tanisya kamu di [dashboard.tanisya.id](https://dashboard.tanisya.id).
+      </Step>
+
+      <Step>
+        ### Buka Daftar Domain
+
+        Navigasi ke **Domains** → **All Domains**.
+      </Step>
+
+      <Step>
+        ### Cari Domain
+
+        Gunakan kolom pencarian untuk menemukan nama domain yang ingin diubah kode EPP-nya.
+      </Step>
+
+      <Step>
+        ### Buka Form Edit
+
+        Klik **Edit** pada baris domain tersebut.
+      </Step>
+
+      <Step>
+        ### Ubah Kode EPP
+
+        Pilih salah satu metode:
+
+        - **Manual** — ketik kode EPP baru secara langsung pada kolom yang tersedia
+        - **Otomatis** — klik **Generate** untuk membuat kode EPP baru secara acak
+
+        <Callout type="info">
+          Gunakan opsi **Generate** untuk mendapatkan kode yang lebih kuat dan acak secara kriptografis.
+        </Callout>
+      </Step>
+
+      <Step>
+        ### Simpan Perubahan
+
+        Klik **Save** untuk menyimpan kode EPP yang baru.
+
+        <Callout type="warn">
+          Setelah kode EPP diubah, pastikan kamu mencatat kode baru sebelum menutup halaman. Kode lama tidak dapat dipulihkan.
+        </Callout>
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
