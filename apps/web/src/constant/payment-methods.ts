@@ -45,11 +45,4 @@
       { name: "American Express", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/1920px-American_Express_logo_%282018%29.svg.png" },
     ],
   },
-  // {
-  //   category: "PayLater",
-  //   logos: [
-  //     { name: "Akulaku", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Akulaku_logo.svg/1920px-Akulaku_logo.svg.png" },
-  //     { name: "Kredivo",  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Kredivo_logo.svg/1920px-Kredivo_logo.svg.png" },
-  //   ],
-  // },
 ];

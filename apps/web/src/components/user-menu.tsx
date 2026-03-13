@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  CreditCard,
-  LayoutDashboard,
-  LogOut,
-  Settings,
-} from "lucide-react";
+import { CreditCard, LayoutDashboard, LogOut, Settings } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -108,7 +103,8 @@ export default function UserMenu() {
       {/* Dropdown panel */}
       <DropdownMenuContent
         align="end"
-        sideOffset={8}
+        
+        sideOffset={4}
         className="w-60 rounded-xl p-1.5"
       >
         {/* User info header */}
@@ -132,8 +128,6 @@ export default function UserMenu() {
         </DropdownMenuLabel>
 
         <DropdownMenuSeparator className="my-1.5" />
-
-        {/* Navigation items */}
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
             <Link href="/dashboard" className="cursor-pointer gap-2.5">
@@ -141,7 +135,11 @@ export default function UserMenu() {
               Dashboard
             </Link>
           </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator className="my-1.5" />
 
+        {/* Navigation items */}
+        <DropdownMenuGroup>
           <DropdownMenuItem asChild>
             <Link href="/billing" className="cursor-pointer gap-2.5">
               <CreditCard className="h-4 w-4 text-muted-foreground" />

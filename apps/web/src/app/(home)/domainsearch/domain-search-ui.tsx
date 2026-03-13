@@ -3,11 +3,13 @@
 // Berisi: DomainCard, DomainListRow, CardSkeleton, RowSkeleton, helpers
 
 import {
+	ArrowLeftRight,
 	CheckCircle2,
 	ShoppingCart,
 	Sparkles,
 	XCircle,
 } from "lucide-react";
+import Link from "next/link";
 import { Badge } from "@tanisya/ui/components/badge";
 import { Button } from "@tanisya/ui/components/button";
 import {
@@ -188,7 +190,13 @@ export function DomainCard({
 						</div>
 					) : null
 				) : (
-					<p className="text-muted-foreground text-sm">Domain tidak tersedia</p>
+					// ── Domain tidak tersedia: info transfer ──────────────────────
+					<div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2.5 dark:border-amber-800/40 dark:bg-amber-950/30">
+						<ArrowLeftRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-500" />
+						<p className="text-xs leading-relaxed text-amber-700 dark:text-amber-300">
+							Domain ini sudah terdaftar. Anda dapat memindahkannya ke layanan kami melalui proses transfer.
+						</p>
+					</div>
 				)}
 			</CardContent>
 
@@ -203,8 +211,19 @@ export function DomainCard({
 						Daftar Sekarang
 					</Button>
 				) : (
-					<Button className="w-full" variant="ghost" size="sm" disabled>
-						Tidak Tersedia
+					// ── Tombol Transfer ───────────────────────────────────────────
+					<Button
+						className="w-full gap-2 border-amber-400/50 text-amber-600 hover:bg-amber-50 hover:text-amber-700 hover:border-amber-400 dark:border-amber-500/40 dark:text-amber-400 dark:hover:bg-amber-950/30 dark:hover:text-amber-300"
+						variant="outline"
+						size="lg"
+						asChild
+					>
+						<Link
+							href={`/dashboard/domain/transfer?domain=${encodeURIComponent(s.name)}`}
+						>
+							<ArrowLeftRight className="h-4 w-4" />
+							Transfer Domain
+						</Link>
 					</Button>
 				)}
 			</CardFooter>
@@ -263,28 +282,48 @@ export function DomainListRow({ s }: { s: DomainSuggestion }) {
 				)}
 			</div>
 
-			{isAvailable && (
-				<div className="flex shrink-0 items-center gap-3">
-					<div className="hidden text-right sm:block">
-						{isPromo && promoData && !s.is_premium_name ? (
-							<>
+			{/* ── Sisi kanan: harga + aksi ─────────────────────────────────── */}
+			<div className="flex shrink-0 items-center gap-3">
+				{isAvailable ? (
+					<>
+						<div className="hidden text-right sm:block">
+							{isPromo && promoData && !s.is_premium_name ? (
+								<>
+									<p className="font-semibold text-xl leading-none">
+										{formatIDR(promoData.promoPrice)}/thn
+									</p>
+									<p className="mt-0.5 text-[10px] text-muted-foreground leading-none line-through">
+										{formatIDR(promoData.originalPrice)}
+									</p>
+								</>
+							) : price ? (
 								<p className="font-semibold text-xl leading-none">
-									{formatIDR(promoData.promoPrice)}/thn
+									{formatIDR(price)}/thn
 								</p>
-								<p className="mt-0.5 text-[10px] text-muted-foreground leading-none line-through">
-									{formatIDR(promoData.originalPrice)}
-								</p>
-							</>
-						) : price ? (
-							<p className="font-semibold text-xl leading-none">{formatIDR(price)}/thn</p>
-						) : null}
-					</div>
-					<Button className="h-8 gap-1.5" variant="outline">
-						<ShoppingCart className="h-3.5 w-3.5" />
-						Daftar
+							) : null}
+						</div>
+						<Button className="h-8 gap-1.5" variant="outline">
+							<ShoppingCart className="h-3.5 w-3.5" />
+							Daftar
+						</Button>
+					</>
+				) : (
+					// ── Tombol Transfer (row) ─────────────────────────────────
+					<Button
+						className="h-8 gap-1.5 border-amber-400/50 text-amber-600 hover:bg-amber-50 hover:text-amber-700 hover:border-amber-400 dark:border-amber-500/40 dark:text-amber-400 dark:hover:bg-amber-950/30 dark:hover:text-amber-300"
+						variant="outline"
+						size="sm"
+						asChild
+					>
+						<Link
+							href={`/dashboard/domain/transfer?domain=${encodeURIComponent(s.name)}`}
+						>
+							<ArrowLeftRight className="h-3.5 w-3.5" />
+							Transfer
+						</Link>
 					</Button>
-				</div>
-			)}
+				)}
+			</div>
 		</div>
 	);
 }

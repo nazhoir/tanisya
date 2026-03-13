@@ -48,20 +48,20 @@ import {
 
 // ─── Sort helper ──────────────────────────────────────────────────────────────
 function applySort(items: DomainSuggestion[], mode: SortMode): DomainSuggestion[] {
-	const available = items.filter((s) => s.available === 1);
+	const available   = items.filter((s) => s.available === 1);
 	const unavailable = items.filter((s) => s.available !== 1);
 
 	const sorted = [...available].sort((a, b) => {
-		const aTld = getTld(a.name);
-		const bTld = getTld(b.name);
+		const aTld   = getTld(a.name);
+		const bTld   = getTld(b.name);
 		const aPrice = getPriceByTld(aTld) ?? Infinity;
 		const bPrice = getPriceByTld(bTld) ?? Infinity;
 
-		if (mode === "price-asc") return aPrice - bPrice;
+		if (mode === "price-asc")  return aPrice - bPrice;
 		if (mode === "price-desc") return bPrice - aPrice;
 
-		const aPromo = PROMO_TLDS.indexOf(aTld);
-		const bPromo = PROMO_TLDS.indexOf(bTld);
+		const aPromo   = PROMO_TLDS.indexOf(aTld);
+		const bPromo   = PROMO_TLDS.indexOf(bTld);
 		const aPopular = POPULAR_TLDS.indexOf(aTld);
 		const bPopular = POPULAR_TLDS.indexOf(bTld);
 		if (aPromo !== -1 && bPromo !== -1) return aPromo - bPromo;
@@ -77,8 +77,6 @@ function applySort(items: DomainSuggestion[], mode: SortMode): DomainSuggestion[
 }
 
 // ─── SearchParamsReader ───────────────────────────────────────────────────────
-// Komponen kecil KHUSUS useSearchParams, dibungkus <Suspense> di DomainSearchClient.
-// Tidak render DOM apapun — hanya membaca query dan meneruskan ke onQuery.
 function SearchParamsReader({ onQuery }: { onQuery: (q: string) => void }) {
 	const searchParams = useSearchParams();
 
@@ -96,25 +94,26 @@ export function DomainSearchClient() {
 	const router = useRouter();
 
 	const [domainInput, setDomainInput] = useState("");
-	const [lastDomain, setLastDomain] = useState("");
+	const [lastDomain, setLastDomain]   = useState("");
 
-	const [exactDomain, setExactDomain] = useState<DomainSuggestion | null>(null);
-	const [topRec, setTopRec] = useState<DomainSuggestion | null>(null);
-	const [primaryList, setPrimaryList] = useState<DomainSuggestion[]>([]);
-	const [secondaryList, setSecondaryList] = useState<DomainSuggestion[]>([]);
+	const [exactDomain, setExactDomain]         = useState<DomainSuggestion | null>(null);
+	const [topRec, setTopRec]                   = useState<DomainSuggestion | null>(null);
+	const [primaryList, setPrimaryList]         = useState<DomainSuggestion[]>([]);
+	const [secondaryList, setSecondaryList]     = useState<DomainSuggestion[]>([]);
 	const [secondaryLoaded, setSecondaryLoaded] = useState(false);
 
-	const [sortMode, setSortMode] = useState<SortMode>("popular");
+	const [sortMode, setSortMode]     = useState<SortMode>("popular");
 	const [hasSearched, setHasSearched] = useState(false);
-	const [errorMsg, setErrorMsg] = useState("");
+	const [errorMsg, setErrorMsg]       = useState("");
 
-	// ── Primary mutation ──────────────────────────────────────────────────────
+	// ── Mutation: checkByExtensions (menggantikan checkPrimary) ───────────────
 	const primaryMutation = useMutation(
-		orpc.domain.checkPrimary.mutationOptions({
+		orpc.domain.checkByExtensions.mutationOptions({
 			onSuccess: (data) => {
 				const raw = lastDomain;
 				const all: DomainSuggestion[] = data.results;
 
+				// Cari exact match: domain input cocok persis ATAU baseName + ekstensi asli
 				const exactIdx = all.findIndex(
 					(s) =>
 						s.name === raw ||
@@ -125,15 +124,15 @@ export function DomainSearchClient() {
 				let rest = [...all];
 
 				if (exactIdx !== -1) {
-					exact = all[exactIdx];
-					rest = all.filter((_, i) => i !== exactIdx);
+					exact = all[exactIdx]!;
+					rest  = all.filter((_, i) => i !== exactIdx);
 				} else {
 					[exact, ...rest] = all;
 				}
 
-				const sortedRest = applySort(rest, "popular");
+				const sortedRest     = applySort(rest, "popular");
 				const firstAvailable = sortedRest.find((s) => s.available === 1) ?? sortedRest[0];
-				const remainingList = sortedRest.filter((s) => s !== firstAvailable);
+				const remainingList  = sortedRest.filter((s) => s !== firstAvailable);
 
 				setExactDomain(exact ?? null);
 				setTopRec(firstAvailable ?? null);
@@ -156,9 +155,9 @@ export function DomainSearchClient() {
 		}),
 	);
 
-	// ── Secondary mutation ────────────────────────────────────────────────────
+	// ── Mutation: checkSecondaryPreset (menggantikan checkSecondary) ──────────
 	const secondaryMutation = useMutation(
-		orpc.domain.checkSecondary.mutationOptions({
+		orpc.domain.checkSecondaryPreset.mutationOptions({
 			onSuccess: (data) => {
 				setSecondaryList(data.results);
 				setSecondaryLoaded(true);
@@ -181,6 +180,7 @@ export function DomainSearchClient() {
 		setSecondaryList([]);
 		setSecondaryLoaded(false);
 		setErrorMsg("");
+		// Kirim domain + biarkan server fallback ke EXTENSIONS_PRIMARY
 		primaryMutation.mutate({ domain: raw });
 	};
 
@@ -193,28 +193,26 @@ export function DomainSearchClient() {
 
 	const handleLoadMore = () => {
 		if (!lastDomain || secondaryMutation.isPending) return;
-		secondaryMutation.mutate({ domain: lastDomain });
+		// checkSecondaryPreset hanya butuh { domain: baseName }
+		const baseName = lastDomain.split(".")[0] ?? lastDomain;
+		secondaryMutation.mutate({ domain: baseName });
 	};
 
 	const handleQuickTld = (tld: string) => {
 		const base =
-			domainInput.trim().replace(/^https?:\/\//, "").split(".")[0] || "";
+			domainInput.trim().replace(/^https?:\/\//, "").split(".")[0] ?? "";
 		setDomainInput(base ? `${base}${tld}` : tld);
 	};
 
 	// ── Derived state ─────────────────────────────────────────────────────────
-	const isLoadingPrimary = primaryMutation.isPending;
+	const isLoadingPrimary   = primaryMutation.isPending;
 	const isLoadingSecondary = secondaryMutation.isPending;
-	const mergedList = [...primaryList, ...secondaryList];
-	const sortedList = applySort(mergedList, sortMode);
-	const availableCount = sortedList.filter((s) => s.available === 1).length;
+	const mergedList         = [...primaryList, ...secondaryList];
+	const sortedList         = applySort(mergedList, sortMode);
+	const availableCount     = sortedList.filter((s) => s.available === 1).length;
 
 	return (
 		<>
-			{/*
-			  ✅ SearchParamsReader diisolasi di sini dan dibungkus Suspense
-			  agar useSearchParams tidak memblokir SSR seluruh halaman.
-			*/}
 			<Suspense fallback={null}>
 				<SearchParamsReader onQuery={runSearch} />
 			</Suspense>
@@ -323,7 +321,7 @@ export function DomainSearchClient() {
 				)}
 
 				{/* Results */}
-				{!isLoadingPrimary && hasSearched && (exactDomain || topRec) && (
+				{!isLoadingPrimary && hasSearched && (exactDomain ?? topRec) && (
 					<>
 						<div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2">
 							{exactDomain && (
@@ -337,10 +335,7 @@ export function DomainSearchClient() {
 								<div className="mb-3 flex items-center justify-between">
 									<div className="flex items-center gap-2">
 										<h2 className="font-semibold text-sm">Domain Lainnya</h2>
-										<Badge
-											variant="secondary"
-											className="h-4 px-1.5 text-[10px]"
-										>
+										<Badge variant="secondary" className="h-4 px-1.5 text-[10px]">
 											{availableCount} tersedia
 										</Badge>
 									</div>

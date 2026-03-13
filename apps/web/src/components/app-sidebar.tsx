@@ -1,19 +1,35 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { NavMain } from "@/components/nav-main";
+import { NavProjects } from "@/components/nav-projects";
+import { NavUser } from "@/components/nav-user";
+import { TeamSwitcher } from "@/components/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@tanisya/ui/components/sidebar"
-import { GalleryVerticalEndIcon, AudioLinesIcon, TerminalIcon, TerminalSquareIcon, BotIcon, BookOpenIcon, Settings2Icon, FrameIcon, PieChartIcon, MapIcon } from "lucide-react"
+} from "@tanisya/ui/components/sidebar";
+import {
+  GalleryVerticalEndIcon,
+  AudioLinesIcon,
+  TerminalIcon,
+  TerminalSquareIcon,
+  BotIcon,
+  BookOpenIcon,
+  Settings2Icon,
+  FrameIcon,
+  PieChartIcon,
+  MapIcon,
+  Globe,
+  Box,
+  ShieldCheck,
+  Zap,
+  Server,
+} from "lucide-react";
 
 // This is sample data.
 const data = {
@@ -25,125 +41,82 @@ const data = {
   teams: [
     {
       name: "Acme Inc",
-      logo: (
-        <GalleryVerticalEndIcon
-        />
-      ),
+      logo: <GalleryVerticalEndIcon />,
       plan: "Enterprise",
     },
     {
       name: "Acme Corp.",
-      logo: (
-        <AudioLinesIcon
-        />
-      ),
+      logo: <AudioLinesIcon />,
       plan: "Startup",
     },
     {
       name: "Evil Corp.",
-      logo: (
-        <TerminalIcon
-        />
-      ),
+      logo: <TerminalIcon />,
       plan: "Free",
     },
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Domain",
       url: "#",
-      icon: (
-        <TerminalSquareIcon
-        />
-      ),
+      icon: <Globe />,
       isActive: true,
       items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
+        { title: "Domain saya", url: "/dashboard/domain" },
+        { title: "Registrasi", url: "/dashboard/domain/register" },
+        { title: "Transfer", url: "/dashboard/domain/transfer" },
       ],
     },
+
     {
-      title: "Models",
-      url: "#",
-      icon: (
-        <BotIcon
-        />
-      ),
+      title: "Hosting",
+      url: "/dashboard/hosting",
+      icon: <Server />,
       items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
+        { title: "Paket Saya", url: "/dashboard/hosting" },
+        { title: "Beli Hosting", url: "/dashboard/hosting/order" },
+        { title: "File Manager", url: "/dashboard/hosting/files" },
+        { title: "Database", url: "/dashboard/hosting/database" },
+        { title: "Email", url: "/dashboard/hosting/email" },
+        { title: "Pengaturan", url: "/dashboard/hosting/settings" },
       ],
     },
+
     {
-      title: "Documentation",
-      url: "#",
-      icon: (
-        <BookOpenIcon
-        />
-      ),
+      title: "VPS",
+      url: "/dashboard/vps",
+      icon: <Box />,
       items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
+        { title: "Server Saya", url: "/dashboard/vps" },
+        { title: "Beli VPS", url: "/dashboard/vps/order" },
+        { title: "Console", url: "/dashboard/vps/console" },
+        { title: "Snapshot", url: "/dashboard/vps/snapshot" },
+        { title: "Firewall", url: "/dashboard/vps/firewall" },
+        { title: "Pengaturan", url: "/dashboard/vps/settings" },
       ],
     },
+
     {
-      title: "Settings",
-      url: "#",
-      icon: (
-        <Settings2Icon
-        />
-      ),
+      title: "SSL",
+      url: "/dashboard/ssl",
+      icon: <ShieldCheck />,
       items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
+        { title: "Sertifikat Saya", url: "/dashboard/ssl" },
+        { title: "Beli SSL", url: "/dashboard/ssl/order" },
+        { title: "Pasang SSL", url: "/dashboard/ssl/install" },
+        { title: "Perbarui", url: "/dashboard/ssl/renew" },
+      ],
+    },
+
+    {
+      title: "Instan Apps",
+      url: "/dashboard/instan-apps",
+      icon: <Zap />,
+      items: [
+        { title: "Aplikasi Saya", url: "/dashboard/instan-apps" },
+        { title: "Install Baru", url: "/dashboard/instan-apps/install" },
+        { title: "Update", url: "/dashboard/instan-apps/update" },
+        { title: "Backup", url: "/dashboard/instan-apps/backup" },
       ],
     },
   ],
@@ -151,29 +124,20 @@ const data = {
     {
       name: "Design Engineering",
       url: "#",
-      icon: (
-        <FrameIcon
-        />
-      ),
+      icon: <FrameIcon />,
     },
     {
       name: "Sales & Marketing",
       url: "#",
-      icon: (
-        <PieChartIcon
-        />
-      ),
+      icon: <PieChartIcon />,
     },
     {
       name: "Travel",
       url: "#",
-      icon: (
-        <MapIcon
-        />
-      ),
+      icon: <MapIcon />,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -183,12 +147,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

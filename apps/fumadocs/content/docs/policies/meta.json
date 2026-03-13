@@ -1,5 +1,6 @@
 {
-  "title": "Policies",
-  "description": "The description of root folder (optional)",
+  "title": "Kebijakan",
+  "description": "Kebijakan yang berlaku untuk penggunaan produk dan layanan Tanisya",
+  "icon": "FileText",
   "root": true
 }

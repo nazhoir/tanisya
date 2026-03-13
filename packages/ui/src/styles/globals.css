@@ -6,217 +6,224 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ─────────────────────────────────────────────────────────────────────────────
+/* ═══════════════════════════════════════════════════════════════════════════════
    LIGHT MODE
-   Primary: oklch(0.7336 0.1843 52.94) — amber/warm orange, dipertahankan
-   Sistem warna dibangun harmonis di sekitar amber sebagai warna utama.
-   ───────────────────────────────────────────────────────────────────────────── */
+   Primary: oklch(71.05% 0.1714 50.55) — amber/warm orange
+   Seluruh sistem warna dibangun di sekitar hue amber (hue 50–70).
+   Hierarki surface: background → card → popover (semakin terang)
+   ═══════════════════════════════════════════════════════════════════════════════ */
 :root {
-  /* Surfaces */         /* putih bersih */         /* hitam lembut */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);         /* putih murni agar dropdown jelas */
-  --popover-foreground: oklch(0.145 0 0);         /* selaras foreground utama */
+  /* ── Surfaces ──────────────────────────────────────────────────────────── */
+  --background:          oklch(1.000 0.000  0.00);   /* putih murni */
+  --foreground:          oklch(0.145 0.000  0.00);   /* hampir hitam */
 
-  /* Brand */
-  --primary: oklch(0.555 0.163 48.998); /* amber — DIPERTAHANKAN */
-  --primary-foreground: oklch(0.987 0.022 95.277);            /* near-black, kontras tinggi di atas amber */
+  --card:                oklch(0.990 0.003 75.00);   /* warm white — naik tipis dari bg */
+  --card-foreground:     oklch(0.145 0.000  0.00);
 
-  /* Secondary — warm off-white, sedikit amber tint */
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --popover:             oklch(1.000 0.000  0.00);   /* putih murni untuk dropdown */
+  --popover-foreground:  oklch(0.145 0.000  0.00);
 
-  /* Muted — abu netral, dinaikkan agar terbaca */
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);         /* ↑ dari 0.2435 — lebih readable */
+  /* ── Brand ─────────────────────────────────────────────────────────────── */
+  --primary:             oklch(0.710 0.171 50.55);   /* amber — DIPERTAHANKAN */
+  --primary-foreground:  oklch(0.145 0.000  0.00);   /* hitam — kontras tinggi di atas amber */
 
-  /* Accent — warm light amber untuk hover states */
-  --accent: oklch(0.555 0.163 48.998);
-  --accent-foreground: oklch(0.987 0.022 95.277);
+  /* ── Secondary — cream hangat, amber tint halus ────────────────────────── */
+  --secondary:           oklch(0.960 0.012 70.00);
+  --secondary-foreground: oklch(0.300 0.030 55.00);
 
-  /* Destructive — merah hangat, serasi dengan amber */
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.9900 0 0);
+  /* ── Muted — netral warm ───────────────────────────────────────────────── */
+  --muted:               oklch(0.955 0.005 70.00);
+  --muted-foreground:    oklch(0.500 0.010 55.00);
 
-  /* Structure */
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0); /* sedikit warm tint */
-  --ring: oklch(0.708 0 0); /* sama dengan primary */
+  /* ── Accent — amber sangat muda, bukan primary ─────────────────────────── */
+  --accent:              oklch(0.930 0.035 70.00);
+  --accent-foreground:   oklch(0.300 0.060 55.00);
 
-  /* Chart — palet harmonis: amber-center, variasi hue berimbang */
-  --chart-1: oklch(0.879 0.169 91.605);  /* amber — primary */
-  --chart-2: oklch(0.769 0.188 70.08);  /* oranye gelap */
-  --chart-3: oklch(0.666 0.179 58.318);  /* kuning-hijau hangat */
-  --chart-4: oklch(0.555 0.163 48.998);  /* merah-oranye */
-  --chart-5: oklch(0.473 0.137 46.201); /* lime hangat */
+  /* ── Destructive ───────────────────────────────────────────────────────── */
+  --destructive:         oklch(0.577 0.245 27.33);
+  --destructive-foreground: oklch(0.990 0.000  0.00);
 
-  /* Sidebar */
-  --sidebar: oklch(0.985 0 0);  /* sedikit warm tint */
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.666 0.179 58.318);
-  --sidebar-primary-foreground: oklch(0.987 0.022 95.277);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* ── Structure ─────────────────────────────────────────────────────────── */
+  --border:              oklch(0.900 0.008 70.00);
+  --input:               oklch(0.922 0.005 70.00);
+  --ring:                oklch(0.710 0.171 50.55);   /* = primary untuk focus ring branded */
 
-  /* Typography */
+  /* ── Chart — 5 hue berbeda dalam keluarga amber-oranye-merah ───────────── */
+  --chart-1:             oklch(0.879 0.169 91.61);   /* kuning cerah */
+  --chart-2:             oklch(0.769 0.188 70.08);   /* amber cerah */
+  --chart-3:             oklch(0.710 0.171 50.55);   /* amber primary */
+  --chart-4:             oklch(0.620 0.180 35.00);   /* oranye gelap */
+  --chart-5:             oklch(0.530 0.190 22.00);   /* merah-oranye */
+
+  /* ── Sidebar ───────────────────────────────────────────────────────────── */
+  --sidebar:                     oklch(0.982 0.005 75.00);
+  --sidebar-foreground:          oklch(0.200 0.010 55.00);
+  --sidebar-primary:             oklch(0.710 0.171 50.55);   /* = primary */
+  --sidebar-primary-foreground:  oklch(0.145 0.000  0.00);
+  --sidebar-accent:              oklch(0.930 0.035 70.00);   /* = accent */
+  --sidebar-accent-foreground:   oklch(0.300 0.060 55.00);
+  --sidebar-border:              oklch(0.900 0.008 70.00);   /* = border */
+  --sidebar-ring:                oklch(0.710 0.171 50.55);   /* = primary */
+
+  /* ── Typography ────────────────────────────────────────────────────────── */
   --font-sans:  Outfit, sans-serif;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono:  monospace;
 
-  /* Shape */
+  /* ── Shape ─────────────────────────────────────────────────────────────── */
   --radius: 0.625rem;
 
-  /* Shadows — ringan, konsisten */
+  /* ── Shadows ───────────────────────────────────────────────────────────── */
   --shadow-x:       0px;
   --shadow-y:       1px;
   --shadow-blur:    3px;
   --shadow-spread:  0px;
-  --shadow-opacity: 0.12;
+  --shadow-opacity: 0.10;
   --shadow-color:   #000000;
-  --shadow-2xs:  0px 1px 2px 0px hsl(0 0% 0% / 0.07);
-  --shadow-xs:   0px 1px 3px 0px hsl(0 0% 0% / 0.09);
-  --shadow-sm:   0px 1px 3px 0px hsl(0 0% 0% / 0.12), 0px 1px 2px -1px hsl(0 0% 0% / 0.12);
-  --shadow:      0px 2px 4px 0px hsl(0 0% 0% / 0.12), 0px 1px 2px -1px hsl(0 0% 0% / 0.10);
-  --shadow-md:   0px 4px 6px 0px hsl(0 0% 0% / 0.12), 0px 2px 4px -1px hsl(0 0% 0% / 0.10);
-  --shadow-lg:   0px 8px 12px 0px hsl(0 0% 0% / 0.12), 0px 4px 6px -1px hsl(0 0% 0% / 0.10);
-  --shadow-xl:   0px 16px 24px 0px hsl(0 0% 0% / 0.12), 0px 8px 10px -1px hsl(0 0% 0% / 0.10);
-  --shadow-2xl:  0px 24px 32px 0px hsl(0 0% 0% / 0.20);
+  --shadow-2xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.06);
+  --shadow-xs:  0px 1px 3px 0px hsl(0 0% 0% / 0.08);
+  --shadow-sm:  0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 1px 2px -1px hsl(0 0% 0% / 0.10);
+  --shadow:     0px 2px 4px 0px hsl(0 0% 0% / 0.10), 0px 1px 2px -1px hsl(0 0% 0% / 0.08);
+  --shadow-md:  0px 4px 6px 0px hsl(0 0% 0% / 0.10), 0px 2px 4px -1px hsl(0 0% 0% / 0.08);
+  --shadow-lg:  0px 8px 12px 0px hsl(0 0% 0% / 0.10), 0px 4px 6px -1px hsl(0 0% 0% / 0.08);
+  --shadow-xl:  0px 16px 24px 0px hsl(0 0% 0% / 0.10), 0px 8px 10px -1px hsl(0 0% 0% / 0.08);
+  --shadow-2xl: 0px 24px 32px 0px hsl(0 0% 0% / 0.18);
 
-  /* Tracking */
+  /* ── Misc ──────────────────────────────────────────────────────────────── */
   --tracking-normal: 0.025em;
   --spacing: 0.25rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
+/* ═══════════════════════════════════════════════════════════════════════════════
    DARK MODE
-   Amber primary di dark mode sedikit diturunkan agar tidak silau di layar gelap.
-   Semua surface mengikuti hierarki: background < card < popover (semakin terang)
-   ───────────────────────────────────────────────────────────────────────────── */
+   Hierarki surface: background(0.145) < card(0.200) < popover(0.250)
+   ═══════════════════════════════════════════════════════════════════════════════ */
 .dark {
-  /* Surfaces — hierarki jelas dari gelap ke terang */
-  --background: oklch(0.145 0 0);         /* paling gelap */
-  --foreground: oklch(0.985 0 0);         /* teks utama terang */
-  --card: oklch(0.205 0 0);         /* sedikit lebih terang dari bg */
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);         /* dropdown di atas card */
-  --popover-foreground: oklch(0.985 0 0);
+  /* ── Surfaces ──────────────────────────────────────────────────────────── */
+  --background:          oklch(0.145 0.000  0.00);
+  --foreground:          oklch(0.985 0.000  0.00);
 
-  /* Brand — amber sedikit diturunkan lightness agar mata nyaman di dark */
-  --primary: oklch(0.473 0.137 46.201);
-  --primary-foreground: oklch(0.987 0.022 95.277);         /* near-black, konsisten dengan light */
+  --card:                oklch(0.200 0.000  0.00);
+  --card-foreground:     oklch(0.985 0.000  0.00);
 
-  /* Secondary */
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
+  --popover:             oklch(0.250 0.000  0.00);
+  --popover-foreground:  oklch(0.985 0.000  0.00);
 
-  /* Muted */
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);         /* kontras cukup, tidak terlalu terang */
+  /* ── Brand ─────────────────────────────────────────────────────────────── */
+  --primary:             oklch(0.710 0.171 50.55);
+  --primary-foreground:  oklch(0.145 0.000  0.00);
 
-  /* Accent — warm dark untuk hover */
-  --accent: oklch(0.473 0.137 46.201);
-  --accent-foreground: oklch(0.987 0.022 95.277);
+  /* ── Secondary ─────────────────────────────────────────────────────────── */
+  --secondary:           oklch(0.260 0.010 55.00);
+  --secondary-foreground: oklch(0.920 0.008 70.00);
 
-  /* Destructive — dinaikkan lightness supaya terbaca di dark bg */
-  --destructive: oklch(0.704 0.191 22.216); /* ↑ dari 0.3123 — visible */
-  --destructive-foreground: oklch(0.9700 0 0);
+  /* ── Muted ─────────────────────────────────────────────────────────────── */
+  --muted:               oklch(0.240 0.005 55.00);
+  --muted-foreground:    oklch(0.640 0.010 60.00);
 
-  /* Structure */
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  /* ── Accent ─────────────────────────────────────────────────────────────── */
+  --accent:              oklch(0.280 0.030 55.00);
+  --accent-foreground:   oklch(0.920 0.015 70.00);
 
-  /* Chart — versi dark lebih terang agar terbaca di bg gelap */
-  --chart-1: oklch(0.879 0.169 91.605); /* amber terang */
-  --chart-2: oklch(0.769 0.188 70.08); /* oranye */
-  --chart-3: oklch(0.666 0.179 58.318); /* kuning-hijau */
-  --chart-4: oklch(0.555 0.163 48.998); /* merah-oranye */
-  --chart-5: oklch(0.473 0.137 46.201);/* lime */
+  /* ── Destructive ───────────────────────────────────────────────────────── */
+  --destructive:         oklch(0.704 0.191 22.22);
+  --destructive-foreground: oklch(0.970 0.000  0.00);
 
-  /* Sidebar */
-  --sidebar: oklch(0.205 0 0);          /* sama dengan background */
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.769 0.188 70.08); /* selaras primary dark */
-  --sidebar-primary-foreground: oklch(0.279 0.077 45.635);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* ── Structure ─────────────────────────────────────────────────────────── */
+  --border:              oklch(1.000 0.000 0.00 / 12%);
+  --input:               oklch(1.000 0.000 0.00 / 15%);
+  --ring:                oklch(0.710 0.171 50.55);
 
-  /* Typography (diulang agar dark override lengkap) */
+  /* ── Chart ─────────────────────────────────────────────────────────────── */
+  --chart-1:             oklch(0.879 0.169 91.61);
+  --chart-2:             oklch(0.769 0.188 70.08);
+  --chart-3:             oklch(0.710 0.171 50.55);
+  --chart-4:             oklch(0.650 0.185 35.00);
+  --chart-5:             oklch(0.580 0.195 22.00);
+
+  /* ── Sidebar ───────────────────────────────────────────────────────────── */
+  --sidebar:                     oklch(0.185 0.000  0.00);
+  --sidebar-foreground:          oklch(0.850 0.008 70.00);
+  --sidebar-primary:             oklch(0.710 0.171 50.55);
+  --sidebar-primary-foreground:  oklch(0.145 0.000  0.00);
+  --sidebar-accent:              oklch(0.280 0.030 55.00);
+  --sidebar-accent-foreground:   oklch(0.920 0.015 70.00);
+  --sidebar-border:              oklch(1.000 0.000 0.00 / 10%);
+  --sidebar-ring:                oklch(0.710 0.171 50.55);
+
+  /* ── Typography ────────────────────────────────────────────────────────── */
   --font-sans:  Outfit, sans-serif;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono:  monospace;
 
-  /* Shape */
-  --radius: 0.5rem;
+  /* ── Shape ─────────────────────────────────────────────────────────────── */
+  --radius: 0.625rem;
 
-  /* Shadows — lebih lembut di dark mode */
+  /* ── Shadows ───────────────────────────────────────────────────────────── */
   --shadow-x:       0px;
   --shadow-y:       1px;
   --shadow-blur:    3px;
   --shadow-spread:  0px;
-  --shadow-opacity: 0.30;
+  --shadow-opacity: 0.35;
   --shadow-color:   #000000;
-  --shadow-2xs:  0px 1px 2px 0px hsl(0 0% 0% / 0.20);
-  --shadow-xs:   0px 1px 3px 0px hsl(0 0% 0% / 0.25);
-  --shadow-sm:   0px 1px 3px 0px hsl(0 0% 0% / 0.30), 0px 1px 2px -1px hsl(0 0% 0% / 0.30);
-  --shadow:      0px 2px 4px 0px hsl(0 0% 0% / 0.30), 0px 1px 2px -1px hsl(0 0% 0% / 0.25);
-  --shadow-md:   0px 4px 6px 0px hsl(0 0% 0% / 0.35), 0px 2px 4px -1px hsl(0 0% 0% / 0.25);
-  --shadow-lg:   0px 8px 12px 0px hsl(0 0% 0% / 0.40), 0px 4px 6px -1px hsl(0 0% 0% / 0.25);
-  --shadow-xl:   0px 16px 24px 0px hsl(0 0% 0% / 0.45), 0px 8px 10px -1px hsl(0 0% 0% / 0.25);
-  --shadow-2xl:  0px 24px 32px 0px hsl(0 0% 0% / 0.60);
+  --shadow-2xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.22);
+  --shadow-xs:  0px 1px 3px 0px hsl(0 0% 0% / 0.28);
+  --shadow-sm:  0px 1px 3px 0px hsl(0 0% 0% / 0.35), 0px 1px 2px -1px hsl(0 0% 0% / 0.35);
+  --shadow:     0px 2px 4px 0px hsl(0 0% 0% / 0.35), 0px 1px 2px -1px hsl(0 0% 0% / 0.28);
+  --shadow-md:  0px 4px 6px 0px hsl(0 0% 0% / 0.40), 0px 2px 4px -1px hsl(0 0% 0% / 0.28);
+  --shadow-lg:  0px 8px 12px 0px hsl(0 0% 0% / 0.45), 0px 4px 6px -1px hsl(0 0% 0% / 0.28);
+  --shadow-xl:  0px 16px 24px 0px hsl(0 0% 0% / 0.50), 0px 8px 10px -1px hsl(0 0% 0% / 0.28);
+  --shadow-2xl: 0px 24px 32px 0px hsl(0 0% 0% / 0.65);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   THEME MAPPING — CSS vars → Tailwind color tokens
-   ───────────────────────────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════════════════
+   THEME MAPPING
+   ═══════════════════════════════════════════════════════════════════════════════ */
 @theme inline {
-  --color-background:              var(--background);
-  --color-foreground:              var(--foreground);
-  --color-card:                    var(--card);
-  --color-card-foreground:         var(--card-foreground);
-  --color-popover:                 var(--popover);
-  --color-popover-foreground:      var(--popover-foreground);
-  --color-primary:                 var(--primary);
-  --color-primary-foreground:      var(--primary-foreground);
-  --color-secondary:               var(--secondary);
-  --color-secondary-foreground:    var(--secondary-foreground);
-  --color-muted:                   var(--muted);
-  --color-muted-foreground:        var(--muted-foreground);
-  --color-accent:                  var(--accent);
-  --color-accent-foreground:       var(--accent-foreground);
-  --color-destructive:             var(--destructive);
-  --color-destructive-foreground:  var(--destructive-foreground);
-  --color-border:                  var(--border);
-  --color-input:                   var(--input);
-  --color-ring:                    var(--ring);
-  --color-chart-1:                 var(--chart-1);
-  --color-chart-2:                 var(--chart-2);
-  --color-chart-3:                 var(--chart-3);
-  --color-chart-4:                 var(--chart-4);
-  --color-chart-5:                 var(--chart-5);
-  --color-sidebar:                 var(--sidebar);
-  --color-sidebar-foreground:      var(--sidebar-foreground);
-  --color-sidebar-primary:         var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent:          var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border:          var(--sidebar-border);
-  --color-sidebar-ring:            var(--sidebar-ring);
+  --color-background:                   var(--background);
+  --color-foreground:                   var(--foreground);
+  --color-card:                         var(--card);
+  --color-card-foreground:              var(--card-foreground);
+  --color-popover:                      var(--popover);
+  --color-popover-foreground:           var(--popover-foreground);
+  --color-primary:                      var(--primary);
+  --color-primary-foreground:           var(--primary-foreground);
+  --color-secondary:                    var(--secondary);
+  --color-secondary-foreground:         var(--secondary-foreground);
+  --color-muted:                        var(--muted);
+  --color-muted-foreground:             var(--muted-foreground);
+  --color-accent:                       var(--accent);
+  --color-accent-foreground:            var(--accent-foreground);
+  --color-destructive:                  var(--destructive);
+  --color-destructive-foreground:       var(--destructive-foreground);
+  --color-border:                       var(--border);
+  --color-input:                        var(--input);
+  --color-ring:                         var(--ring);
+  --color-chart-1:                      var(--chart-1);
+  --color-chart-2:                      var(--chart-2);
+  --color-chart-3:                      var(--chart-3);
+  --color-chart-4:                      var(--chart-4);
+  --color-chart-5:                      var(--chart-5);
+  --color-sidebar:                      var(--sidebar);
+  --color-sidebar-foreground:           var(--sidebar-foreground);
+  --color-sidebar-primary:              var(--sidebar-primary);
+  --color-sidebar-primary-foreground:   var(--sidebar-primary-foreground);
+  --color-sidebar-accent:               var(--sidebar-accent);
+  --color-sidebar-accent-foreground:    var(--sidebar-accent-foreground);
+  --color-sidebar-border:               var(--sidebar-border);
+  --color-sidebar-ring:                 var(--sidebar-ring);
 
   --font-sans:  var(--font-sans);
   --font-mono:  var(--font-mono);
   --font-serif: var(--font-serif);
 
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm:  calc(var(--radius) - 4px);
+  --radius-md:  calc(var(--radius) - 2px);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 
   --shadow-2xs: var(--shadow-2xs);
   --shadow-xs:  var(--shadow-xs);
@@ -233,14 +240,11 @@
   --tracking-wide:    calc(var(--tracking-normal) + 0.025em);
   --tracking-wider:   calc(var(--tracking-normal) + 0.05em);
   --tracking-widest:  calc(var(--tracking-normal) + 0.1em);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
+/* ═══════════════════════════════════════════════════════════════════════════════
    BASE STYLES
-   ───────────────────────────────────────────────────────────────────────────── */
+   ═══════════════════════════════════════════════════════════════════════════════ */
 @layer base {
   * {
     @apply border-border outline-ring/50;

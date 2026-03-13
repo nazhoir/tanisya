@@ -1,11 +1,10 @@
 {
   "title": "Dokumentasi Tanisya",
   "pages": [
-    "getting-started",
+    "---Introduction---",
+    "index",
+    "---Panduan---",
     "products",
-    "billing",
-    "affiliate",
-    "api",
     "policies"
   ]
 }

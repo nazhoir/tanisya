@@ -1,0 +1,32 @@
+---
+title: Quick Start
+icon: Rocket
+description: Selamat datang di dokumentasi Tanisya. Temukan panduan, referensi, dan informasi layanan yang kamu butuhkan.
+---
+
+import {
+  BoxIcon,
+  FileTextIcon,
+  SettingsIcon,
+} from "lucide-react";
+
+<Cards>
+  <Card
+    icon={<BoxIcon className="text-primary" />}
+    title="Produk"
+    href="/docs/products"
+    description="Panduan lengkap seluruh layanan Tanisya — hosting, domain, VPS, SSL, Instan Apps, storage, dan lainnya."
+  />
+  <Card
+    icon={<SettingsIcon className="text-primary" />}
+    title="Akun & Billing"
+    href="/docs/billing"
+    description="Kelola akun, tagihan, metode pembayaran, afiliasi, dan pengaturan layanan kamu."
+  />
+  <Card
+    icon={<FileTextIcon className="text-primary" />}
+    title="Kebijakan"
+    href="/docs/policies"
+    description="Syarat layanan, kebijakan privasi, SLA, dan ketentuan penggunaan platform Tanisya."
+  />
+</Cards>
