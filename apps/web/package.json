@@ -32,15 +32,15 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "^1.17.1",
-    "@tailwindcss/postcss": "^4.2.1",
+    "@opennextjs/cloudflare": "catalog:",
+    "@tailwindcss/postcss": "catalog:",
     "@tanisya/config": "workspace:*",
     "@tanstack/react-query-devtools": "^5.91.3",
-    "@types/node": "^25.5.0",
+    "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "tailwindcss": "catalog:",
     "typescript": "catalog:",
-    "wrangler": "^4.73.0"
+    "wrangler": "catalog:"
   }
 }

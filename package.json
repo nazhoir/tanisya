@@ -24,9 +24,9 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.7",
+    "@biomejs/biome": "catalog:",
     "@tanisya/config": "workspace:*",
-    "@types/node": "^25.5.0",
+    "@types/node": "catalog:",
     "turbo": "^2.8.17",
     "typescript": "catalog:"
   },

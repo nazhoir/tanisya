@@ -6,6 +6,12 @@ settings:
 
 catalogs:
   default:
+    '@biomejs/biome':
+      specifier: ^2.4.7
+      version: 2.4.7
+    '@opennextjs/cloudflare':
+      specifier: ^1.17.1
+      version: 1.17.1
     '@orpc/client':
       specifier: ^1.13.7
       version: 1.13.7
@@ -18,6 +24,12 @@ catalogs:
     '@orpc/zod':
       specifier: ^1.13.7
       version: 1.13.7
+    '@tailwindcss/postcss':
+      specifier: ^4.2.1
+      version: 4.2.1
+    '@types/node':
+      specifier: ^25.5.0
+      version: 25.5.0
     '@types/pg':
       specifier: ^8.18.0
       version: 8.18.0
@@ -54,12 +66,18 @@ catalogs:
     sonner:
       specifier: 2.0.7
       version: 2.0.7
+    tailwind-merge:
+      specifier: ^3.5.0
+      version: 3.5.0
     tailwindcss:
       specifier: ^4.2.1
       version: 4.2.1
     typescript:
       specifier: ^5.9.3
       version: 5.9.3
+    wrangler:
+      specifier: ^4.73.0
+      version: 4.73.0
     zod:
       specifier: ^4.3.6
       version: 4.3.6
@@ -79,13 +97,13 @@ importers:
         version: 4.3.6
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.4.7
+        specifier: 'catalog:'
         version: 2.4.7
       '@tanisya/config':
         specifier: workspace:*
         version: link:packages/config
       '@types/node':
-        specifier: ^25.5.0
+        specifier: 'catalog:'
         version: 25.5.0
       turbo:
         specifier: ^2.8.17
@@ -127,23 +145,23 @@ importers:
         specifier: ^5.4.1
         version: 5.4.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       tailwind-merge:
-        specifier: ^3.5.0
+        specifier: 'catalog:'
         version: 3.5.0
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.4.7
+        specifier: 'catalog:'
         version: 2.4.7
       '@opennextjs/cloudflare':
-        specifier: ^1.17.1
+        specifier: 'catalog:'
         version: 1.17.1(next@16.1.6(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(wrangler@4.73.0)
       '@tailwindcss/postcss':
-        specifier: ^4.2.1
+        specifier: 'catalog:'
         version: 4.2.1
       '@types/mdx':
         specifier: ^2.0.13
         version: 2.0.13
       '@types/node':
-        specifier: ^25.5.0
+        specifier: 'catalog:'
         version: 25.5.0
       '@types/react':
         specifier: 'catalog:'
@@ -161,7 +179,7 @@ importers:
         specifier: 'catalog:'
         version: 5.9.3
       wrangler:
-        specifier: ^4.73.0
+        specifier: 'catalog:'
         version: 4.73.0
 
   apps/web:
@@ -234,10 +252,10 @@ importers:
         version: 4.3.6
     devDependencies:
       '@opennextjs/cloudflare':
-        specifier: ^1.17.1
+        specifier: 'catalog:'
         version: 1.17.1(next@16.1.6(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(wrangler@4.73.0)
       '@tailwindcss/postcss':
-        specifier: ^4.2.1
+        specifier: 'catalog:'
         version: 4.2.1
       '@tanisya/config':
         specifier: workspace:*
@@ -246,7 +264,7 @@ importers:
         specifier: ^5.91.3
         version: 5.91.3(@tanstack/react-query@5.90.21(react@19.2.4))(react@19.2.4)
       '@types/node':
-        specifier: ^25.5.0
+        specifier: 'catalog:'
         version: 25.5.0
       '@types/react':
         specifier: 'catalog:'
@@ -261,7 +279,7 @@ importers:
         specifier: 'catalog:'
         version: 5.9.3
       wrangler:
-        specifier: ^4.73.0
+        specifier: 'catalog:'
         version: 4.73.0
 
   packages/api:
@@ -387,7 +405,7 @@ importers:
         specifier: workspace:*
         version: link:../config
       '@types/node':
-        specifier: ^25.5.0
+        specifier: 'catalog:'
         version: 25.5.0
       typescript:
         specifier: 'catalog:'
@@ -426,7 +444,7 @@ importers:
         specifier: 'catalog:'
         version: 2.0.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       tailwind-merge:
-        specifier: ^3.5.0
+        specifier: 'catalog:'
         version: 3.5.0
       tw-animate-css:
         specifier: ^1.4.0
