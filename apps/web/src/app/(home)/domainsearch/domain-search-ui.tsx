@@ -2,14 +2,6 @@
 // Server Component — tidak ada "use client", tidak ada hooks
 // Berisi: DomainCard, DomainListRow, CardSkeleton, RowSkeleton, helpers
 
-import {
-	ArrowLeftRight,
-	CheckCircle2,
-	ShoppingCart,
-	Sparkles,
-	XCircle,
-} from "lucide-react";
-import Link from "next/link";
 import { Badge } from "@tanisya/ui/components/badge";
 import { Button } from "@tanisya/ui/components/button";
 import {
@@ -20,13 +12,21 @@ import {
 } from "@tanisya/ui/components/card";
 import { Separator } from "@tanisya/ui/components/separator";
 import { Skeleton } from "@tanisya/ui/components/skeleton";
+import {
+	ArrowLeftRight,
+	CheckCircle2,
+	ShoppingCart,
+	Sparkles,
+	XCircle,
+} from "lucide-react";
+import Link from "next/link";
 import { formatIDR } from "@/lib/format-currency";
 import {
-	PROMO_TLDS,
-	PROMOS,
+	type DomainSuggestion,
 	getPriceByTld,
 	getTld,
-	type DomainSuggestion,
+	PROMO_TLDS,
+	PROMOS,
 } from "../domain/domain-data";
 
 // ─── Types (re-export agar bisa dipakai di client) ────────────────────────────
@@ -54,10 +54,10 @@ export function getDomainInfo(s: DomainSuggestion) {
 export function CardSkeleton() {
 	return (
 		<Card>
-			<CardContent className="p-5 space-y-3">
+			<CardContent className="space-y-3 p-5">
 				<Skeleton className="h-3 w-28 rounded" />
 				<div className="flex items-center gap-2">
-					<Skeleton className="h-5 w-5 rounded-full shrink-0" />
+					<Skeleton className="h-5 w-5 shrink-0 rounded-full" />
 					<Skeleton className="h-5 w-40 rounded" />
 				</div>
 				<div className="flex gap-1.5">
@@ -74,7 +74,7 @@ export function RowSkeleton() {
 	return (
 		<div className="flex items-center justify-between gap-3 rounded-lg border px-4 py-3">
 			<div className="flex flex-1 items-center gap-3">
-				<Skeleton className="h-4 w-4 rounded-full shrink-0" />
+				<Skeleton className="h-4 w-4 shrink-0 rounded-full" />
 				<Skeleton className="h-4 w-40 rounded" />
 				<Skeleton className="h-4 w-14 rounded-full" />
 			</div>
@@ -108,8 +108,8 @@ export function DomainCard({
 			}`}
 		>
 			{highlight && (
-				<div className="absolute -top-3 z-auto left-1/2 -translate-x-1/2">
-					<Badge className="bg-primary px-6 py-4 text-primary-foreground text-xl font-bold shadow">
+				<div className="absolute -top-3 left-1/2 z-auto -translate-x-1/2">
+					<Badge className="bg-primary px-6 py-4 font-bold text-primary-foreground text-xl shadow">
 						Pilihan Anda
 					</Badge>
 				</div>
@@ -117,15 +117,15 @@ export function DomainCard({
 
 			<CardHeader className="px-5 pt-6 pb-3">
 				<div className="mb-1 flex items-center justify-between">
-					<p className="text-[11px] font-medium tracking-wide text-muted-foreground">
+					<p className="font-medium text-[11px] text-muted-foreground tracking-wide">
 						{label}
 					</p>
 					{!highlight && isAvailable && (
-						<Sparkles className="h-14 w-14 text-green-500 absolute right-6" />
+						<Sparkles className="absolute right-6 h-14 w-14 text-green-500" />
 					)}
 				</div>
 
-				<div className="flex flex-wrap items-center gap-2 mt-1">
+				<div className="mt-1 flex flex-wrap items-center gap-2">
 					{isAvailable ? (
 						<CheckCircle2
 							className={`h-5 w-5 shrink-0 ${highlight ? "text-primary" : "text-green-600"}`}
@@ -133,29 +133,31 @@ export function DomainCard({
 					) : (
 						<XCircle className="h-5 w-5 shrink-0 text-muted-foreground/40" />
 					)}
-					<span className="font-bold text-4xl tracking-tight break-all">{s.name}</span>
+					<span className="break-all font-bold text-4xl tracking-tight">
+						{s.name}
+					</span>
 				</div>
 
-				<div className="flex flex-wrap gap-1.5 mt-2">
+				<div className="mt-2 flex flex-wrap gap-1.5">
 					{isAvailable ? (
-						<Badge className="bg-green-600 hover:bg-green-600 text-[10px] h-4 px-1.5">
+						<Badge className="h-4 bg-green-600 px-1.5 text-[10px] hover:bg-green-600">
 							Tersedia
 						</Badge>
 					) : (
-						<Badge variant="secondary" className="text-[10px] h-4 px-1.5">
+						<Badge variant="secondary" className="h-4 px-1.5 text-[10px]">
 							Sudah Diambil
 						</Badge>
 					)}
 					{s.is_premium_name && (
 						<Badge
 							variant="secondary"
-							className="border border-amber-400 text-amber-600 text-[10px] h-4 px-1.5"
+							className="h-4 border border-amber-400 px-1.5 text-[10px] text-amber-600"
 						>
 							Premium
 						</Badge>
 					)}
 					{isAvailable && isPromo && promoData && !s.is_premium_name && (
-						<Badge className="bg-primary/80 hover:bg-primary/80 text-primary-foreground text-[10px] h-4 px-1.5">
+						<Badge className="h-4 bg-primary/80 px-1.5 text-[10px] text-primary-foreground hover:bg-primary/80">
 							Promo
 						</Badge>
 					)}
@@ -178,7 +180,8 @@ export function DomainCard({
 								{formatIDR(promoData.originalPrice)}/thn
 							</p>
 							<p className="mt-0.5 font-bold text-green-600 text-xl">
-								Hemat {formatIDR(promoData.originalPrice - promoData.promoPrice)}
+								Hemat{" "}
+								{formatIDR(promoData.originalPrice - promoData.promoPrice)}
 							</p>
 						</div>
 					) : price ? (
@@ -193,8 +196,9 @@ export function DomainCard({
 					// ── Domain tidak tersedia: info transfer ──────────────────────
 					<div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2.5 dark:border-amber-800/40 dark:bg-amber-950/30">
 						<ArrowLeftRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-500" />
-						<p className="text-xs leading-relaxed text-amber-700 dark:text-amber-300">
-							Domain ini sudah terdaftar. Anda dapat memindahkannya ke layanan kami melalui proses transfer.
+						<p className="text-amber-700 text-xs leading-relaxed dark:text-amber-300">
+							Domain ini sudah terdaftar. Anda dapat memindahkannya ke layanan
+							kami melalui proses transfer.
 						</p>
 					</div>
 				)}
@@ -213,7 +217,7 @@ export function DomainCard({
 				) : (
 					// ── Tombol Transfer ───────────────────────────────────────────
 					<Button
-						className="w-full gap-2 border-amber-400/50 text-amber-600 hover:bg-amber-50 hover:text-amber-700 hover:border-amber-400 dark:border-amber-500/40 dark:text-amber-400 dark:hover:bg-amber-950/30 dark:hover:text-amber-300"
+						className="w-full gap-2 border-amber-400/50 text-amber-600 hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700 dark:border-amber-500/40 dark:text-amber-400 dark:hover:bg-amber-950/30 dark:hover:text-amber-300"
 						variant="outline"
 						size="lg"
 						asChild
@@ -263,7 +267,10 @@ export function DomainListRow({ s }: { s: DomainSuggestion }) {
 					</Badge>
 				)}
 				{!isAvailable && (
-					<Badge variant="secondary" className="h-4 shrink-0 px-1.5 text-[10px]">
+					<Badge
+						variant="secondary"
+						className="h-4 shrink-0 px-1.5 text-[10px]"
+					>
 						Sudah Diambil
 					</Badge>
 				)}
@@ -310,7 +317,7 @@ export function DomainListRow({ s }: { s: DomainSuggestion }) {
 				) : (
 					// ── Tombol Transfer (row) ─────────────────────────────────
 					<Button
-						className="h-8 gap-1.5 border-amber-400/50 text-amber-600 hover:bg-amber-50 hover:text-amber-700 hover:border-amber-400 dark:border-amber-500/40 dark:text-amber-400 dark:hover:bg-amber-950/30 dark:hover:text-amber-300"
+						className="h-8 gap-1.5 border-amber-400/50 text-amber-600 hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700 dark:border-amber-500/40 dark:text-amber-400 dark:hover:bg-amber-950/30 dark:hover:text-amber-300"
 						variant="outline"
 						size="sm"
 						asChild

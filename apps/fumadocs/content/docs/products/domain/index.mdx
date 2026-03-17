@@ -1,135 +1,33 @@
 ---
-title: Registrasi Domain
-description: Panduan langkah demi langkah untuk melakukan registrasi domain di Tanisya.
+title: Domain
+description: Kelola nama domain Anda — dari pendaftaran, transfer, perpanjangan, hingga pengaturan DNS dan perlindungan domain.
 ---
 
-import { Tab, Tabs } from "fumadocs-ui/components/tabs";
-import { Step, Steps } from "fumadocs-ui/components/steps";
+Domain adalah identitas digital Anda di internet. Kami menyediakan layanan pendaftaran dan pengelolaan domain dengan dukungan ratusan ekstensi domain internasional (gTLD) maupun domain Indonesia (ccTLD `.id`).
 
-Registrasi domain adalah proses untuk mengaktifkan nama domain baru. Setelah registrasi berhasil, domain siap dikonfigurasi dan digunakan.
+## Jenis Domain
 
----
+<Cards>
+  <Card title="Domain gTLD" href="/products/domain/domain-gtld" description="Domain internasional seperti .com, .net, .org, .io, dan ratusan ekstensi lainnya" />
+  <Card title="Domain Indonesia" href="/products/domain/domain-indonesia" description="Domain dengan ekstensi .id, .co.id, .web.id, .my.id, dan turunannya" />
+</Cards>
 
-## Ekstensi yang Tersedia
+## Manajemen Domain
 
-### Domain Indonesia
-`.id` `.my.id` `.biz.id` `.web.id` `.or.id` `.sch.id` `.co.id` `.ac.id` `.ponpes.id`
+<Cards>
+  <Card title="Registrasi Domain" href="/products/domain/registration" description="Cara mendaftarkan nama domain baru" />
+  <Card title="Transfer Domain" href="/products/domain/transfer" description="Pindahkan domain dari registrar lain ke layanan kami" />
+  <Card title="Perpanjang Domain" href="/products/domain/renew" description="Perpanjang masa aktif domain sebelum kedaluwarsa" />
+  <Card title="Restorasi Domain" href="/products/domain/restoration" description="Pulihkan domain yang sudah melewati masa tenggang" />
+  <Card title="Siklus Hidup Domain" href="/products/domain/life-cycle" description="Pahami setiap fase status domain dari aktif hingga dihapus" />
+  <Card title="Auto Activation" href="/products/domain/auto-activation" description="Aktifkan domain secara otomatis setelah pembayaran" />
+</Cards>
 
-### Domain gTLD
-`.com` `.net` `.org` `.xyz` `.click` `.co` `.biz` `.asia`
+## Pengaturan Domain
 
----
-
-## Whois Protection
-
-Whois protection menyembunyikan data pribadi registrant (nama, alamat, email, nomor telepon) dari hasil pencarian WHOIS publik.
-
-<Callout type="info">
-  Whois protection hanya tersedia untuk ekstensi: `.com` `.net` `.org` `.xyz` `.co`
-
-  Domain Indonesia tidak mendukung whois protection karena kebijakan PANDI mewajibkan data registrant dapat diverifikasi.
-</Callout>
-
----
-
-## Langkah Registrasi
-
-<Tabs items={["Tanpa Whois Protection", "Dengan Whois Protection"]}>
-  <Tab value="Tanpa Whois Protection">
-    <Steps>
-      <Step>
-        ### Login ke Dashboard
-
-        Masuk ke akun Tanisya kamu di [dashboard.tanisya.id](https://dashboard.tanisya.id).
-      </Step>
-
-      <Step>
-        ### Cari Nama Domain
-
-        Ketik nama domain yang ingin didaftarkan pada kolom pencarian **Find your domain**, kemudian tekan **Enter**.
-      </Step>
-
-      <Step>
-        ### Pilih Domain yang Tersedia
-
-        Jika domain berstatus **available**, klik tombol **Buy Domain** untuk melanjutkan.
-
-        <Callout type="info">
-          Jika domain tidak tersedia, coba variasi nama lain atau pilih ekstensi yang berbeda.
-        </Callout>
-      </Step>
-
-      <Step>
-        ### Pilih Customer
-
-        Pilih akun customer yang akan menjadi pemilik domain.
-
-        Jika belum ada, klik **Add New** → isi profil customer → klik **Save**.
-      </Step>
-
-      <Step>
-        ### Tentukan Durasi Registrasi
-
-        Pilih siklus domain mulai dari **1 tahun hingga 10 tahun**.
-      </Step>
-
-      <Step>
-        ### Selesaikan Registrasi
-
-        Klik **Register** untuk menyelesaikan proses. Domain akan aktif setelah pembayaran berhasil.
-      </Step>
-    </Steps>
-  </Tab>
-
-  <Tab value="Dengan Whois Protection">
-    <Steps>
-      <Step>
-        ### Login ke Dashboard
-
-        Masuk ke akun Tanisya kamu di [dashboard.tanisya.id](https://dashboard.tanisya.id).
-      </Step>
-
-      <Step>
-        ### Cari Nama Domain
-
-        Ketik nama domain yang ingin didaftarkan pada kolom pencarian **Find your domain**, kemudian tekan **Enter**.
-      </Step>
-
-      <Step>
-        ### Pilih Domain yang Tersedia
-
-        Jika domain berstatus **available**, klik tombol **Buy Domain** untuk melanjutkan.
-      </Step>
-
-      <Step>
-        ### Pilih Customer
-
-        Pilih akun customer yang akan menjadi pemilik domain.
-
-        Jika belum ada, klik **Add New** → isi profil customer → klik **Save**.
-      </Step>
-
-      <Step>
-        ### Tentukan Durasi Registrasi
-
-        Pilih siklus domain mulai dari **1 tahun hingga 10 tahun**.
-      </Step>
-
-      <Step>
-        ### Aktifkan Whois Protection
-
-        Klik toggle **Whois Protection** hingga berstatus aktif sebelum melanjutkan.
-
-        <Callout type="warn">
-          Whois protection hanya tersedia untuk `.com` `.net` `.org` `.xyz` `.co`. Pastikan ekstensi domain yang dipilih mendukung fitur ini.
-        </Callout>
-      </Step>
-
-      <Step>
-        ### Selesaikan Registrasi
-
-        Klik **Register** untuk menyelesaikan proses. Domain akan aktif dengan whois protection setelah pembayaran berhasil.
-      </Step>
-    </Steps>
-  </Tab>
-</Tabs>
+<Cards>
+  <Card title="Nameserver" href="/products/domain/nameserver" description="Atur nameserver dan DNS record domain Anda" />
+  <Card title="Registrant Contact (Whois)" href="/products/domain/registrant-contact" description="Perbarui data kepemilikan domain yang tampil di WHOIS" />
+  <Card title="EPP Code / Auth Code" href="/products/domain/epp" description="Dapatkan kode otorisasi untuk keperluan transfer domain" />
+  <Card title="Theft Protection" href="/products/domain/theft-protection" description="Aktifkan perlindungan domain dari transfer tidak sah" />
+</Cards>

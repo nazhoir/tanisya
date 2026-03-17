@@ -3,16 +3,6 @@
 // app/domainsearch/domain-search-client.tsx
 // Client Component — interaktivitas: search, filter, mutations, searchParams
 
-import {
-	AlertCircle,
-	Layers,
-	Search,
-	SlidersHorizontal,
-	TrendingUp,
-} from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
 import { Alert, AlertDescription } from "@tanisya/ui/components/alert";
 import { Badge } from "@tanisya/ui/components/badge";
 import { Button } from "@tanisya/ui/components/button";
@@ -28,14 +18,24 @@ import {
 import { Input } from "@tanisya/ui/components/input";
 import { Separator } from "@tanisya/ui/components/separator";
 import { Skeleton } from "@tanisya/ui/components/skeleton";
+import { useMutation } from "@tanstack/react-query";
+import {
+	AlertCircle,
+	Layers,
+	Search,
+	SlidersHorizontal,
+	TrendingUp,
+} from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 import { orpc } from "@/utils/orpc";
 import {
+	type DomainSuggestion,
+	getPriceByTld,
+	getTld,
 	POPULAR_TLDS,
 	PROMO_TLDS,
 	QUICK_TLDS,
-	getPriceByTld,
-	getTld,
-	type DomainSuggestion,
 } from "../domain/domain-data";
 import {
 	CardSkeleton,
@@ -47,21 +47,24 @@ import {
 } from "./domain-search-ui";
 
 // ─── Sort helper ──────────────────────────────────────────────────────────────
-function applySort(items: DomainSuggestion[], mode: SortMode): DomainSuggestion[] {
-	const available   = items.filter((s) => s.available === 1);
+function applySort(
+	items: DomainSuggestion[],
+	mode: SortMode,
+): DomainSuggestion[] {
+	const available = items.filter((s) => s.available === 1);
 	const unavailable = items.filter((s) => s.available !== 1);
 
 	const sorted = [...available].sort((a, b) => {
-		const aTld   = getTld(a.name);
-		const bTld   = getTld(b.name);
-		const aPrice = getPriceByTld(aTld) ?? Infinity;
-		const bPrice = getPriceByTld(bTld) ?? Infinity;
+		const aTld = getTld(a.name);
+		const bTld = getTld(b.name);
+		const aPrice = getPriceByTld(aTld) ?? Number.POSITIVE_INFINITY;
+		const bPrice = getPriceByTld(bTld) ?? Number.POSITIVE_INFINITY;
 
-		if (mode === "price-asc")  return aPrice - bPrice;
+		if (mode === "price-asc") return aPrice - bPrice;
 		if (mode === "price-desc") return bPrice - aPrice;
 
-		const aPromo   = PROMO_TLDS.indexOf(aTld);
-		const bPromo   = PROMO_TLDS.indexOf(bTld);
+		const aPromo = PROMO_TLDS.indexOf(aTld);
+		const bPromo = PROMO_TLDS.indexOf(bTld);
 		const aPopular = POPULAR_TLDS.indexOf(aTld);
 		const bPopular = POPULAR_TLDS.indexOf(bTld);
 		if (aPromo !== -1 && bPromo !== -1) return aPromo - bPromo;
@@ -94,17 +97,17 @@ export function DomainSearchClient() {
 	const router = useRouter();
 
 	const [domainInput, setDomainInput] = useState("");
-	const [lastDomain, setLastDomain]   = useState("");
+	const [lastDomain, setLastDomain] = useState("");
 
-	const [exactDomain, setExactDomain]         = useState<DomainSuggestion | null>(null);
-	const [topRec, setTopRec]                   = useState<DomainSuggestion | null>(null);
-	const [primaryList, setPrimaryList]         = useState<DomainSuggestion[]>([]);
-	const [secondaryList, setSecondaryList]     = useState<DomainSuggestion[]>([]);
+	const [exactDomain, setExactDomain] = useState<DomainSuggestion | null>(null);
+	const [topRec, setTopRec] = useState<DomainSuggestion | null>(null);
+	const [primaryList, setPrimaryList] = useState<DomainSuggestion[]>([]);
+	const [secondaryList, setSecondaryList] = useState<DomainSuggestion[]>([]);
 	const [secondaryLoaded, setSecondaryLoaded] = useState(false);
 
-	const [sortMode, setSortMode]     = useState<SortMode>("popular");
+	const [sortMode, setSortMode] = useState<SortMode>("popular");
 	const [hasSearched, setHasSearched] = useState(false);
-	const [errorMsg, setErrorMsg]       = useState("");
+	const [errorMsg, setErrorMsg] = useState("");
 
 	// ── Mutation: checkByExtensions (menggantikan checkPrimary) ───────────────
 	const primaryMutation = useMutation(
@@ -125,14 +128,15 @@ export function DomainSearchClient() {
 
 				if (exactIdx !== -1) {
 					exact = all[exactIdx]!;
-					rest  = all.filter((_, i) => i !== exactIdx);
+					rest = all.filter((_, i) => i !== exactIdx);
 				} else {
 					[exact, ...rest] = all;
 				}
 
-				const sortedRest     = applySort(rest, "popular");
-				const firstAvailable = sortedRest.find((s) => s.available === 1) ?? sortedRest[0];
-				const remainingList  = sortedRest.filter((s) => s !== firstAvailable);
+				const sortedRest = applySort(rest, "popular");
+				const firstAvailable =
+					sortedRest.find((s) => s.available === 1) ?? sortedRest[0];
+				const remainingList = sortedRest.filter((s) => s !== firstAvailable);
 
 				setExactDomain(exact ?? null);
 				setTopRec(firstAvailable ?? null);
@@ -200,16 +204,19 @@ export function DomainSearchClient() {
 
 	const handleQuickTld = (tld: string) => {
 		const base =
-			domainInput.trim().replace(/^https?:\/\//, "").split(".")[0] ?? "";
+			domainInput
+				.trim()
+				.replace(/^https?:\/\//, "")
+				.split(".")[0] ?? "";
 		setDomainInput(base ? `${base}${tld}` : tld);
 	};
 
 	// ── Derived state ─────────────────────────────────────────────────────────
-	const isLoadingPrimary   = primaryMutation.isPending;
+	const isLoadingPrimary = primaryMutation.isPending;
 	const isLoadingSecondary = secondaryMutation.isPending;
-	const mergedList         = [...primaryList, ...secondaryList];
-	const sortedList         = applySort(mergedList, sortMode);
-	const availableCount     = sortedList.filter((s) => s.available === 1).length;
+	const mergedList = [...primaryList, ...secondaryList];
+	const sortedList = applySort(mergedList, sortMode);
+	const availableCount = sortedList.filter((s) => s.available === 1).length;
 
 	return (
 		<>
@@ -218,12 +225,16 @@ export function DomainSearchClient() {
 			</Suspense>
 
 			{/* ── Sticky search bar ── */}
-			<div className="pt-3 sm:pt-8 sticky top-10 z-10 border-b bg-background">
+			<div className="sticky top-10 z-10 border-b bg-background pt-3 sm:pt-8">
 				<div className="mx-auto max-w-5xl px-4 py-3">
 					<div className="flex items-center gap-2">
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
-								<Button variant="outline" size="sm" className="h-9 shrink-0 gap-1.5">
+								<Button
+									variant="outline"
+									size="sm"
+									className="h-9 shrink-0 gap-1.5"
+								>
 									<SlidersHorizontal className="h-3.5 w-3.5" />
 									<span className="hidden sm:inline">Filter</span>
 								</Button>
@@ -285,7 +296,7 @@ export function DomainSearchClient() {
 								key={tld}
 								type="button"
 								onClick={() => handleQuickTld(tld)}
-								className="rounded-full border bg-muted/50 px-2 py-0.5 font-mono text-[11px] transition-colors hover:bg-primary/10 hover:border-primary/40 hover:text-primary"
+								className="rounded-full border bg-muted/50 px-2 py-0.5 font-mono text-[11px] transition-colors hover:border-primary/40 hover:bg-primary/10 hover:text-primary"
 							>
 								{tld}
 							</button>
@@ -295,7 +306,7 @@ export function DomainSearchClient() {
 			</div>
 
 			{/* ── Body ── */}
-			<div className="mx-auto max-w-5xl px-4 pb-8 pt-20 space-y-8">
+			<div className="mx-auto max-w-5xl space-y-8 px-4 pt-20 pb-8">
 				{/* Error */}
 				{primaryMutation.isError && (
 					<Alert variant="destructive">
@@ -312,7 +323,7 @@ export function DomainSearchClient() {
 							<CardSkeleton />
 						</div>
 						<div className="space-y-2">
-							<Skeleton className="h-4 w-32 rounded mb-1" />
+							<Skeleton className="mb-1 h-4 w-32 rounded" />
 							{[...Array(5)].map((_, i) => (
 								<RowSkeleton key={i} />
 							))}
@@ -325,7 +336,11 @@ export function DomainSearchClient() {
 					<>
 						<div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2">
 							{exactDomain && (
-								<DomainCard s={exactDomain} label="Domain yang Anda Cari" highlight />
+								<DomainCard
+									s={exactDomain}
+									label="Domain yang Anda Cari"
+									highlight
+								/>
 							)}
 							{topRec && <DomainCard s={topRec} label="Rekomendasi Terbaik" />}
 						</div>
@@ -335,7 +350,10 @@ export function DomainSearchClient() {
 								<div className="mb-3 flex items-center justify-between">
 									<div className="flex items-center gap-2">
 										<h2 className="font-semibold text-sm">Domain Lainnya</h2>
-										<Badge variant="secondary" className="h-4 px-1.5 text-[10px]">
+										<Badge
+											variant="secondary"
+											className="h-4 px-1.5 text-[10px]"
+										>
 											{availableCount} tersedia
 										</Badge>
 									</div>

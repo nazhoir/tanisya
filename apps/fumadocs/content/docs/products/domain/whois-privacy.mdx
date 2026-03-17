@@ -1,0 +1,101 @@
+---
+title: WHOIS Privacy Protection
+description: Sembunyikan data pribadi Anda dari pencarian WHOIS publik dengan mengaktifkan Privacy Protection.
+---
+
+**WHOIS Privacy Protection** adalah layanan yang menyembunyikan informasi pribadi pemilik domain dari hasil pencarian WHOIS publik. Data asli Anda digantikan dengan informasi proxy layanan kami, sehingga tetap terdaftar di registry tanpa terekspos ke publik.
+
+<Callout type="info">
+  WHOIS Privacy Protection tersedia untuk domain **gTLD** (`.com`, `.net`, `.org`, dll.). Fitur ini **tidak tersedia** untuk domain Indonesia (`.id`) karena kebijakan PANDI mewajibkan data registrant yang dapat diverifikasi publik.
+</Callout>
+
+---
+
+## Mengapa WHOIS Privacy Penting?
+
+Tanpa Privacy Protection, data berikut dapat diakses siapapun melalui pencarian WHOIS:
+
+- Nama lengkap pemilik domain
+- Alamat email
+- Nomor telepon
+- Alamat fisik
+
+Data yang terekspos ini rentan disalahgunakan untuk:
+
+| Risiko | Keterangan |
+| --- | --- |
+| **Spam email** | Alamat email dipanen oleh bot dan dijual ke spammer |
+| **Telemarketing** | Nomor telepon digunakan untuk panggilan tidak diinginkan |
+| **Social engineering** | Data pribadi digunakan untuk manipulasi atau penipuan |
+| **Doxxing** | Alamat fisik dipublikasikan oleh pihak tidak bertanggung jawab |
+
+---
+
+## Cara Kerja Privacy Protection
+
+Saat Privacy Protection **aktif**, pencarian WHOIS untuk domain Anda akan menampilkan:
+
+```
+Registrant Name:    Privacy Protection Service
+Registrant Email:   proxy-xxxxx@privacy.domain-anda.id
+Registrant Phone:   +62.000000000
+Registrant Address: [Alamat Layanan Proxy]
+```
+
+Email yang dikirim ke alamat proxy akan diteruskan ke email asli Anda, sehingga komunikasi penting tetap sampai.
+
+---
+
+## Mengaktifkan Privacy Protection
+
+<Steps>
+  <Step>
+    **Buka Detail Domain**
+
+    Masuk ke panel kontrol, buka **Domain Saya**, dan klik nama domain yang ingin dilindungi.
+  </Step>
+  <Step>
+    **Temukan Bagian Privacy Protection**
+
+    Cari bagian **WHOIS Privacy** atau **Privacy Protection** pada halaman detail domain.
+  </Step>
+  <Step>
+    **Aktifkan Layanan**
+
+    Klik tombol **Aktifkan Privacy Protection**. Perubahan berlaku dalam beberapa menit hingga jam tergantung propagasi WHOIS.
+  </Step>
+</Steps>
+
+---
+
+## Menonaktifkan Privacy Protection
+
+Privacy Protection dapat dinonaktifkan kapan saja. Data asli Anda akan kembali tampil di WHOIS setelah propagasi selesai.
+
+Kondisi di mana Anda mungkin perlu menonaktifkan Privacy Protection:
+
+- Membuktikan kepemilikan domain untuk keperluan bisnis atau legal
+- Proses transfer domain yang memerlukan verifikasi data registrant asli
+- Permintaan dari otoritas berwenang
+
+<Callout type="warn">
+  Beberapa permintaan transfer domain dan proses verifikasi kepemilikan memerlukan data WHOIS asli yang dapat diverifikasi. Menonaktifkan sementara Privacy Protection mungkin diperlukan dalam situasi ini.
+</Callout>
+
+---
+
+## Status Privacy Protection
+
+| Status | Data di WHOIS Publik |
+| --- | --- |
+| **Aktif** | Data proxy — informasi asli tersembunyi |
+| **Nonaktif** | Data registrant asli terekspos ke publik |
+
+---
+
+## Langkah Selanjutnya
+
+<Cards>
+  <Card title="Registrant Contact" href="/products/domain/registrant-contact" description="Perbarui data registrant yang tersimpan di sistem kami" />
+  <Card title="Theft Protection" href="/products/domain/theft-protection" description="Lindungi domain dari transfer tidak sah" />
+</Cards>

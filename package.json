@@ -1,34 +1,34 @@
 {
-  "name": "tanisya",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "type": "module",
-  "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "check-types": "turbo check-types",
-    "dev:web": "turbo -F web dev",
-    "dev:docs": "turbo -F fumadocs dev",
-    "db:push": "turbo -F @tanisya/db db:push",
-    "db:studio": "turbo -F @tanisya/db db:studio",
-    "db:generate": "turbo -F @tanisya/db db:generate",
-    "db:migrate": "turbo -F @tanisya/db db:migrate",
-    "check": "biome check --write ."
-  },
-  "dependencies": {
-    "@tanisya/env": "workspace:*",
-    "dotenv": "catalog:",
-    "zod": "catalog:"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "catalog:",
-    "@tanisya/config": "workspace:*",
-    "@types/node": "catalog:",
-    "turbo": "^2.8.17",
-    "typescript": "catalog:"
-  },
-  "packageManager": "pnpm@10.21.0"
+	"name": "tanisya",
+	"private": true,
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"type": "module",
+	"scripts": {
+		"dev": "turbo dev",
+		"build": "turbo build",
+		"check-types": "turbo check-types",
+		"dev:web": "turbo -F web dev",
+		"dev:docs": "turbo -F fumadocs dev",
+		"db:push": "turbo -F @tanisya/db db:push",
+		"db:studio": "turbo -F @tanisya/db db:studio",
+		"db:generate": "turbo -F @tanisya/db db:generate",
+		"db:migrate": "turbo -F @tanisya/db db:migrate",
+		"check": "biome check --write ."
+	},
+	"dependencies": {
+		"@tanisya/env": "workspace:*",
+		"dotenv": "catalog:",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "catalog:",
+		"@tanisya/config": "workspace:*",
+		"@types/node": "catalog:",
+		"turbo": "^2.8.17",
+		"typescript": "catalog:"
+	},
+	"packageManager": "pnpm@10.21.0"
 }

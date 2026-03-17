@@ -1,8 +1,5 @@
 "use client";
 
-// app/domain/domain-search-card.tsx
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import { Button } from "@tanisya/ui/components/button";
 import {
 	Card,
@@ -13,6 +10,9 @@ import {
 } from "@tanisya/ui/components/card";
 import { Input } from "@tanisya/ui/components/input";
 import { Search } from "lucide-react";
+// app/domain/domain-search-card.tsx
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { QUICK_TLDS } from "./domain-data";
 
 export function DomainSearchCard() {
@@ -32,7 +32,11 @@ export function DomainSearchCard() {
 	};
 
 	const handleQuickTld = (tld: string) => {
-		const base = domainInput.trim().replace(/^https?:\/\//, "").split(".")[0] || "";
+		const base =
+			domainInput
+				.trim()
+				.replace(/^https?:\/\//, "")
+				.split(".")[0] || "";
 		setDomainInput(base ? `${base}${tld}` : tld);
 	};
 
@@ -44,7 +48,8 @@ export function DomainSearchCard() {
 					Cek Ketersediaan Domain
 				</CardTitle>
 				<CardDescription className="text-xs">
-					Ketik nama brand Anda — kami akan cek ketersediaannya di berbagai ekstensi
+					Ketik nama brand Anda — kami akan cek ketersediaannya di berbagai
+					ekstensi
 				</CardDescription>
 			</CardHeader>
 

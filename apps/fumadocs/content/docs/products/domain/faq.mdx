@@ -1,0 +1,161 @@
+---
+title: FAQ Domain
+description: Jawaban atas pertanyaan yang paling sering diajukan seputar layanan domain kami.
+---
+
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+
+<Callout type="info">
+  Tidak menemukan jawaban yang Anda cari? Hubungi tim dukungan kami melalui Live Chat atau buka tiket di panel kontrol.
+</Callout>
+
+---
+
+## Registrasi
+
+<Accordions>
+  <Accordion title="Bagaimana cara mengecek apakah nama domain tersedia?">
+    Gunakan fitur pencarian domain di halaman utama website kami. Masukkan nama domain beserta ekstensi yang diinginkan, dan sistem akan menampilkan status ketersediaan secara real-time beserta harganya.
+  </Accordion>
+
+  <Accordion title="Apakah saya bisa mendaftarkan domain tanpa hosting?">
+    Ya. Domain dapat didaftarkan secara terpisah tanpa harus membeli hosting. Anda bisa mengarahkan domain ke layanan hosting kapan saja melalui pengaturan [Nameserver](/products/domain/nameserver).
+  </Accordion>
+
+  <Accordion title="Berapa lama proses aktivasi domain setelah pembayaran?">
+    Domain gTLD seperti `.com`, `.net`, dan sejenisnya aktif dalam hitungan menit setelah pembayaran dikonfirmasi. Domain Indonesia (`.id`) memerlukan waktu lebih lama karena membutuhkan verifikasi dokumen oleh PANDI, umumnya 1×24 jam hari kerja.
+  </Accordion>
+
+  <Accordion title="Apakah saya bisa mendaftarkan banyak domain sekaligus?">
+    Ya, Anda dapat menambahkan beberapa domain ke keranjang belanja dan mendaftarkannya dalam satu transaksi. Tidak ada batasan jumlah domain per akun.
+  </Accordion>
+
+  <Accordion title="Apa yang terjadi jika domain yang saya inginkan sudah diambil?">
+    Anda memiliki beberapa opsi: memilih ekstensi lain (misalnya `.id` jika `.com` sudah diambil), menggunakan variasi nama, atau menghubungi pemilik domain saat ini untuk negosiasi pembelian. Anda juga bisa memantau domain tersebut — jika tidak diperpanjang, domain akan tersedia kembali setelah dihapus.
+  </Accordion>
+</Accordions>
+
+---
+
+## Transfer Domain
+
+<Accordions>
+  <Accordion title="Berapa lama proses transfer domain?">
+    Transfer domain membutuhkan waktu **5–7 hari kerja** setelah konfirmasi email dikirimkan dan disetujui. Jika konfirmasi tidak dilakukan secara manual, transfer otomatis disetujui dalam 5 hari sesuai kebijakan ICANN.
+  </Accordion>
+
+  <Accordion title="Kenapa saya tidak bisa transfer domain yang baru saja didaftar?">
+    Sesuai kebijakan ICANN, domain tidak dapat ditransfer dalam **60 hari pertama** sejak pendaftaran atau transfer sebelumnya. Ini adalah aturan standar untuk mencegah transfer yang tidak sah.
+  </Accordion>
+
+  <Accordion title="Apakah transfer domain memperpanjang masa aktif?">
+    Ya. Transfer domain secara otomatis menambahkan **1 tahun** ke masa aktif domain, dihitung dari tanggal kedaluwarsa saat ini — bukan dari tanggal transfer dilakukan.
+  </Accordion>
+
+  <Accordion title="Di mana saya bisa mendapatkan EPP Code untuk transfer?">
+    EPP Code dapat diminta melalui panel kontrol di halaman detail domain. Pastikan [Theft Protection](/products/domain/theft-protection) sudah dinonaktifkan sebelum meminta kode. Kode akan dikirim ke email registrant.
+    
+    [Pelajari lebih lanjut tentang EPP Code →](/products/domain/epp)
+  </Accordion>
+</Accordions>
+
+---
+
+## Perpanjangan & Kedaluwarsa
+
+<Accordions>
+  <Accordion title="Kapan saya harus memperpanjang domain?">
+    Kami menyarankan perpanjangan minimal **30 hari sebelum** tanggal kedaluwarsa. Anda akan mendapat notifikasi email mulai dari 90, 60, 30, 14, hingga 7 hari sebelum domain berakhir.
+  </Accordion>
+
+  <Accordion title="Apa yang terjadi jika domain saya tidak diperpanjang tepat waktu?">
+    Domain akan melewati beberapa fase: kedaluwarsa → Grace Period (masih bisa diperpanjang normal) → Redemption Period (perlu restorasi dengan biaya tinggi) → Pending Delete → dihapus permanen.
+    
+    [Lihat detail siklus hidup domain →](/products/domain/life-cycle)
+  </Accordion>
+
+  <Accordion title="Apakah domain yang sudah dihapus bisa didapatkan kembali?">
+    Setelah domain dihapus dari fase Pending Delete, domain kembali tersedia untuk umum. Anda bisa mendaftarkannya seperti domain baru, namun tidak ada jaminan Anda bisa mendapatkannya karena siapapun bisa mendaftar lebih dulu.
+  </Accordion>
+
+  <Accordion title="Bagaimana cara mengaktifkan perpanjangan otomatis?">
+    Buka panel kontrol → Domain Saya → klik domain → aktifkan toggle **Auto Renewal**. Pastikan metode pembayaran di akun Anda aktif dan memiliki saldo cukup.
+    
+    [Pelajari tentang Auto Activation →](/products/domain/auto-activation)
+  </Accordion>
+</Accordions>
+
+---
+
+## DNS & Nameserver
+
+<Accordions>
+  <Accordion title="Berapa lama propagasi DNS setelah nameserver diubah?">
+    Propagasi DNS membutuhkan waktu **24–48 jam** untuk berlaku secara global. Beberapa server DNS mungkin sudah memperbarui dalam 30 menit–2 jam, namun sebagian lainnya memerlukan waktu lebih lama.
+  </Accordion>
+
+  <Accordion title="Apakah saya bisa menggunakan Cloudflare untuk domain saya?">
+    Ya. Anda dapat mengganti nameserver domain ke nameserver Cloudflare melalui panel kontrol. Setelah itu, semua pengaturan DNS dikelola langsung di dashboard Cloudflare, bukan di panel kami.
+  </Accordion>
+
+  <Accordion title="Apakah ada batasan jumlah DNS record yang bisa ditambahkan?">
+    Untuk domain yang menggunakan nameserver default kami, Anda dapat menambahkan hingga **100 DNS record** per domain. Jika menggunakan nameserver pihak ketiga, batasan ditentukan oleh penyedia tersebut.
+  </Accordion>
+</Accordions>
+
+---
+
+## Keamanan Domain
+
+<Accordions>
+  <Accordion title="Apa itu Theft Protection dan apakah saya perlu mengaktifkannya?">
+    Theft Protection (Registrar Lock) adalah fitur yang mencegah domain ditransfer tanpa sepengetahuan Anda. **Sangat disarankan** untuk selalu mengaktifkannya, terutama untuk domain yang penting bagi bisnis Anda.
+    
+    [Pelajari tentang Theft Protection →](/products/domain/theft-protection)
+  </Accordion>
+
+  <Accordion title="Apakah data pribadi saya di WHOIS bisa disembunyikan?">
+    Ya, untuk domain gTLD Anda dapat mengaktifkan **Privacy Protection** (WHOIS Privacy) yang menggantikan data pribadi Anda dengan informasi proxy. Fitur ini tidak tersedia untuk domain Indonesia (`.id`) karena kebijakan PANDI.
+    
+    [Pelajari tentang WHOIS Privacy →](/products/domain/whois-privacy)
+  </Accordion>
+
+  <Accordion title="Saya mendapat email transfer domain yang tidak saya minta. Apa yang harus dilakukan?">
+    Segera lakukan langkah berikut: (1) jangan klik tautan konfirmasi di email tersebut, (2) login ke panel kontrol dan pastikan Theft Protection aktif, (3) ubah password akun Anda segera, (4) hubungi tim dukungan kami untuk investigasi lebih lanjut.
+  </Accordion>
+</Accordions>
+
+---
+
+## Domain Indonesia
+
+<Accordions>
+  <Accordion title="Siapa yang boleh mendaftarkan domain .id?">
+    Domain `.id`, `.my.id`, `.web.id`, dan `.biz.id` dapat didaftarkan oleh individu WNI maupun badan usaha. Domain `.co.id` khusus untuk badan usaha terdaftar. Domain `.go.id` hanya untuk instansi pemerintah.
+    
+    [Lihat syarat lengkap per ekstensi →](/products/domain/domain-indonesia/requirements-documents)
+  </Accordion>
+
+  <Accordion title="Dokumen apa yang diperlukan untuk domain .id?">
+    Minimal diperlukan KTP yang masih berlaku untuk pendaftar individu. Untuk badan usaha, diperlukan KTP penanggung jawab ditambah dokumen perusahaan seperti NIB atau akta pendirian.
+    
+    [Lihat daftar dokumen lengkap →](/products/domain/domain-indonesia/requirements-documents)
+  </Accordion>
+
+  <Accordion title="Berapa lama verifikasi dokumen domain .id?">
+    Verifikasi dokumen oleh PANDI umumnya selesai dalam **1×24 jam hari kerja**. Domain tidak aktif selama proses verifikasi berlangsung.
+  </Accordion>
+
+  <Accordion title="Apakah domain .id bisa digunakan oleh WNA?">
+    Sebagian besar ekstensi `.id` memerlukan identitas WNI atau badan hukum Indonesia. WNA dapat mendaftarkan domain `.id` menggunakan paspor, namun beberapa ekstensi seperti `.co.id` tetap memerlukan dokumen perusahaan Indonesia.
+  </Accordion>
+</Accordions>
+
+---
+
+## Pertanyaan Lainnya
+
+<Cards>
+  <Card title="Kebijakan & Ketentuan" href="/products/domain/policy" description="Baca syarat dan ketentuan penggunaan layanan domain" />
+  <Card title="Panduan Memilih Domain" href="/products/domain/choosing-domain" description="Tips memilih nama domain yang tepat untuk Anda" />
+</Cards>

@@ -17,10 +17,8 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@tanisya/ui/*": [
-        "../../packages/ui/src/*"
-      ],
-      "fumadocs-mdx:collections/*": [".source/*"],
+      "@tanisya/ui/*": ["../../packages/ui/src/*"],
+      "fumadocs-mdx:collections/*": [".source/*"]
     },
     "plugins": [
       {

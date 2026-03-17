@@ -4,7 +4,7 @@
 
 export const dynamic = "force-dynamic";
 
-import { DomainSearchClient } from "./domain-search-client"
+import { DomainSearchClient } from "./domain-search-client";
 
 export default function DomainSearchPage() {
 	return (

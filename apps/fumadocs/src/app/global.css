@@ -1,6 +1,6 @@
 @import "@tanisya/ui/globals.css";
-@import 'fumadocs-ui/css/shadcn.css';
-@import 'fumadocs-ui/css/preset.css';
+@import "fumadocs-ui/css/shadcn.css";
+@import "fumadocs-ui/css/preset.css";
 
 /* ─── Sidebar separator label ─────────────────────────────────────────────────
    Fumadocs merender separator "---Label---" dari meta.json sebagai <p>

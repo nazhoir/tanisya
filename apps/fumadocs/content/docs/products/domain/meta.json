@@ -1,22 +1,28 @@
 {
   "title": "Domain",
+  "icon":"Globe",
   "pages": [
-    "---Ketentuan---",
+    "---Jenis Domain---",
     "domain-gtld",
     "domain-indonesia",
-
     "---Manajemen Domain---",
-    "registrasi",
+    "registration",
     "transfer",
     "renew",
     "restoration",
     "life-cycle",
     "auto-activation",
-
     "---Pengaturan---",
     "nameserver",
     "registrant-contact",
+    "whois-privacy",
     "epp",
-    "theft-protection"
+    "theft-protection",
+    "---Panduan---",
+    "choosing-domain",
+    "domain-premium",
+    "---Referensi---",
+    "faq",
+    "policy"
   ]
 }
