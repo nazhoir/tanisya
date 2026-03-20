@@ -11,7 +11,6 @@ import {
 import { Badge } from "@tanisya/ui/components/badge";
 import { Button } from "@tanisya/ui/components/button";
 import { Card, CardContent } from "@tanisya/ui/components/card";
-import { Input } from "@tanisya/ui/components/input";
 import { Separator } from "@tanisya/ui/components/separator";
 import {
 	Table,

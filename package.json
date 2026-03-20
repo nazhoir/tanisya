@@ -27,7 +27,7 @@
 		"@biomejs/biome": "catalog:",
 		"@tanisya/config": "workspace:*",
 		"@types/node": "catalog:",
-		"turbo": "^2.8.17",
+		"turbo": "^2.8.20",
 		"typescript": "catalog:"
 	},
 	"packageManager": "pnpm@10.21.0"

@@ -176,7 +176,7 @@ export const QUICK_TLDS = [
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 export const getTld = (domainName: string) =>
-	"." + domainName.split(".").slice(1).join(".");
+	`.${domainName.split(".").slice(1).join(".")}`;
 export const getBaseName = (domainName: string) => domainName.split(".")[0];
 export const getPriceByTld = (tld: string) =>
 	ALL_DOMAINS.find((d) => d.tld === tld)?.register;

@@ -14,9 +14,9 @@
   "dependencies": {
     "@takumi-rs/image-response": "^0.73.1",
     "@tanisya/ui": "workspace:*",
-    "fumadocs-core": "16.6.17",
-    "fumadocs-mdx": "14.2.10",
-    "fumadocs-ui": "16.6.17",
+    "fumadocs-core": "16.7.2",
+    "fumadocs-mdx": "14.2.11",
+    "fumadocs-ui": "16.7.2",
     "lucide-react": "catalog:",
     "next": "catalog:",
     "react": "catalog:",

@@ -12,12 +12,8 @@ export function baseOptions(): BaseLayoutProps {
     nav: {
       title: <Logo />,
     },
-
-    // githubUrl: `https://github.com/${gitConfig.user}/${gitConfig.repo}`,
   };
 }
-
-import Link from "next/link";
 
 export function Logo() {
   return (

@@ -87,7 +87,7 @@ function SearchParamsReader({ onQuery }: { onQuery: (q: string) => void }) {
 		const q = searchParams.get("domainToCheck");
 		if (q) onQuery(q);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [onQuery, searchParams]);
 
 	return null;
 }

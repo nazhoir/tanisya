@@ -38,7 +38,7 @@ import {
 	ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import * as React from "react";
 import { Suspense, useEffect } from "react";
 import { AppSidebar } from "@/components/app-sidebar";
@@ -52,7 +52,7 @@ function SearchParamsReader({ onDomain }: { onDomain: (d: string) => void }) {
 		const d = searchParams.get("domain");
 		if (d) onDomain(d);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [searchParams]);
+	}, [searchParams, onDomain]);
 	return null;
 }
 
@@ -121,8 +121,6 @@ function InfoBox({ children }: { children: React.ReactNode }) {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function DomainTransferPage() {
-	const router = useRouter();
-
 	const [domain, setDomain] = React.useState("");
 	const [authCode, setAuthCode] = React.useState("");
 	const [showAuth, setShowAuth] = React.useState(false);
@@ -153,6 +151,7 @@ export default function DomainTransferPage() {
 
 	// ── Mutation: submitTransfer ──────────────────────────────────────────────
 	const submitMutation = useMutation(
+		// TODO
 		orpc.domain.submitTransfer.mutationOptions({
 			onSuccess: () => {
 				setAuthError("");
@@ -181,7 +180,7 @@ export default function DomainTransferPage() {
 			return;
 		}
 		setDomainError("");
-		verifyMutation.mutate({ domain: trimmed });
+		// verifyMutation.mutate({ domain: trimmed });
 	};
 
 	const handleSubmitTransfer = () => {
@@ -191,10 +190,10 @@ export default function DomainTransferPage() {
 			return;
 		}
 		setAuthError("");
-		submitMutation.mutate({
-			domain: domain.trim().toLowerCase(),
-			authCode: code,
-		});
+		// submitMutation.mutate({
+		// 	domain: domain.trim().toLowerCase(),
+		// 	authCode: code,
+		// });
 	};
 
 	const isVerifying = verifyMutation.isPending;

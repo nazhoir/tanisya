@@ -62,12 +62,12 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { env } from "process";
 import * as React from "react";
 import { Suspense, useEffect } from "react";
 import { AppSidebar } from "@/components/app-sidebar";
 import { formatIDR } from "@/lib/format-currency";
 import { orpc } from "@/utils/orpc";
-import { env } from "process";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -1539,6 +1539,7 @@ function OrderSummary({
 							href={`https://docs.${env.NEXT_PUBLIC_APP_ROOT_DOMAIN}/legals/privacy-policy`}
 							target="_blank"
 							className="font-semibold text-primary underline underline-offset-2"
+							rel="noopener"
 						>
 							Kebijakan Privasi
 						</a>
@@ -1547,6 +1548,7 @@ function OrderSummary({
 							href={`https://docs.${env.NEXT_PUBLIC_APP_ROOT_DOMAIN}/legals/terms-of-service`}
 							target="_blank"
 							className="font-semibold text-primary underline underline-offset-2"
+							rel="noopener"
 						>
 							Syarat & Ketentuan
 						</a>
@@ -1555,6 +1557,7 @@ function OrderSummary({
 							href={`https://docs.${env.NEXT_PUBLIC_APP_ROOT_DOMAIN}/legals/domain-policy`}
 							target="_blank"
 							className="font-semibold text-primary underline underline-offset-2"
+							rel="noopener"
 						>
 							Kebijakan Domain
 						</a>

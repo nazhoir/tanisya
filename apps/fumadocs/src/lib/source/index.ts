@@ -1,5 +1,9 @@
 import { docs } from "fumadocs-mdx:collections/server";
-import { type InferPageType, loader } from "fumadocs-core/source";
+import {
+  type InferMetaType,
+  type InferPageType,
+  loader,
+} from "fumadocs-core/source";
 import { lucideIconsPlugin } from "fumadocs-core/source/lucide-icons";
 
 // See https://fumadocs.dev/headless/source-api for more info
@@ -25,3 +29,6 @@ export async function getLLMText(page: InferPageType<typeof source>) {
 
 ${processed}`;
 }
+
+export type Page = InferPageType<typeof source>;
+export type Meta = InferMetaType<typeof source>;
