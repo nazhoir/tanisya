@@ -5,35 +5,28 @@ import { CheckCircle2, Mail } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import * as React from "react";
 
-// Delay in seconds before auto-redirecting to the OTP page
 const REDIRECT_DELAY = 5;
 
-export default function RegisterSuccessPage() {
-	const router = useRouter();
-	const searchParams = useSearchParams();
-	const email = searchParams.get("email") ?? "";
 
-	const [countdown, setCountdown] = React.useState(REDIRECT_DELAY);
+export default function RegisterSuccessClient() {
 
-	// Auto-redirect countdown
-	React.useEffect(() => {
-		if (countdown <= 0) {
-			router.replace(`/auth/verify-otp?email=${encodeURIComponent(email)}`);
-			return;
-		}
-		const timer = setTimeout(() => setCountdown((c) => c - 1), 1000);
-		return () => clearTimeout(timer);
-	}, [countdown, email, router]);
-
-	return (
-		<div className="flex min-h-screen items-center justify-center bg-background px-4">
-			{/* Decorative background blobs */}
-			<div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-				<div className="absolute top-1/4 left-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[100px]" />
-				<div className="absolute top-0 right-0 h-48 w-48 rounded-full bg-emerald-500/8 blur-[80px]" />
-			</div>
-
-			<div className="w-full max-w-md text-center">
+    const router = useRouter();
+        const searchParams = useSearchParams();
+        const email = searchParams.get("email") ?? "";
+    
+        const [countdown, setCountdown] = React.useState(REDIRECT_DELAY);
+    
+        // Auto-redirect countdown
+        React.useEffect(() => {
+            if (countdown <= 0) {
+                router.replace(`/auth/verify-otp?email=${encodeURIComponent(email)}`);
+                return;
+            }
+            const timer = setTimeout(() => setCountdown((c) => c - 1), 1000);
+            return () => clearTimeout(timer);
+        }, [countdown, email, router]);
+  return (
+   <div className="w-full max-w-md text-center">
 				{/* Success icon */}
 				<div className="relative mx-auto mb-6 flex h-20 w-20 items-center justify-center">
 					<div className="absolute h-full w-full animate-ping rounded-full bg-emerald-500/20" />
@@ -100,6 +93,5 @@ export default function RegisterSuccessPage() {
 					</button>
 				</p>
 			</div>
-		</div>
-	);
+  )
 }

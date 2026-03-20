@@ -29,6 +29,7 @@
 		"react": "catalog:",
 		"react-dom": "catalog:",
 		"sonner": "catalog:",
+		"vaul": "^1.1.2",
 		"zod": "catalog:"
 	},
 	"devDependencies": {

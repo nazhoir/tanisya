@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-export default function Logo() {
+export default function Logo({ href }: { href?: string }) {
 	return (
-		<Link href="/" aria-label="Tanisya — Beranda">
+		<Link href={(href as any) || "/"} aria-label="Tanisya — Beranda">
 			<svg
 				// Lebar diatur lewat CSS sehingga menyesuaikan kontainer;
 				// viewBox mempertahankan proporsi asli 370 × 77.

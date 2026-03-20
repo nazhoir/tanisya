@@ -5,7 +5,7 @@ import "../index.css";
 import { cn } from "@tanisya/ui/lib/utils";
 import Providers from "@/components/providers";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",

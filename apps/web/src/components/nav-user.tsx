@@ -5,6 +5,7 @@ import {
 	AvatarFallback,
 	AvatarImage,
 } from "@tanisya/ui/components/avatar";
+import { Button } from "@tanisya/ui/components/button";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -120,16 +121,25 @@ export function NavUser() {
 								</Link>
 							</DropdownMenuItem>
 							<DropdownMenuItem asChild>
-								<Link href="/billing" className="cursor-pointer gap-2.5">
+								<Link
+									href="/account/billing"
+									className="cursor-pointer gap-2.5"
+								>
 									<CreditCard className="h-4 w-4 text-muted-foreground" />
-									Tagihan &amp; Langganan
+									Tagihan
 								</Link>
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem onClick={handleSignOut}>
-							<LogOutIcon />
-							Log out
+						<DropdownMenuItem asChild>
+							<Button
+								variant={"destructive"}
+								onClick={handleSignOut}
+								className="w-full justify-start"
+							>
+								<LogOutIcon className="h-4 w-4" />
+								Log out
+							</Button>
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
