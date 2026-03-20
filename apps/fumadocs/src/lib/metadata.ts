@@ -1,17 +1,14 @@
 import type { Metadata } from "next/types";
 import type { Page } from "./source";
 
-const SITE_URL = "https://docs.tanisya.com";
-const FALLBACK_IMAGE = "/banner.png";
-
 export function createMetadata(override: Metadata): Metadata {
   return {
     ...override,
     openGraph: {
       title: override.title ?? undefined,
       description: override.description ?? undefined,
-      url: SITE_URL,
-      images: FALLBACK_IMAGE,
+      url: "https://docs.tanisya.com",
+      images: "/banner.png",
       siteName: "Tanisya.com",
       ...override.openGraph,
     },
@@ -20,29 +17,17 @@ export function createMetadata(override: Metadata): Metadata {
       creator: "@nazhoir",
       title: override.title ?? undefined,
       description: override.description ?? undefined,
-      images: FALLBACK_IMAGE,
+      images: "/banner.png",
       ...override.twitter,
     },
   };
 }
 
-export function getPageMetadata(page: Page): Metadata {
-  const ogUrl = new URL("/og", SITE_URL);
-  ogUrl.searchParams.set("title", page.data.title);
-  if (page.data.description) {
-    ogUrl.searchParams.set("description", page.data.description);
-  }
+export function getPageImage(page: Page) {
+  const segments = [...page.slugs, "image.webp"];
 
-  const ogImage = { url: ogUrl.toString(), width: 1200, height: 630 };
-
-  return createMetadata({
-    title: page.data.title,
-    description: page.data.description,
-    openGraph: {
-      images: [ogImage],
-    },
-    twitter: {
-      images: [ogUrl.toString()],
-    },
-  });
+  return {
+    segments,
+    url: `/og/${segments.join("/")}`,
+  };
 }
