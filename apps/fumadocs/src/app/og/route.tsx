@@ -1,16 +1,12 @@
+// app/og/route.ts  ← single route, no [...slug]
 import { ImageResponse } from "next/og";
-import { notFound } from "next/navigation";
-import { source } from "@/lib/source";
 
 export const runtime = "edge";
 
-export async function GET(
-  _req: Request,
-  { params }: RouteContext<"/og/[...slug]">,
-) {
-  const { slug } = await params;
-  const page = source.getPage(slug.slice(0, -1));
-  if (!page) notFound();
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const title = searchParams.get("title") ?? "Dokumentasi Tanisya.com";
+  const description = searchParams.get("description") ?? "";
 
   return new ImageResponse(
     (
@@ -31,11 +27,11 @@ export async function GET(
           Dokumentasi Tanisya.com
         </div>
         <div style={{ fontSize: 56, fontWeight: 700, lineHeight: 1.2 }}>
-          {page.data.title}
+          {title}
         </div>
-        {page.data.description && (
+        {description && (
           <div style={{ fontSize: 24, color: "#94a3b8", marginTop: 16 }}>
-            {page.data.description}
+            {description}
           </div>
         )}
       </div>
