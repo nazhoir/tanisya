@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { getPageImage, source } from "@/lib/source";
 
+export const runtime = "edge";
 export const revalidate = false;
 
 export async function GET(
