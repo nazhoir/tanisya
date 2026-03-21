@@ -7,18 +7,14 @@
     "config": "",
     "css": "../../packages/ui/src/styles/globals.css",
     "baseColor": "neutral",
-    "cssVariables": true,
-    "prefix": ""
+    "cssVariables": true
   },
   "iconLibrary": "lucide",
   "aliases": {
     "components": "@/components",
+    "hooks": "@/hooks",
+    "lib": "@/lib",
     "utils": "@tanisya/ui/lib/utils",
-    "ui": "@tanisya/ui/components",
-    "hooks": "@/hooks"
-  },
-  "menuColor": "default",
-  "menuAccent": "subtle",
-  "registries": {},
-  "rtl": true
+    "ui": "@tanisya/ui/components"
+  }
 }
