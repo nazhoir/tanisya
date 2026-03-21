@@ -15,7 +15,6 @@
     "components": "@/components",
     "utils": "@tanisya/ui/lib/utils",
     "ui": "@tanisya/ui/components",
-    "lib": "@/lib/source",
     "hooks": "@/hooks"
   },
   "menuColor": "default",
