@@ -121,7 +121,7 @@ export default function ProfilePage() {
 								/>
 							</div>
 						</div>
-						
+
 					</CardContent>
 					<CardFooter className="flex justify-end gap-2">
 						<Button variant="outline">Batal</Button>
@@ -130,30 +130,40 @@ export default function ProfilePage() {
 				</Card>
 
 				{/* Zona Berbahaya */}
-				<Card className="border-destructive! border shadow-none  bg-destructive/15">
-					<CardHeader>
-						<CardTitle className="text-base text-destructive">
-							Zona Berbahaya
-						</CardTitle>
-						<CardDescription className="text-destructive">
-							Tindakan yang tidak dapat dibatalkan.
-						</CardDescription>
-					</CardHeader>
-					<CardContent>
-						<div className="flex items-center justify-between rounded-lg border bg-destructive/10  border-destructive/30 p-4">
-							<div>
-								<p className="font-medium text-destructive text-sm">Hapus Akun</p>
-								<p className="mt-0.5 text-destructive/60">
-									Hapus permanen akun dan semua data kamu.
-								</p>
-							</div>
-							<Button variant="destructive" size="sm" className="gap-2">
-								<Trash2 className="h-4 w-4" />
-								Hapus
-							</Button>
-						</div>
-					</CardContent>
-				</Card>
+
+				<div className="mt-10 space-y-4">
+    <div>
+        <h2 className="font-semibold text-xl tracking-tight text-destructive">
+            Zona Berbahaya
+        </h2>
+        <p className="mt-1 text-muted-foreground text-sm">
+            Hati-hati dengan pengaturan ini. Tindakan ini tidak dapat dibatalkan.
+        </p>
+    </div>
+
+    <Card className="border border-destructive/40 shadow-none bg-destructive/5 dark:bg-destructive/10">
+        <CardHeader>
+            <CardTitle className="font-bold text-destructive text-base">
+                Permohonan Penghapusan Akun
+            </CardTitle>
+            <CardDescription className="text-destructive/80 dark:text-destructive/70 text-sm leading-relaxed">
+                Penghapusan akun Anda bersifat permanen dan tidak dapat dibatalkan.
+                Data Anda akan dihapus dalam waktu 30 hari, tetapi kami dapat
+                menyimpan beberapa metadata dan log lebih lama jika diperlukan
+                atau diizinkan oleh hukum.
+            </CardDescription>
+        </CardHeader>
+
+        <CardFooter className="flex justify-end border-t border-destructive/20 bg-destructive/10 dark:bg-destructive/15 px-6 py-3">
+            <Button
+                variant="outline"
+                className="w-full sm:w-auto border-destructive/50 text-destructive hover:bg-destructive hover:text-destructive-foreground dark:border-destructive/40 dark:hover:bg-destructive/80 transition-colors"
+            >
+                Ajukan Penghapusan Akun
+            </Button>
+        </CardFooter>
+    </Card>
+</div>
 			</div>
 		</>
 	);

@@ -51,9 +51,12 @@ export function NavUser() {
 	// ── Loading state ─────────────────────────────────────────────────────────
 	if (isPending || !session) {
 		return (
-			<div className="flex items-center gap-2">
-				<Skeleton className="h-7 w-7 rounded-full" />
-				<Skeleton className="hidden h-3.5 w-20 sm:block" />
+			<div className="flex items-center gap-2 p-2">
+				<Skeleton className="h-8 w-8 rounded-full" />
+				<div className="space-y-1 w-40">
+				<Skeleton className="hidden h-5 w-full rounded-full sm:block" />
+				<Skeleton className="hidden h-3 w-full rounded-full sm:block" />
+				</div>
 			</div>
 		);
 	}
@@ -131,15 +134,9 @@ export function NavUser() {
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem asChild>
-							<Button
-								variant={"destructive"}
-								onClick={handleSignOut}
-								className="w-full justify-start"
-							>
-								<LogOutIcon className="h-4 w-4" />
+						<DropdownMenuItem  variant="destructive" onClick={handleSignOut}>
+							<LogOutIcon className="h-4 w-4" />
 								Log out
-							</Button>
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
