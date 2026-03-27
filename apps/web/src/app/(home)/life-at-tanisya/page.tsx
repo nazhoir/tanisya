@@ -533,7 +533,7 @@ export default function LifeAtTanisyaPage() {
 												tags,
 												hot,
 											}) => (
-												<Link
+												<a
 													key={id}
 													href={`/life-at-tanisya/${id}`}
 													className="group flex flex-col gap-4 rounded-2xl border border-border/60 bg-background p-5 transition-all hover:border-primary/40 hover:shadow-md sm:flex-row sm:items-start sm:justify-between"
@@ -591,7 +591,7 @@ export default function LifeAtTanisyaPage() {
 															<ChevronRight className="h-3.5 w-3.5" />
 														</span>
 													</div>
-												</Link>
+												</a>
 											),
 										)}
 									</div>

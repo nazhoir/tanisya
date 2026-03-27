@@ -5,7 +5,7 @@ import "../index.css";
 import { cn } from "@tanisya/ui/lib/utils";
 import Providers from "@/components/providers";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -18,8 +18,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "tanisya",
-	description: "tanisya",
+	title: {
+		default: "Tanisya",
+		template: "%s | Tanisya",
+	},
+	description: "All Internet Solution You Need for Your Business",
 };
 
 export default function RootLayout({
@@ -34,6 +37,7 @@ export default function RootLayout({
 			className={cn("font-sans", inter.variable)}
 		>
 			<body
+				suppressHydrationWarning
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
 				<Providers>{children}</Providers>

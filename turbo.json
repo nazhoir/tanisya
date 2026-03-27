@@ -15,7 +15,11 @@
 				"NODE_ENV",
 				"RDASH_API_URL",
 				"RDASH_RESELLER_ID",
-				"RDASH_API_KEY"
+				"RDASH_API_KEY",
+				"STORAGE_PUBLIC_URL",
+				"STORAGE_ACCOUNT_ID",
+				"STORAGE_ACCESS_KEY_ID",
+				"STORAGE_SECRET_ACCESS_KEY"
 			]
 		},
 		"lint": {
@@ -35,7 +39,11 @@
 				"NODE_ENV",
 				"RDASH_API_URL",
 				"RDASH_RESELLER_ID",
-				"RDASH_API_KEY"
+				"RDASH_API_KEY",
+				"STORAGE_PUBLIC_URL",
+				"STORAGE_ACCOUNT_ID",
+				"STORAGE_ACCESS_KEY_ID",
+				"STORAGE_SECRET_ACCESS_KEY"
 			]
 		},
 		"db:push": {

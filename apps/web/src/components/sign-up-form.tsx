@@ -3,12 +3,18 @@
 import { Button } from "@tanisya/ui/components/button";
 import {
 	Field,
+	FieldDescription,
 	FieldError,
 	FieldGroup,
 	FieldLabel,
 	FieldSeparator,
 } from "@tanisya/ui/components/field";
 import { Input } from "@tanisya/ui/components/input";
+import {
+	InputGroup,
+	InputGroupAddon,
+	InputGroupInput,
+} from "@tanisya/ui/components/input-group";
 import { cn } from "@tanisya/ui/lib/utils";
 import { useForm } from "@tanstack/react-form";
 import {
@@ -22,19 +28,50 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import type * as React from "react";
+import * as React from "react";
 import { toast } from "sonner";
 import { z } from "zod";
 import { authClient } from "@/lib/auth-client";
+import {
+	InputPassword,
+	InputPasswordChecklist,
+	PASSWORD_RULES,
+} from "./input-password";
 import Loader from "./loader";
 
 // ─── Validation schema ────────────────────────────────────────────────────────
 
 const formSchema = z
 	.object({
-		name: z.string().min(2, "Nama minimal 2 karakter"),
-		email: z.string().email("Alamat email tidak valid"),
-		password: z.string().min(8, "Password minimal 8 karakter"),
+		name: z
+			.string("Nama wajib diisi")
+			.trim()
+			.min(3, "Nama minimal 3 karakter")
+			.max(100, "Nama maksimal 100 karakter")
+			.regex(
+				/^(?!\.)([A-Za-z\s'.-]*[A-Za-z\s'-])$/,
+				"Nama tidak boleh diawali atau diakhiri titik",
+			),
+		username: z
+			.string("Username wajib diisi")
+			.trim()
+			.min(3, "Username minimal 3 karakter")
+			.max(30, "Username maksimal 30 karakter")
+			.regex(
+				/^[a-z][a-z0-9_]*$/,
+				"Username harus diawali huruf kecil dan hanya boleh huruf kecil, angka dan uderscore (_)",
+			),
+		email: z
+			.email("Alamat email tidak valid")
+			.max(100, "Email terlalu panjang")
+			.toLowerCase(),
+		password: z
+			.string()
+			.min(8, "Kata sandi minimal 8 karakter")
+			.regex(/[A-Z]/, "Harus mengandung huruf besar")
+			.regex(/[a-z]/, "Harus mengandung huruf kecil")
+			.regex(/[0-9]/, "Harus mengandung angka")
+			.regex(/[^A-Za-z0-9]/, "Harus mengandung karakter khusus"),
 		confirmPassword: z.string().min(1, "Konfirmasi password wajib diisi"),
 	})
 	.refine((data) => data.password === data.confirmPassword, {
@@ -74,15 +111,28 @@ export default function SignUpForm({
 	className,
 	...props
 }: React.ComponentProps<"div">) {
+	const [showChecklist, setShowChecklist] = React.useState(false);
+
 	const router = useRouter();
 	const { isPending } = authClient.useSession();
 
 	const form = useForm({
-		defaultValues: { name: "", email: "", password: "", confirmPassword: "" },
+		defaultValues: {
+			name: "",
+			email: "",
+			password: "",
+			confirmPassword: "",
+			username: "",
+		},
 		validators: { onSubmit: formSchema },
 		onSubmit: async ({ value }) => {
 			await authClient.signUp.email(
-				{ name: value.name, email: value.email, password: value.password },
+				{
+					name: value.name,
+					email: value.email,
+					password: value.password,
+					username: value.username,
+				},
 				{
 					onSuccess: () => {
 						// Redirect ke halaman sukses, lalu halaman itu yang akan redirect ke OTP
@@ -168,21 +218,60 @@ export default function SignUpForm({
 								return (
 									<Field data-invalid={isInvalid}>
 										<FieldLabel htmlFor={field.name}>Nama Lengkap</FieldLabel>
-										<div className="relative">
-											<User className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-											<Input
+
+										<InputGroup>
+											<InputGroupInput
 												id={field.name}
 												name={field.name}
 												type="text"
 												placeholder="Ahmad Fauzi"
-												className="h-11 pl-9"
 												value={field.state.value}
 												onBlur={field.handleBlur}
 												onChange={(e) => field.handleChange(e.target.value)}
 												aria-invalid={isInvalid}
 												autoComplete="name"
 											/>
-										</div>
+											<InputGroupAddon>
+												<Mail />
+											</InputGroupAddon>
+										</InputGroup>
+										{isInvalid && (
+											<FieldError errors={field.state.meta.errors} />
+										)}
+									</Field>
+								);
+							}}
+						/>
+
+						{/* ── Nama ─────────────────────────────────────────────────────── */}
+						<form.Field
+							name="username"
+							children={(field) => {
+								const isInvalid =
+									field.state.meta.isTouched && !field.state.meta.isValid;
+								return (
+									<Field data-invalid={isInvalid}>
+										<FieldLabel htmlFor={field.name}>Username</FieldLabel>
+
+										<InputGroup>
+											<InputGroupInput
+												id={field.name}
+												name={field.name}
+												type="text"
+												placeholder="ahmadfauzi"
+												value={field.state.value}
+												onBlur={field.handleBlur}
+												onChange={(e) => field.handleChange(e.target.value)}
+												aria-invalid={isInvalid}
+												autoComplete="username"
+											/>
+											<InputGroupAddon>
+												<Mail />
+											</InputGroupAddon>
+										</InputGroup>
+										<FieldDescription>
+											Pilih username unik untuk akun anda
+										</FieldDescription>
 										{isInvalid && (
 											<FieldError errors={field.state.meta.errors} />
 										)}
@@ -200,21 +289,24 @@ export default function SignUpForm({
 								return (
 									<Field data-invalid={isInvalid}>
 										<FieldLabel htmlFor={field.name}>Email</FieldLabel>
-										<div className="relative">
-											<Mail className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-											<Input
+
+										<InputGroup>
+											<InputGroupInput
 												id={field.name}
 												name={field.name}
 												type="email"
 												placeholder="nama@contoh.com"
-												className="h-11 pl-9"
 												value={field.state.value}
 												onBlur={field.handleBlur}
 												onChange={(e) => field.handleChange(e.target.value)}
 												aria-invalid={isInvalid}
 												autoComplete="email"
 											/>
-										</div>
+											<InputGroupAddon>
+												<Mail />
+											</InputGroupAddon>
+										</InputGroup>
+
 										{isInvalid && (
 											<FieldError errors={field.state.meta.errors} />
 										)}
@@ -232,21 +324,29 @@ export default function SignUpForm({
 								return (
 									<Field data-invalid={isInvalid}>
 										<FieldLabel htmlFor={field.name}>Password</FieldLabel>
-										<div className="relative">
-											<Lock className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-											<Input
-												id={field.name}
-												name={field.name}
-												type="password"
-												placeholder="Minimal 8 karakter"
-												className="h-11 pl-9"
-												value={field.state.value}
-												onBlur={field.handleBlur}
-												onChange={(e) => field.handleChange(e.target.value)}
-												aria-invalid={isInvalid}
-												autoComplete="new-password"
-											/>
-										</div>
+										<InputPassword
+											id={field.name}
+											name={field.name}
+											value={field.state.value}
+											placeholder="••••••••"
+											onFocus={() => setShowChecklist(true)}
+											onBlur={() => {
+												field.handleBlur();
+												// Sembunyikan checklist hanya jika semua syarat sudah terpenuhi
+												const allPassed = PASSWORD_RULES.every((r) =>
+													r.test(field.state.value),
+												);
+												setShowChecklist(false);
+											}}
+											onChange={field.handleChange}
+											aria-invalid={isInvalid}
+											icon={Lock}
+										/>
+
+										{/* Checklist realtime — muncul saat fokus */}
+										{showChecklist && (
+											<InputPasswordChecklist value={field.state.value} />
+										)}
 										{isInvalid && (
 											<FieldError errors={field.state.meta.errors} />
 										)}
@@ -266,21 +366,16 @@ export default function SignUpForm({
 										<FieldLabel htmlFor={field.name}>
 											Konfirmasi Password
 										</FieldLabel>
-										<div className="relative">
-											<Lock className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-											<Input
-												id={field.name}
-												name={field.name}
-												type="password"
-												placeholder="Ulangi password"
-												className="h-11 pl-9"
-												value={field.state.value}
-												onBlur={field.handleBlur}
-												onChange={(e) => field.handleChange(e.target.value)}
-												aria-invalid={isInvalid}
-												autoComplete="new-password"
-											/>
-										</div>
+										<InputPassword
+											id={field.name}
+											name={field.name}
+											value={field.state.value}
+											placeholder="••••••••"
+											onBlur={field.handleBlur}
+											onChange={field.handleChange}
+											icon={Lock}
+											aria-invalid={isInvalid}
+										/>
 										{isInvalid && (
 											<FieldError errors={field.state.meta.errors} />
 										)}
@@ -363,19 +458,23 @@ export default function SignUpForm({
 			{/* ── Legal footer ─────────────────────────────────────────────────────── */}
 			<p className="px-4 text-center text-muted-foreground text-xs">
 				Dengan mendaftar, Anda menyetujui{" "}
-				<Link
+				<a
 					href="/terms"
+					target="_blank"
 					className="font-semibold underline-offset-2 hover:text-primary hover:underline"
+					rel="noopener"
 				>
 					Syarat Layanan
-				</Link>{" "}
+				</a>{" "}
 				dan{" "}
-				<Link
+				<a
 					href="/privacy"
+					target="_blank"
 					className="font-semibold underline-offset-2 hover:text-primary hover:underline"
+					rel="noopener"
 				>
 					Kebijakan Privasi
-				</Link>{" "}
+				</a>{" "}
 				kami.
 			</p>
 		</div>

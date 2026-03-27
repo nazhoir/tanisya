@@ -19,9 +19,9 @@ import {
 } from "@tanisya/ui/components/select";
 import { Switch } from "@tanisya/ui/components/switch";
 import { CreditCard, Languages, Moon, Sun } from "lucide-react";
-import { useState } from "react";
-import { AccountHeader } from "@/components/account-header";
 import App from "next/app";
+import { useState } from "react";
+import { SidebarPageHeader } from "@/components/sidebar-page-header";
 import { AppearanceModeToggle } from "./appearance-mode-toggle";
 
 export default function PreferencesPage() {
@@ -29,7 +29,9 @@ export default function PreferencesPage() {
 
 	return (
 		<>
-			<AccountHeader page="Preferensi" />
+			<SidebarPageHeader
+				items={[{ label: "Akun", href: "/account" }, { label: "Preferensi" }]}
+			/>
 
 			<div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 p-6 pt-4">
 				<div>
@@ -48,15 +50,13 @@ export default function PreferencesPage() {
 						</CardDescription>
 					</CardHeader>
 					<CardContent>
-
 						<AppearanceModeToggle />
-
-						
 					</CardContent>
 					<CardFooter className="flex justify-end gap-2">
-<p className="text-muted-foreground text-xs">
-								Beralih antara tema terang dan gelap atau sesuaikan tema dengan device anda.
-							</p>
+						<p className="text-muted-foreground text-xs">
+							Beralih antara tema terang dan gelap atau sesuaikan tema dengan
+							device anda.
+						</p>
 					</CardFooter>
 				</Card>
 			</div>

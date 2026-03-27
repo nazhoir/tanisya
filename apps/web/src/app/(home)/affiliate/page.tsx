@@ -549,12 +549,12 @@ export default function AffiliatePage() {
 								</strong>{" "}
 								sekaligus.
 							</p>
-							<Link href="/affiliate/daftar">
+							<a href="/affiliate/daftar">
 								<Button className="h-10 gap-1.5 px-8 font-semibold shadow-md shadow-primary/15">
 									Daftar Afiliasi Sekarang — Gratis{" "}
 									<ArrowRight className="h-3.5 w-3.5" />
 								</Button>
-							</Link>
+							</a>
 						</div>
 					</div>
 				</section>

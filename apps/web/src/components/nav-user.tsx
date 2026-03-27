@@ -28,9 +28,11 @@ import {
 	ChevronsUpDownIcon,
 	CreditCard,
 	CreditCardIcon,
+	LayoutDashboard,
 	LogOutIcon,
 	Settings,
 	SparklesIcon,
+	Users2,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -53,9 +55,9 @@ export function NavUser() {
 		return (
 			<div className="flex items-center gap-2 p-2">
 				<Skeleton className="h-8 w-8 rounded-full" />
-				<div className="space-y-1 w-40">
-				<Skeleton className="hidden h-5 w-full rounded-full sm:block" />
-				<Skeleton className="hidden h-3 w-full rounded-full sm:block" />
+				<div className="w-40 space-y-1">
+					<Skeleton className="hidden h-5 w-full rounded-full sm:block" />
+					<Skeleton className="hidden h-3 w-full rounded-full sm:block" />
 				</div>
 			</div>
 		);
@@ -68,7 +70,7 @@ export function NavUser() {
 		});
 	};
 
-	const { name, email, image } = session.user;
+	const { name, email, image, role } = session.user;
 	return (
 		<SidebarMenu>
 			<SidebarMenuItem>
@@ -114,7 +116,26 @@ export function NavUser() {
 								</div>
 							</div>
 						</DropdownMenuLabel>
-						<DropdownMenuSeparator />
+						<DropdownMenuSeparator className="my-1.5" />
+
+						<DropdownMenuGroup>
+							<DropdownMenuItem asChild>
+								<Link href="/dashboard" className="cursor-pointer gap-2.5">
+									<LayoutDashboard className="h-4 w-4 text-muted-foreground" />
+									Dashboard
+								</Link>
+							</DropdownMenuItem>
+
+							{role === "admin" && (
+								<DropdownMenuItem asChild>
+									<Link href="/admin" className="cursor-pointer gap-2.5">
+										<Users2 className="h-4 w-4 text-muted-foreground" />
+										Admin
+									</Link>
+								</DropdownMenuItem>
+							)}
+						</DropdownMenuGroup>
+						<DropdownMenuSeparator className="my-1.5" />
 
 						<DropdownMenuGroup>
 							<DropdownMenuItem asChild>
@@ -134,9 +155,9 @@ export function NavUser() {
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem  variant="destructive" onClick={handleSignOut}>
+						<DropdownMenuItem variant="destructive" onClick={handleSignOut}>
 							<LogOutIcon className="h-4 w-4" />
-								Log out
+							Log out
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>

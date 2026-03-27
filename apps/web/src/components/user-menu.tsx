@@ -16,7 +16,13 @@ import {
 	DropdownMenuTrigger,
 } from "@tanisya/ui/components/dropdown-menu";
 import { Skeleton } from "@tanisya/ui/components/skeleton";
-import { CreditCard, LayoutDashboard, LogOut, Settings } from "lucide-react";
+import {
+	CreditCard,
+	LayoutDashboard,
+	LogOut,
+	Settings,
+	Users2,
+} from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
@@ -73,7 +79,7 @@ export default function UserMenu() {
 		});
 	};
 
-	const { name, email, image } = session.user;
+	const { name, email, image, role } = session.user;
 
 	// ── Authenticated state ───────────────────────────────────────────────────
 	return (
@@ -132,13 +138,22 @@ export default function UserMenu() {
 							Dashboard
 						</Link>
 					</DropdownMenuItem>
+
+					{role === "admin" && (
+						<DropdownMenuItem asChild>
+							<Link href="/admin" className="cursor-pointer gap-2.5">
+								<Users2 className="h-4 w-4 text-muted-foreground" />
+								Admin
+							</Link>
+						</DropdownMenuItem>
+					)}
 				</DropdownMenuGroup>
 				<DropdownMenuSeparator className="my-1.5" />
 
 				{/* Navigation items */}
 				<DropdownMenuGroup>
 					<DropdownMenuItem asChild>
-						<Link href="/billing" className="cursor-pointer gap-2.5">
+						<Link href="/account/billing" className="cursor-pointer gap-2.5">
 							<CreditCard className="h-4 w-4 text-muted-foreground" />
 							Tagihan &amp; Langganan
 						</Link>
@@ -155,10 +170,7 @@ export default function UserMenu() {
 				<DropdownMenuSeparator className="my-1.5" />
 
 				{/* Sign out */}
-				<DropdownMenuItem
-					onClick={handleSignOut}
-					className="cursor-pointer gap-2.5 text-destructive focus:bg-destructive/50"
-				>
+				<DropdownMenuItem onClick={handleSignOut} variant="destructive">
 					<LogOut className="h-4 w-4" />
 					Keluar
 				</DropdownMenuItem>

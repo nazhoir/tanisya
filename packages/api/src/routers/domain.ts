@@ -42,7 +42,7 @@ async function checkDomainAvailability(domain: string) {
 		};
 	}
 
-	const data = await res.json();
+	const data = (await res.json()) as any;
 	return (
 		data.data?.[0] ?? {
 			name: domain,
@@ -256,4 +256,7 @@ export const domainRouter = {
 				results,
 			};
 		}),
+	// TODO
+	verifyTransfer: publicProcedure.handler(async () => {}),
+	submitTransfer: publicProcedure.handler(async () => {}),
 };

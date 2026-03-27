@@ -1,19 +1,15 @@
-
-import { headers } from "next/headers";
-import RegisterSuccessClient from "./register-success-client";
 import { auth } from "@tanisya/auth";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-
+import RegisterSuccessClient from "./register-success-client";
 
 export default async function RegisterSuccessPage() {
-
-	 const session = await auth.api.getSession({
-			headers: await headers()
-		})
-		if(session) {
-			redirect("/dashboard")
-		}
-	
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	});
+	if (session) {
+		redirect("/dashboard");
+	}
 
 	return (
 		<div className="flex min-h-screen items-center justify-center bg-background px-4">

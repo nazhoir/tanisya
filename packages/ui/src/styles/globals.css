@@ -23,7 +23,9 @@
 
 	/* ── Brand ─────────────────────────────────────────────────────────────── */
 	--primary: oklch(0.852 0.199 91.936); /* amber — DIPERTAHANKAN */
-	--primary-foreground: oklch(0.421 0.095 57.708); /* hitam — kontras tinggi di atas amber */
+	--primary-foreground: oklch(
+		0.421 0.095 57.708
+	); /* hitam — kontras tinggi di atas amber */
 
 	/* ── Secondary — cream hangat, amber tint halus ────────────────────────── */
 	--secondary: oklch(0.967 0.001 286.375);

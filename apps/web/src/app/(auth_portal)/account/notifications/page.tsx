@@ -10,12 +10,9 @@ import {
 import { Switch } from "@tanisya/ui/components/switch";
 import { Mail, Smartphone } from "lucide-react";
 import { useState } from "react";
-import { AccountHeader } from "@/components/account-header";
+import { SidebarPageHeader } from "@/components/sidebar-page-header";
 
-const notifTypes = [
-	"Peringatan keamanan",
-	"Pembaruan dan pengumuman produk",
-];
+const notifTypes = ["Peringatan keamanan", "Pembaruan dan pengumuman produk"];
 
 export default function NotificationsPage() {
 	const [emailNotif, setEmailNotif] = useState(true);
@@ -26,7 +23,9 @@ export default function NotificationsPage() {
 
 	return (
 		<>
-			<AccountHeader page="Notifikasi" />
+			<SidebarPageHeader
+				items={[{ label: "Akun", href: "/account" }, { label: "Notifikasi" }]}
+			/>
 
 			<div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 p-6 pt-4">
 				<div>

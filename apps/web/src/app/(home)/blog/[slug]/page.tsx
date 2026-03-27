@@ -20,11 +20,9 @@ import {
 	CheckCircle2,
 	Clock,
 	Copy,
-	Facebook,
 	Link2,
 	Rss,
 	Tag,
-	Twitter,
 	User,
 } from "lucide-react";
 import Link from "next/link";
@@ -526,11 +524,11 @@ export default function BlogDetailPage() {
 							{/* flex-wrap agar tidak overflow di layar kecil */}
 							<div className="flex flex-wrap items-center gap-2">
 								<Button size="sm" variant="outline" className="gap-1.5 text-xs">
-									<Twitter className="h-3.5 w-3.5" />
+									{/* <Twitter className="h-3.5 w-3.5" /> */}
 									Twitter
 								</Button>
 								<Button size="sm" variant="outline" className="gap-1.5 text-xs">
-									<Facebook className="h-3.5 w-3.5" />
+									{/* <Facebook className="h-3.5 w-3.5" /> */}
 									Facebook
 								</Button>
 								<TooltipProvider>

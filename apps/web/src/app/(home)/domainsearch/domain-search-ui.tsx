@@ -223,7 +223,9 @@ export function DomainCard({
 						asChild
 					>
 						<Link
-							href={`/dashboard/domain/transfer?domain=${encodeURIComponent(s.name)}`}
+							href={
+								`/dashboard/domain/transfer?domain=${encodeURIComponent(s.name)}` as any
+							}
 						>
 							<ArrowLeftRight className="h-4 w-4" />
 							Transfer Domain
@@ -323,7 +325,9 @@ export function DomainListRow({ s }: { s: DomainSuggestion }) {
 						asChild
 					>
 						<Link
-							href={`/dashboard/domain/transfer?domain=${encodeURIComponent(s.name)}`}
+							href={
+								`/dashboard/domain/transfer?domain=${encodeURIComponent(s.name)}` as any
+							}
 						>
 							<ArrowLeftRight className="h-3.5 w-3.5" />
 							Transfer

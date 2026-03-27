@@ -377,12 +377,12 @@ export default function ContactPage() {
 										/>
 										<span>
 											Saya menyetujui{" "}
-											<Link
+											<a
 												href="/privacy"
 												className="font-semibold text-primary underline-offset-2 hover:underline"
 											>
 												Kebijakan Privasi
-											</Link>{" "}
+											</a>{" "}
 											Tanisya dan bersedia dihubungi oleh tim kami.
 										</span>
 									</label>

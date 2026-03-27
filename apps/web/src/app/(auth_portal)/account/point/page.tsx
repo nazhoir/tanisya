@@ -39,7 +39,7 @@ import {
 	Zap,
 } from "lucide-react";
 import { useState } from "react";
-import { AccountHeader } from "@/components/account-header";
+import { SidebarPageHeader } from "@/components/sidebar-page-header";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -381,7 +381,9 @@ export default function PointPage() {
 
 	return (
 		<>
-			<AccountHeader page="Poin Saya" />
+			<SidebarPageHeader
+				items={[{ label: "Akun", href: "/account" }, { label: "Poin" }]}
+			/>
 
 			<div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-6 p-4 pt-4 md:p-6">
 				{/* Balance card */}

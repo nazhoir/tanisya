@@ -22,7 +22,7 @@ import {
 	CheckCircle2,
 	Database,
 	ExternalLink,
-	Github,
+	// Github,
 	Globe,
 	HardDrive,
 	HeadphonesIcon,
@@ -627,7 +627,7 @@ export default function AppDetailPage({
 							<div className="flex flex-wrap gap-2">
 								<a href={app.github} target="_blank" rel="noopener noreferrer">
 									<Button variant="outline" size="sm" className="gap-1.5">
-										<Github className="h-3.5 w-3.5" /> GitHub
+										{/* <Github className="h-3.5 w-3.5" /> GitHub */}
 									</Button>
 								</a>
 								<a href={app.website} target="_blank" rel="noopener noreferrer">

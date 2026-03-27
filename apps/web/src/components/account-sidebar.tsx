@@ -1,114 +1,59 @@
 "use client";
 
-import { Button } from "@tanisya/ui/components/button";
 import {
 	Sidebar,
 	SidebarContent,
 	SidebarFooter,
-	SidebarGroup,
-	SidebarGroupContent,
-	SidebarGroupLabel,
 	SidebarHeader,
 	SidebarMenu,
-	SidebarMenuButton,
 	SidebarMenuItem,
+	SidebarRail,
 } from "@tanisya/ui/components/sidebar";
-import {
-	Bell,
-	LogOut,
-	LogOutIcon,
-	Palette,
-	Shield,
-	StarIcon,
-	User,
-	Wallet,
-} from "lucide-react";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { authClient } from "@/lib/auth-client";
+import { Bell, Palette, Shield, StarIcon, User, Wallet } from "lucide-react";
+import type * as React from "react";
+import { NavMain } from "@/components/nav-main";
+import { NavUser } from "@/components/nav-user";
 import Logo from "./logo";
 
-const accountNavItems = [
-	{ label: "Profil", href: "/account", icon: User },
-	{ label: "Keamanan", href: "/account/security", icon: Shield },
-];
+const data = {
+	navAccount: [
+		{ title: "Profil", url: "/account", icon: <User /> },
+		{ title: "Keamanan", url: "/account/security", icon: <Shield /> },
+	],
+	navSettings: [
+		{ title: "Notifikasi", url: "/account/notifications", icon: <Bell /> },
+		{ title: "Preferensi", url: "/account/preferences", icon: <Palette /> },
+	],
+	navBilling: [
+		{ title: "Poin Saya", url: "/account/point", icon: <StarIcon /> },
+		{ title: "Tagihan", url: "/account/billing", icon: <Wallet /> },
+	],
+};
 
-const settingsNavItems = [
-	{ label: "Notifikasi", href: "/account/notifications", icon: Bell },
-	{ label: "Preferensi", href: "/account/preferences", icon: Palette },
-];
-
-const billingNavItems = [
-	{ label: "Poin Saya", href: "/account/point", icon: StarIcon },
-	{ label: "Tagihan", href: "/account/billing", icon: Wallet },
-];
-
-const navGroups = [
-	{ label: "Akun", items: accountNavItems },
-	{ label: "Pengaturan", items: settingsNavItems },
-	{ label: "Poin & Tagihan", items: billingNavItems },
-];
-
-export function AccountSidebar() {
-	const pathname = usePathname();
-
-	const router = useRouter();
-
-	// ── Sign out ──────────────────────────────────────────────────────────────
-	const handleSignOut = () => {
-		authClient.signOut({
-			fetchOptions: { onSuccess: () => router.push("/") },
-		});
-	};
-
+export function AccountSidebar({
+	...props
+}: React.ComponentProps<typeof Sidebar>) {
 	return (
-		<Sidebar collapsible="icon">
+		<Sidebar collapsible="offcanvas" variant="inset" {...props}>
 			<SidebarHeader className="p-4">
-				<Logo href="/dashboard" />
+				<SidebarMenu>
+					<SidebarMenuItem>
+						<Logo href="/dashboard" />
+					</SidebarMenuItem>
+				</SidebarMenu>
 			</SidebarHeader>
 
 			<SidebarContent>
-				{navGroups.map((group) => (
-					<SidebarGroup key={group.label}>
-						<SidebarGroupLabel>{group.label}</SidebarGroupLabel>
-						<SidebarGroupContent>
-							<SidebarMenu>
-								{group.items.map((item) => {
-									const isActive = pathname === item.href;
-									return (
-										<SidebarMenuItem key={item.href}>
-											<SidebarMenuButton
-												asChild
-												isActive={isActive}
-												tooltip={item.label}
-											>
-												<Link
-													href={item.href as any}
-													className="flex items-center gap-2"
-												>
-													<item.icon className="h-4 w-4" />
-													<span>{item.label}</span>
-												</Link>
-											</SidebarMenuButton>
-										</SidebarMenuItem>
-									);
-								})}
-							</SidebarMenu>
-						</SidebarGroupContent>
-					</SidebarGroup>
-				))}
+				<NavMain label="Akun" items={data.navAccount} />
+				<NavMain label="Pengaturan" items={data.navSettings} />
+				<NavMain label="Poin & Tagihan" items={data.navBilling} />
 			</SidebarContent>
 
-			<SidebarFooter className="p-3">
-				<Button
-					variant={"destructive"}
-					onClick={handleSignOut}
-					className="w-full justify-start"
-				>
-					<LogOutIcon className="h-4 w-4" />
-					Log out
-				</Button>
+			<SidebarFooter>
+				<NavUser />
 			</SidebarFooter>
+
+			<SidebarRail />
 		</Sidebar>
 	);
 }

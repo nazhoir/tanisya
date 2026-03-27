@@ -23,7 +23,7 @@ import { Toggle } from "@tanisya/ui/components/toggle";
 import {
 	ArrowRight,
 	ExternalLink,
-	Github,
+	// Github,
 	Globe,
 	Grid3X3,
 	Layers,
@@ -422,7 +422,7 @@ function TemplateCard({ t }: { t: AppTemplate }) {
 							className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
 							aria-label="GitHub"
 						>
-							<Github className="h-3.5 w-3.5" />
+							{/* <Github className="h-3.5 w-3.5" /> */}
 						</button>
 						<button
 							type="button"
@@ -518,7 +518,7 @@ function TemplateListItem({ t }: { t: AppTemplate }) {
 								}}
 								className="flex items-center gap-1 font-medium text-[11px] text-muted-foreground transition-colors hover:text-foreground"
 							>
-								<Github className="h-3 w-3" /> GitHub
+								{/* <Github className="h-3 w-3" /> GitHub */}
 							</button>
 							<span className="text-border">|</span>
 							<button

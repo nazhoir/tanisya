@@ -6,16 +6,13 @@ import { Input } from "@tanisya/ui/components/input";
 import { cn } from "@tanisya/ui/lib/utils";
 import {
 	Globe,
-	Instagram,
 	Mail,
 	MapPin,
 	MessageCircle,
 	Send,
 	ShieldCheck,
 	Star,
-	Twitter,
 	Users,
-	Youtube,
 	Zap,
 } from "lucide-react";
 import Link from "next/link";
@@ -29,24 +26,24 @@ import Logo from "./logo";
 // ─── Payment data ─────────────────────────────────────────────────────────────
 
 const SOCIALS = [
-	{
-		icon: Instagram,
-		label: "Instagram",
-		href: "https://instagram.com/tanisya",
-		color: "hover:text-pink-500",
-	},
-	{
-		icon: Twitter,
-		label: "X/Twitter",
-		href: "https://twitter.com/tanisya",
-		color: "hover:text-sky-400",
-	},
-	{
-		icon: Youtube,
-		label: "YouTube",
-		href: "https://youtube.com/@tanisya",
-		color: "hover:text-red-500",
-	},
+	// {
+	// 	icon: Instagram,
+	// 	label: "Instagram",
+	// 	href: "https://instagram.com/tanisya",
+	// 	color: "hover:text-pink-500",
+	// },
+	// {
+	// 	icon: Twitter,
+	// 	label: "X/Twitter",
+	// 	href: "https://twitter.com/tanisya",
+	// 	color: "hover:text-sky-400",
+	// },
+	// {
+	// 	icon: Youtube,
+	// 	label: "YouTube",
+	// 	href: "https://youtube.com/@tanisya",
+	// 	color: "hover:text-red-500",
+	// },
 	{
 		icon: MessageCircle,
 		label: "WhatsApp",
