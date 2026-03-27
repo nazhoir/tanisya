@@ -27,11 +27,16 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
       BETTER_AUTH_URL: ${{ vars.BETTER_AUTH_URL }}
+      NEXT_PUBLIC_APP_ROOT_DOMAIN: ${{ vars.BETTER_AUTH_URL }}
       CORS_ORIGIN: ${{ vars.CORS_ORIGIN }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       RDASH_API_URL: ${{ secrets.RDASH_API_URL }}
       RDASH_RESELLER_ID: ${{ secrets.RDASH_RESELLER_ID }}
       RDASH_API_KEY: ${{ secrets.RDASH_API_KEY }}
+      STORAGE_ACCOUNT_ID: ${{ secrets.STORAGE_ACCOUNT_ID}}
+      STORAGE_ACCESS_KEY_ID: ${{ secrets.STORAGE_ACCESS_KEY_ID}}
+      STORAGE_SECRET_ACCESS_KEY: ${{ secrets.STORAGE_SECRET_ACCESS_KEY}}
+      STORAGE_PUBLIC_URL: ${{ secrets.STORAGE_PUBLIC_URL}}
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
