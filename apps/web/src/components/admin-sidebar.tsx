@@ -12,6 +12,7 @@ import {
 import {
 	Activity,
 	Bell,
+	Globe,
 	Palette,
 	PieChartIcon,
 	Search,
@@ -53,6 +54,21 @@ const navdata = [
 	},
 ];
 
+const productNavData = [
+	{
+      title: "Domain",
+      url: "#",
+      icon: <Globe />,
+      isActive: true,
+      items: [
+        { title: "Domain", url: "/domain" },
+        { title: "Provider", url: "/domain/provider" },
+        { title: "Registrasi", url: "/domain/register" },
+        { title: "Transfer", url: "/domain/transfer" },
+      ],
+    },
+]
+
 export function AdminSidebar({
 	...props
 }: React.ComponentProps<typeof Sidebar>) {
@@ -67,7 +83,8 @@ export function AdminSidebar({
 			</SidebarHeader>
 
 			<SidebarContent>
-				<NavMain baseUrl="/admin" items={navdata} />
+				<NavMain baseUrl="/admin" label="Pengguna" items={navdata} />
+				<NavMain baseUrl="/admin" label="Produk" items={productNavData} />
 			</SidebarContent>
 
 			<SidebarFooter>

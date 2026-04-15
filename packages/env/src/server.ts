@@ -17,6 +17,7 @@ export const env = createEnv({
 		STORAGE_ACCESS_KEY_ID: z.string().min(1),
 		STORAGE_SECRET_ACCESS_KEY: z.string().min(1),
 		STORAGE_PUBLIC_URL: z.url().min(1),
+		XENDIT_API_KEY: z.string().min(1),
 	},
 	runtimeEnv: process.env,
 	emptyStringAsUndefined: true,

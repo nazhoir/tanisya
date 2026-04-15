@@ -9,7 +9,6 @@ import {
 	FieldLabel,
 	FieldSeparator,
 } from "@tanisya/ui/components/field";
-import { Input } from "@tanisya/ui/components/input";
 import {
 	InputGroup,
 	InputGroupAddon,

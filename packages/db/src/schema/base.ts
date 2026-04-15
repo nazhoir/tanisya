@@ -1,4 +1,3 @@
-import { relations } from "drizzle-orm";
 import {
 	boolean,
 	index,
@@ -18,7 +17,7 @@ export const user = pgTable("user", {
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at")
 		.defaultNow()
-		.$onUpdate(() => /* @__PURE__ */ new Date())
+		.$onUpdate(() => new Date())
 		.notNull(),
 	role: text("role"),
 	banned: boolean("banned").default(false),
@@ -37,7 +36,8 @@ export const session = pgTable(
 		token: text("token").notNull().unique(),
 		createdAt: timestamp("created_at").defaultNow().notNull(),
 		updatedAt: timestamp("updated_at")
-			.$onUpdate(() => /* @__PURE__ */ new Date())
+			.defaultNow()
+			.$onUpdate(() => new Date())
 			.notNull(),
 		ipAddress: text("ip_address"),
 		userAgent: text("user_agent"),
@@ -68,7 +68,8 @@ export const account = pgTable(
 		password: text("password"),
 		createdAt: timestamp("created_at").defaultNow().notNull(),
 		updatedAt: timestamp("updated_at")
-			.$onUpdate(() => /* @__PURE__ */ new Date())
+			.defaultNow()
+			.$onUpdate(() => new Date())
 			.notNull(),
 	},
 	(table) => [index("account_userId_idx").on(table.userId)],
@@ -84,7 +85,7 @@ export const verification = pgTable(
 		createdAt: timestamp("created_at").defaultNow().notNull(),
 		updatedAt: timestamp("updated_at")
 			.defaultNow()
-			.$onUpdate(() => /* @__PURE__ */ new Date())
+			.$onUpdate(() => new Date())
 			.notNull(),
 	},
 	(table) => [index("verification_identifier_idx").on(table.identifier)],
@@ -130,7 +131,7 @@ export const organization = pgTable(
 		name: text("name").notNull(),
 		slug: text("slug").notNull().unique(),
 		logo: text("logo"),
-		createdAt: timestamp("created_at").notNull(),
+		createdAt: timestamp("created_at").defaultNow().notNull(),
 		metadata: text("metadata"),
 	},
 	(table) => [uniqueIndex("organization_slug_uidx").on(table.slug)],
@@ -147,7 +148,7 @@ export const member = pgTable(
 			.notNull()
 			.references(() => user.id, { onDelete: "cascade" }),
 		role: text("role").default("member").notNull(),
-		createdAt: timestamp("created_at").notNull(),
+		createdAt: timestamp("created_at").defaultNow().notNull(),
 	},
 	(table) => [
 		index("member_organizationId_idx").on(table.organizationId),
@@ -192,59 +193,3 @@ export const twoFactor = pgTable(
 		index("twoFactor_userId_idx").on(table.userId),
 	],
 );
-
-export const userRelations = relations(user, ({ many }) => ({
-	sessions: many(session),
-	accounts: many(account),
-	members: many(member),
-	invitations: many(invitation),
-	twoFactors: many(twoFactor),
-}));
-
-export const sessionRelations = relations(session, ({ one }) => ({
-	user: one(user, {
-		fields: [session.userId],
-		references: [user.id],
-	}),
-}));
-
-export const accountRelations = relations(account, ({ one }) => ({
-	user: one(user, {
-		fields: [account.userId],
-		references: [user.id],
-	}),
-}));
-
-export const organizationRelations = relations(organization, ({ many }) => ({
-	members: many(member),
-	invitations: many(invitation),
-}));
-
-export const memberRelations = relations(member, ({ one }) => ({
-	organization: one(organization, {
-		fields: [member.organizationId],
-		references: [organization.id],
-	}),
-	user: one(user, {
-		fields: [member.userId],
-		references: [user.id],
-	}),
-}));
-
-export const invitationRelations = relations(invitation, ({ one }) => ({
-	organization: one(organization, {
-		fields: [invitation.organizationId],
-		references: [organization.id],
-	}),
-	user: one(user, {
-		fields: [invitation.inviterId],
-		references: [user.id],
-	}),
-}));
-
-export const twoFactorRelations = relations(twoFactor, ({ one }) => ({
-	user: one(user, {
-		fields: [twoFactor.userId],
-		references: [user.id],
-	}),
-}));

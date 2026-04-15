@@ -557,7 +557,7 @@ function CartSummary({
 				className="w-full gap-2 font-bold shadow shadow-primary/20"
 				asChild
 			>
-				<Link href={`${baseUrl}/checkout/domain` as any}>
+				<Link href={`${baseUrl}/domain/checkout` as any}>
 					Lanjut ke Pembayaran
 					<ArrowRight className="h-4 w-4" />
 				</Link>
