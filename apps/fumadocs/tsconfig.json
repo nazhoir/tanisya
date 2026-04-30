@@ -1,7 +1,5 @@
 {
   "compilerOptions": {
-    "ignoreDeprecations": "6.0",
-    "baseUrl": ".",
     "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -18,8 +16,7 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@tanisya/ui/*": ["../../packages/ui/src/*"],
-      "fumadocs-mdx:collections/*": [".source/*"]
+      "collections/*": ["./.source/*"]
     },
     "plugins": [
       {

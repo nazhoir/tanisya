@@ -1,65 +1,38 @@
 {
-	"$schema": "https://turbo.build/schema.json",
-	"ui": "tui",
-	"globalDependencies": [".env"],
-	"tasks": {
-		"build": {
-			"dependsOn": ["^build"],
-			"inputs": ["$TURBO_DEFAULT$", ".env"],
-			"outputs": ["dist/**", ".next/**"],
-			"env": [
-				"DATABASE_URL",
-				"BETTER_AUTH_SECRET",
-				"BETTER_AUTH_URL",
-				"CORS_ORIGIN",
-				"NODE_ENV",
-				"RDASH_API_URL",
-				"RDASH_RESELLER_ID",
-				"RDASH_API_KEY",
-				"STORAGE_PUBLIC_URL",
-				"STORAGE_ACCOUNT_ID",
-				"STORAGE_ACCESS_KEY_ID",
-				"STORAGE_SECRET_ACCESS_KEY",
-				"NEXT_PUBLIC_APP_ROOT_DOMAIN"
-			]
-		},
-		"lint": {
-			"dependsOn": ["^lint"]
-		},
-		"check-types": {
-			"dependsOn": ["^check-types"]
-		},
-		"dev": {
-			"cache": false,
-			"persistent": true,
-			"env": [
-				"DATABASE_URL",
-				"BETTER_AUTH_SECRET",
-				"BETTER_AUTH_URL",
-				"CORS_ORIGIN",
-				"NODE_ENV",
-				"RDASH_API_URL",
-				"RDASH_RESELLER_ID",
-				"RDASH_API_KEY",
-				"STORAGE_PUBLIC_URL",
-				"STORAGE_ACCOUNT_ID",
-				"STORAGE_ACCESS_KEY_ID",
-				"STORAGE_SECRET_ACCESS_KEY"
-			]
-		},
-		"db:push": {
-			"cache": false
-		},
-		"db:generate": {
-			"cache": false
-		},
-		"db:migrate": {
-			"cache": false,
-			"persistent": true
-		},
-		"db:studio": {
-			"cache": false,
-			"persistent": true
-		}
-	}
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "check-types": {
+      "dependsOn": ["^check-types"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "db:push": {
+      "cache": false
+    },
+    "db:generate": {
+      "cache": false
+    },
+    "db:migrate": {
+      "cache": false,
+      "persistent": true
+    },
+    "db:studio": {
+      "cache": false,
+      "persistent": true
+    },
+    "db:auth:generate": {
+      "cache": false
+    }
+  }
 }

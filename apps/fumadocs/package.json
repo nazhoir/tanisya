@@ -12,29 +12,25 @@
     "format": "biome format --write"
   },
   "dependencies": {
-    "@takumi-rs/image-response": "^0.73.1",
-    "@tanisya/ui": "workspace:*",
-    "fumadocs-core": "16.7.7",
-    "fumadocs-mdx": "14.2.11",
-    "fumadocs-ui": "16.7.7",
-    "lucide-react": "catalog:",
-    "next": "catalog:",
-    "react": "catalog:",
-    "react-dom": "catalog:",
-    "react-medium-image-zoom": "^5.4.1",
-    "tailwind-merge": "catalog:"
+    "@takumi-rs/image-response": "^1.1.2",
+    "fumadocs-core": "16.8.5",
+    "fumadocs-mdx": "14.3.2",
+    "fumadocs-ui": "16.8.5",
+    "lucide-react": "^1.11.0",
+    "next": "16.2.4",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "catalog:",
-    "@opennextjs/cloudflare": "catalog:",
-    "@tailwindcss/postcss": "catalog:",
+    "@biomejs/biome": "^2.4.13",
+    "@tailwindcss/postcss": "^4.2.4",
     "@types/mdx": "^2.0.13",
-    "@types/node": "catalog:",
-    "@types/react": "catalog:",
-    "@types/react-dom": "catalog:",
-    "postcss": "^8.5.8",
-    "tailwindcss": "catalog:",
-    "typescript": "catalog:",
-    "wrangler": "catalog:"
+    "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^4.2.4",
+    "typescript": "^6.0.3"
   }
 }

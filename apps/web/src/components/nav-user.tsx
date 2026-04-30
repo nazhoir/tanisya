@@ -1,167 +1,107 @@
-"use client";
+"use client"
 
 import {
-	Avatar,
-	AvatarFallback,
-	AvatarImage,
-} from "@tanisya/ui/components/avatar";
-import { Button } from "@tanisya/ui/components/button";
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@tanisya/ui/components/avatar"
 import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuGroup,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@tanisya/ui/components/dropdown-menu";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@tanisya/ui/components/dropdown-menu"
 import {
-	SidebarMenu,
-	SidebarMenuButton,
-	SidebarMenuItem,
-	useSidebar,
-} from "@tanisya/ui/components/sidebar";
-import { Skeleton } from "@tanisya/ui/components/skeleton";
-import {
-	BadgeCheckIcon,
-	BellIcon,
-	ChevronsUpDownIcon,
-	CreditCard,
-	CreditCardIcon,
-	LayoutDashboard,
-	LogOutIcon,
-	Settings,
-	SparklesIcon,
-	Users2,
-} from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { authClient } from "@/lib/auth-client";
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  useSidebar,
+} from "@tanisya/ui/components/sidebar"
+import { RiMore2Line, RiUserLine, RiBankCardLine, RiNotification3Line, RiLogoutBoxLine } from "@remixicon/react"
 
-function getInitials(name: string) {
-	return name
-		.split(" ")
-		.map((w) => w[0])
-		.slice(0, 2)
-		.join("")
-		.toUpperCase();
-}
-export function NavUser() {
-	const router = useRouter();
-	const { data: session, isPending } = authClient.useSession();
+export function NavUser({
+  user,
+}: {
+  user: {
+    name: string
+    email: string
+    avatar: string
+  }
+}) {
+  const { isMobile } = useSidebar()
 
-	// ── Loading state ─────────────────────────────────────────────────────────
-	if (isPending || !session) {
-		return (
-			<div className="flex items-center gap-2 p-2">
-				<Skeleton className="h-8 w-8 rounded-full" />
-				<div className="w-40 space-y-1">
-					<Skeleton className="hidden h-5 w-full rounded-full sm:block" />
-					<Skeleton className="hidden h-3 w-full rounded-full sm:block" />
-				</div>
-			</div>
-		);
-	}
-
-	// ── Sign out ──────────────────────────────────────────────────────────────
-	const handleSignOut = () => {
-		authClient.signOut({
-			fetchOptions: { onSuccess: () => router.push("/") },
-		});
-	};
-
-	const { name, email, image, role } = session.user;
-	return (
-		<SidebarMenu>
-			<SidebarMenuItem>
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-						<SidebarMenuButton
-							size="lg"
-							className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-						>
-							<Avatar className="h-8 w-8 rounded-lg">
-								<AvatarImage src={image ?? undefined} alt={name} />
-								<AvatarFallback className="bg-primary font-bold text-primary-foreground text-xs">
-									{getInitials(name)}
-								</AvatarFallback>
-							</Avatar>
-							<div className="grid flex-1 text-start text-sm leading-tight">
-								<span className="truncate font-medium"> {name}</span>
-								<span className="truncate text-xs">{email}</span>
-							</div>
-							<ChevronsUpDownIcon className="ms-auto size-4" />
-						</SidebarMenuButton>
-					</DropdownMenuTrigger>
-					<DropdownMenuContent
-						className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
-						align="end"
-						sideOffset={4}
-					>
-						<DropdownMenuLabel className="p-0 font-normal">
-							<div className="flex items-center gap-3 rounded-lg bg-muted/50 px-3 py-2.5">
-								<Avatar className="h-9 w-9 shrink-0">
-									<AvatarImage src={image ?? undefined} alt={name} />
-									<AvatarFallback className="bg-primary font-bold text-primary-foreground text-xs">
-										{getInitials(name)}
-									</AvatarFallback>
-								</Avatar>
-								<div className="min-w-0 flex-1">
-									<p className="truncate font-semibold text-sm leading-tight">
-										{name}
-									</p>
-									<p className="mt-0.5 truncate text-[11px] text-muted-foreground leading-tight">
-										{email}
-									</p>
-								</div>
-							</div>
-						</DropdownMenuLabel>
-						<DropdownMenuSeparator className="my-1.5" />
-
-						<DropdownMenuGroup>
-							<DropdownMenuItem asChild>
-								<Link href="/dashboard" className="cursor-pointer gap-2.5">
-									<LayoutDashboard className="h-4 w-4 text-muted-foreground" />
-									Dashboard
-								</Link>
-							</DropdownMenuItem>
-
-							{role === "admin" && (
-								<DropdownMenuItem asChild>
-									<Link href="/admin" className="cursor-pointer gap-2.5">
-										<Users2 className="h-4 w-4 text-muted-foreground" />
-										Admin
-									</Link>
-								</DropdownMenuItem>
-							)}
-						</DropdownMenuGroup>
-						<DropdownMenuSeparator className="my-1.5" />
-
-						<DropdownMenuGroup>
-							<DropdownMenuItem asChild>
-								<Link href="/account" className="cursor-pointer gap-2.5">
-									<Settings className="h-4 w-4 text-muted-foreground" />
-									Pengaturan Akun
-								</Link>
-							</DropdownMenuItem>
-							<DropdownMenuItem asChild>
-								<Link
-									href="/account/billing"
-									className="cursor-pointer gap-2.5"
-								>
-									<CreditCard className="h-4 w-4 text-muted-foreground" />
-									Tagihan
-								</Link>
-							</DropdownMenuItem>
-						</DropdownMenuGroup>
-						<DropdownMenuSeparator />
-						<DropdownMenuItem variant="destructive" onClick={handleSignOut}>
-							<LogOutIcon className="h-4 w-4" />
-							Log out
-						</DropdownMenuItem>
-					</DropdownMenuContent>
-				</DropdownMenu>
-			</SidebarMenuItem>
-		</SidebarMenu>
-	);
+  return (
+    <SidebarMenu>
+      <SidebarMenuItem>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <SidebarMenuButton
+              size="lg"
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+            >
+              <Avatar className="h-8 w-8 rounded-lg grayscale">
+                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+              </Avatar>
+              <div className="grid flex-1 text-start text-sm leading-tight">
+                <span className="truncate font-medium">{user.name}</span>
+                <span className="truncate text-xs text-muted-foreground">
+                  {user.email}
+                </span>
+              </div>
+              <RiMore2Line className="ms-auto size-4" />
+            </SidebarMenuButton>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+            side={isMobile ? "bottom" : "right"}
+            align="end"
+            sideOffset={4}
+          >
+            <DropdownMenuLabel className="p-0 font-normal">
+              <div className="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
+                <Avatar className="h-8 w-8 rounded-lg">
+                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                </Avatar>
+                <div className="grid flex-1 text-start text-sm leading-tight">
+                  <span className="truncate font-medium">{user.name}</span>
+                  <span className="truncate text-xs text-muted-foreground">
+                    {user.email}
+                  </span>
+                </div>
+              </div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                <RiUserLine
+                />
+                Account
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <RiBankCardLine
+                />
+                Billing
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <RiNotification3Line
+                />
+                Notifications
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <RiLogoutBoxLine
+              />
+              Log out
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </SidebarMenuItem>
+    </SidebarMenu>
+  )
 }

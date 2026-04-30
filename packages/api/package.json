@@ -1,33 +1,31 @@
 {
-	"name": "@tanisya/api",
-	"type": "module",
-	"exports": {
-		".": {
-			"default": "./src/index.ts"
-		},
-		"./*": {
-			"default": "./src/*.ts"
-		}
-	},
-	"scripts": {},
-	"dependencies": {
-		"@aws-sdk/client-s3": "^3.1022.0",
-		"@orpc/client": "catalog:",
-		"@orpc/openapi": "catalog:",
-		"@orpc/server": "catalog:",
-		"@orpc/zod": "catalog:",
-		"@tanisya/auth": "workspace:*",
-		"@tanisya/db": "workspace:*",
-		"@tanisya/env": "workspace:*",
-		"@types/pg": "catalog:",
-		"dotenv": "catalog:",
-		"drizzle-orm": "catalog:",
-		"next": "catalog:",
-		"xendit-node": "^7.0.0",
-		"zod": "catalog:"
-	},
-	"devDependencies": {
-		"@tanisya/config": "workspace:*",
-		"typescript": "catalog:"
-	}
+  "name": "@tanisya/api",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@orpc/client": "catalog:",
+    "@orpc/openapi": "catalog:",
+    "@orpc/server": "catalog:",
+    "@orpc/zod": "catalog:",
+    "@tanisya/auth": "workspace:*",
+    "@tanisya/db": "workspace:*",
+    "@tanisya/env": "workspace:*",
+    "@types/pg": "catalog:",
+    "dotenv": "catalog:",
+    "drizzle-orm": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@tanisya/config": "workspace:*",
+    "hono": "catalog:",
+    "typescript": "catalog:"
+  }
 }

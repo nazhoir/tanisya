@@ -6,24 +6,24 @@
 // Showcase: https://www.better-t-stack.dev/showcase
 // Sponsor: https://github.com/sponsors/AmanVarshney01
 //
-// Add new addons with: pnpm dlx create-better-t-stack add
+// Add new addons with: bun create better-t-stack add
 // This file is safe to delete
 
 {
   "$schema": "https://r2.better-t-stack.dev/schema.json",
-  "version": "3.24.0",
-  "createdAt": "2026-03-09T15:40:30.253Z",
-  "reproducibleCommand": "pnpm create better-t-stack@latest tanisya --frontend next --backend self --runtime none --database postgres --orm drizzle --api orpc --auth better-auth --payments none --addons biome fumadocs pwa turborepo --examples todo --db-setup none --web-deploy none --server-deploy none --no-git --package-manager pnpm --install",
+  "version": "3.27.5",
+  "createdAt": "2026-04-30T08:22:28.956Z",
+  "reproducibleCommand": "bun create better-t-stack@latest tanisya --frontend next --backend hono --runtime node --database postgres --orm drizzle --api orpc --auth better-auth --payments none --addons biome fumadocs pwa skills turborepo --examples todo --db-setup none --web-deploy none --server-deploy none --no-git --package-manager bun --install",
   "database": "postgres",
   "orm": "drizzle",
-  "backend": "self",
-  "runtime": "none",
+  "backend": "hono",
+  "runtime": "node",
   "frontend": ["next"],
-  "addons": ["biome", "fumadocs", "pwa", "turborepo"],
+  "addons": ["biome", "fumadocs", "pwa", "skills", "turborepo"],
   "examples": ["todo"],
   "auth": "better-auth",
   "payments": "none",
-  "packageManager": "pnpm",
+  "packageManager": "bun",
   "dbSetup": "none",
   "api": "orpc",
   "webDeploy": "none",

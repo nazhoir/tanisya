@@ -1,9 +1,8 @@
 import { metaSchema, pageSchema } from "fumadocs-core/source/schema";
 import { defineConfig, defineDocs } from "fumadocs-mdx/config";
-import lastModified from "fumadocs-mdx/plugins/last-modified";
 
-// You can customise Zod schemas for frontmatter and `meta.json` here
-// see https://fumadocs.dev/mdx/collections
+// You can customize Zod schemas for frontmatter and `meta.json` here
+// see https://fumadocs.dev/docs/mdx/collections
 export const docs = defineDocs({
   dir: "content/docs",
   docs: {
@@ -21,5 +20,4 @@ export default defineConfig({
   mdxOptions: {
     // MDX options
   },
-  plugins: [lastModified()],
 });

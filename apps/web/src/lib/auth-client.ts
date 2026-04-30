@@ -1,22 +1,10 @@
-import { apiKeyClient } from "@better-auth/api-key/client";
-import {
-	adminClient,
-	emailOTPClient,
-	magicLinkClient,
-	organizationClient,
-	twoFactorClient,
-	usernameClient,
-} from "better-auth/client/plugins";
+import { env } from "@tanisya/env/web";
 import { createAuthClient } from "better-auth/react";
+import { adminClient, usernameClient, organizationClient, emailOTPClient } from "better-auth/client/plugins";
 
 export const authClient = createAuthClient({
-	plugins: [
-		adminClient(),
-		apiKeyClient(),
-		emailOTPClient(),
-		magicLinkClient(),
-		usernameClient(),
-		organizationClient(),
-		twoFactorClient(),
-	],
+  baseURL: env.NEXT_PUBLIC_SERVER_URL,
+  plugins:[
+    usernameClient(), adminClient(), organizationClient(), emailOTPClient() 
+  ]
 });
