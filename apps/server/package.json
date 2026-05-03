@@ -8,11 +8,10 @@
     "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.mjs",
-    "db:auth:generate":"bun x auth generate --config=../../packages/auth/src/index.ts --output=../../packages/db/src/schema/auth.ts --yes"
-
+    "db:auth:generate": "bun x auth generate --config=../../packages/auth/src/index.ts --output=../../packages/db/src/schema/auth.ts --yes"
   },
   "dependencies": {
-    "@hono/node-server": "^1.14.4",
+    "@hono/node-server": "^2.0.1",
     "@orpc/openapi": "catalog:",
     "@orpc/server": "catalog:",
     "@orpc/zod": "catalog:",
@@ -27,7 +26,7 @@
   },
   "devDependencies": {
     "@tanisya/config": "workspace:*",
-    "@types/node": "^22.13.14",
+    "@types/node": "^25.6.0",
     "tsdown": "^0.21.9",
     "tsx": "^4.19.2",
     "typescript": "catalog:"

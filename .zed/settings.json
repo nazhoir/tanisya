@@ -1,0 +1,10 @@
+{
+  "context_servers": {
+    "fullstackrecipes": {
+      "source": "custom",
+      "type": "http",
+      "url": "https://fullstackrecipes.com/api/mcp",
+      "headers": {}
+    }
+  }
+}

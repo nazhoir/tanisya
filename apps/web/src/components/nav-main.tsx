@@ -8,6 +8,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@tanisya/ui/components/sidebar"
+import Link from "next/link"
 
 export function NavMain({
   label,
@@ -28,10 +29,10 @@ export function NavMain({
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton tooltip={item.title} asChild>
-                <a href={item.url || "#"}>
+                <Link href={(item.url  || "#") as any}>
                   {item.icon}
                   <span>{item.title}</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
